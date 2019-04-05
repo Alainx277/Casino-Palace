@@ -26,4 +26,9 @@ public class DatabaseStorage implements Storage {
     public void addUser(User user) {
         throw new NotImplementedException();
     }
+
+    @Override
+    public void updateUser(User user) {
+        throw new NotImplementedException();
+    }
 }

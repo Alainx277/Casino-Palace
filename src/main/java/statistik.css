@@ -1,0 +1,40 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+#AnchorPane{
+    -fx-background-image: url("/anmelden/Image/Bg2.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 666 513;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
+#erasebutton{
+    -fx-background-color: #4CAF50; /* Green */
+    -fx-border: none;
+    -fx-text-fill: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+}
+#backbutton{
+    -fx-background-color: #4CAF50; /* Green */
+    -fx-border: none;
+    -fx-text-fill: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+}
+#titel{
+    -fx-text-fill: #ffd700;
+    -fx-background-color: #09654C;
+}
+#usertext{
+    -fx-border-color: #4CAF50;
+}
+#passtext{
+    -fx-border-color: #4CAF50;
+}

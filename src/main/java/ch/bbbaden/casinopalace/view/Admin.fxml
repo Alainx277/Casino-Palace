@@ -1,15 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ch.bbbaden.casinopalace.view.AdminController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Text text="Admin"/>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="513.0" prefWidth="666.0" stylesheets="@Anmelden.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.view.AdminController">
+    
+    <stylesheets>
+        <URL value="@Common.css" />
+        <URL value="@statistik.css"/>
+    </stylesheets>
+    <children>
+      <Label layoutX="230.0" layoutY="28.0" text="Statistik">
+         <font>
+            <Font name="Arial Black" size="44.0" />
+         </font>
+      </Label>
+      <GridPane layoutX="109.0" layoutY="115.0" prefHeight="284.0" prefWidth="486.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.99998474121094" minWidth="10.0" prefWidth="113.19999694824219" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.199951171875" minWidth="10.0" prefWidth="17.600012207031256" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.800048828125" minWidth="10.0" prefWidth="90.80000000000001" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="88.20001220703122" minWidth="6.200000000000017" prefWidth="16.400000000000006" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="244.79998779296875" minWidth="10.0" prefWidth="240.79998779296875" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ListView id="usertext" fx:id="listplayer" prefHeight="274.0" prefWidth="87.0" />
+            <ListView id="usertext" fx:id="listgames" prefHeight="284.0" prefWidth="77.0" GridPane.columnIndex="2" />
+            <ListView id="usertext" fx:id="liststats" prefHeight="284.0" prefWidth="189.0" GridPane.columnIndex="4" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="182.0" layoutY="456.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.4000244140625" minWidth="10.0" prefWidth="123.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.4000244140625" minWidth="10.0" prefWidth="55.99996337890626" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.79998779296875" minWidth="10.0" prefWidth="123.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button id="erasebutton" mnemonicParsing="false" prefHeight="26.0" prefWidth="123.0" stylesheets="@statistik.css" text="Löschen" />
+            <Button id="backbutton" mnemonicParsing="false" prefHeight="26.0" prefWidth="123.0" stylesheets="@statistik.css" text="Abbrechen" GridPane.columnIndex="2" />
+         </children>
+      </GridPane>
+   </children>
 </AnchorPane>

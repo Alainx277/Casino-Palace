@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import javafx.stage.StageStyle;
 
 public class SceneCreator {
     private Stage currentStage = null;
@@ -16,6 +17,8 @@ public class SceneCreator {
         stage.setTitle("Casino-Palace");
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
         currentStage = stage;

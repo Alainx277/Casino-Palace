@@ -16,6 +16,7 @@ public class StateManager {
     }
 
     public void transition(State state) throws IOException {
+        this.state = state;
         Stage oldStage = sceneCreator.getCurrentStage();
         sceneCreator.createScene(state.getURL()).setStateManager(this);
         if (oldStage != null){

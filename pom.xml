@@ -15,6 +15,7 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.fxml</include>
+                    <include>**/*.css</include>
                 </includes>
             </resource>
         </resources>

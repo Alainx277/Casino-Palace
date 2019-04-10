@@ -1,0 +1,13 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+#AnchorPane{
+    -fx-background-image: url("/idk/Chips3.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 640 320;
+    -fx-background-position: center center;
+}

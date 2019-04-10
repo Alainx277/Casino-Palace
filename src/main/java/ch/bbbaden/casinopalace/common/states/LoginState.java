@@ -15,6 +15,11 @@ public class LoginState extends State {
     public void handleSignUp(StateManager stateManager) throws Exception {
         stateManager.transition(new SignupState());
     }
+
+    @Override
+    public void handleCasino(StateManager stateManager) throws Exception {
+        stateManager.transition(new CasinoState());
+    }
     
     
 }

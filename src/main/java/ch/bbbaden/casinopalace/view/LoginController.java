@@ -26,6 +26,11 @@ public class LoginController extends Controller {
 
     @FXML
     private void clickLogin(ActionEvent event) {
+        try {
+            getStateManager().getState().handleCasino(getStateManager());
+        } catch (Exception ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

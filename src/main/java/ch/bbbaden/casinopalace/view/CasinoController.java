@@ -59,7 +59,7 @@ public class CasinoController extends Controller implements Initializable{
         Image img = new Image("/images/right.png");
         imgView3.setImage(img);
         imgAdd.setImage(new Image("/images/add.png"));
-//        imgGurl.setImage(new Image("/images/girl.png"));
+        imgGurl.setImage(new Image("/images/girl.png"));
         games = new Image[]{new Image("/images/blackJack.png"),
             new Image("/images/poker.png"),
             new Image("/images/roulette.png"),

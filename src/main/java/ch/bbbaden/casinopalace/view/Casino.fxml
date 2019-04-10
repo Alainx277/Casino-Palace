@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,30 +10,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import java.net.URL?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ch.bbbaden.casinopalace.view.CasinoController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane id="AnchorPane" onKeyPressed="#onKeyPressed" prefHeight="588.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.view.CasinoController">
     
     <stylesheets>
         <URL value="@Common.css" />
+        <URL value="@Casino.css" />
     </stylesheets>
     <children>
       <HBox layoutX="161.0" layoutY="329.0" onKeyPressed="#handleLeftKey" prefHeight="100.0" prefWidth="70.0">
          <children>
             <ImageView id="LeftArrow" fx:id="imgViewLeft" fitHeight="98.0" fitWidth="88.0" onMouseClicked="#handleLeftGame" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </HBox>
-      <ImageView fitHeight="446.0" fitWidth="453.0" layoutX="417.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@girl.png" />
-         </image>
-      </ImageView>
-      <HBox layoutX="556.0" layoutY="328.0" prefHeight="100.0" prefWidth="70.0">
-         <children>
-            <ImageView fx:id="imgView3" fitHeight="98.0" fitWidth="88.0" onMouseClicked="#handleRightGame" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
       <HBox layoutX="219.0" layoutY="287.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="356.0">
@@ -55,12 +42,18 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ImageView fitHeight="35.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@add.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="imgAdd" fitHeight="35.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </GridPane>
+      <ImageView fx:id="imgGurl" fitHeight="446.0" fitWidth="453.0" layoutX="418.0" layoutY="155.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../resources/images/girl.png" />
+         </image>
+      </ImageView>
+      <HBox layoutX="556.0" layoutY="328.0" prefHeight="100.0" prefWidth="70.0">
+         <children>
+            <ImageView fx:id="imgView3" fitHeight="98.0" fitWidth="88.0" onMouseClicked="#handleRightGame" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

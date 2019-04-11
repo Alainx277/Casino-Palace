@@ -5,3 +5,17 @@
 .mainFxmlClass {
 
 }
+#AnchorPane{
+    -fx-background-color: #666;
+    -fx-background-image: url("/roulette/bg.jpg"); 
+}
+.label{
+    -fx-effect: dropshadow( three-pass-box , rgba(100,100,100,100) , 4, 0 , 4 , 1 );
+}
+
+#mainpane{
+    -fx-background-color: #ffffff;
+    -fx-background-image: url("/roulette/wood_frame_1.png");    
+    -fx-background-repeat:stretch;
+    -fx-background-size:1245 466;
+}

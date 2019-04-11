@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import ch.bbbaden.casinopalace.common.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +18,10 @@ import javafx.scene.input.MouseEvent;
 
 public class CasinoController extends Controller implements Initializable{
 
-     private int index = 0;
+    @FXML
+    private Label chipsLabel;
+
+    private int index = 0;
 
     private Label label;
     @FXML
@@ -35,17 +40,16 @@ public class CasinoController extends Controller implements Initializable{
     public CasinoController(){
     }
 
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         addImages();
+        // Put focus on game selection
         imgViewGames.sceneProperty().addListener((observable) -> {
             imgViewGames.getScene().getRoot().requestFocus();
         });
+
+        updateChips();
+
         // TODO
     }
 
@@ -153,6 +157,13 @@ public class CasinoController extends Controller implements Initializable{
                 break;
             default:
                 System.out.println("something else");
+        }
+    }
+
+    private void updateChips(){
+        User currentUser = getStateManager().getCasino().getCurrentUser();
+        if (currentUser != null){
+            chipsLabel.setText(currentUser.getChips().stripTrailingZeros().toPlainString());
         }
     }
 }

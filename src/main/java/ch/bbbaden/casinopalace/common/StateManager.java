@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StateManager {
+    
     private State state;
     private Casino casino;
     private SceneCreator sceneCreator;

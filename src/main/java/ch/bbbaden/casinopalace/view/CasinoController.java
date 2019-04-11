@@ -1,22 +1,29 @@
 package ch.bbbaden.casinopalace.view;
 
+import ch.bbbaden.casinopalace.blackjack.BlackjackUbersichtsController;
 import ch.bbbaden.casinopalace.common.Controller;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
-public class CasinoController extends Controller implements Initializable{
+public class CasinoController extends Controller implements Initializable {
 
-     private int index = 0;
+    private int index = 0;
 
     private Label label;
     @FXML
@@ -31,8 +38,8 @@ public class CasinoController extends Controller implements Initializable{
     private ImageView imgAdd;
     @FXML
     private ImageView imgGurl;
-    
-    public CasinoController(){
+
+    public CasinoController() {
     }
 
     private void handleButtonAction(ActionEvent event) {
@@ -50,14 +57,14 @@ public class CasinoController extends Controller implements Initializable{
     }
 
     @FXML
-    private void handleGamesSelection(MouseEvent event) {
+    private void handleGamesSelection(MouseEvent event) throws IOException {
         int i;
-        for(i = 0; i < games.length; i++){
-            if(imgViewGames.getImage().equals(games[i])){
-            break;
+        for (i = 0; i < games.length; i++) {
+            if (imgViewGames.getImage().equals(games[i])) {
+                break;
+            }
         }
-        }
-        
+
         switch (i) {
             case 0:
                 //load BlackJack
@@ -65,7 +72,7 @@ public class CasinoController extends Controller implements Initializable{
                     getStateManager().getState().handleBlackjack(getStateManager());
                 } catch (Exception ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                }               
                 break;
             case 1:
                 //loadPoker
@@ -111,10 +118,10 @@ public class CasinoController extends Controller implements Initializable{
     }
 
     public void changeGame() {
-        if (index > games.length-1){
+        if (index > games.length - 1) {
             index = 0;
-        } else if (index < 0){
-            index = games.length-1;
+        } else if (index < 0) {
+            index = games.length - 1;
         }
         imgViewGames.setImage(games[index]);
     }
@@ -142,7 +149,7 @@ public class CasinoController extends Controller implements Initializable{
         changeGame();
     }
 
-     @FXML
+    @FXML
     private void onKeyPressed(KeyEvent event) {
         switch (event.getCode()) {
             case RIGHT:

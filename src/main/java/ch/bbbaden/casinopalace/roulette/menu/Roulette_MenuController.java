@@ -5,16 +5,24 @@
  */
 package ch.bbbaden.casinopalace.roulette.menu;
 
+import ch.bbbaden.casinopalace.roulette.game.RouletteGameController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -63,8 +71,18 @@ public class Roulette_MenuController implements Initializable {
     }
 
     @FXML
-    private void clickStart(ActionEvent event) {
+    private void clickStart(ActionEvent event) throws IOException {
+        //Thread stop
         thread.stop();
-
+        //Start Roulette
+        Parent root = FXMLLoader.load(RouletteGameController.class.getResource("RouletteGame.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setTitle("Roulette");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        //Schliessen von Fenster
+        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 }

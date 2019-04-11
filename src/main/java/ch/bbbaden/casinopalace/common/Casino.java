@@ -1,13 +1,18 @@
 package ch.bbbaden.casinopalace.common;
 
+import ch.bbbaden.casinopalace.common.exception.UserExistsException;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 public class Casino {
-    private Storage storage;
+    private final UserFactory userFactory;
+    private final Storage storage;
     private User currentUser = null;
 
-    public Casino(Storage storage) {
+    public Casino(UserFactory userFactory, Storage storage) {
+        this.userFactory = userFactory;
         this.storage = storage;
     }
 
@@ -19,7 +24,7 @@ public class Casino {
         this.currentUser = currentUser;
     }
 
-    public List<User> getUsers() {
+    public List<User> getUsers() throws IOException {
         return storage.getUsers();
     }
 
@@ -27,12 +32,12 @@ public class Casino {
         return storage.getStatsForUser(user);
     }
 
-    public Optional<User> getUserFromAuthentication(String username, String password) {
-        return storage.getUserFromAuthentication(username, password);
+    public Optional<User> getUserFromAuthentication(String username, String password) throws IOException {
+        return storage.getUserFromAuthentication(username, hash -> userFactory.checkPassword(password, new String(hash)));
     }
 
-    public User createUser(String username, String password){
-        User user = new UserFactory().createUser(username, password);
+    public User createUser(String username, String password) throws IOException, UserExistsException {
+        User user = userFactory.createUser(username, password);
         storage.addUser(user);
         return user;
     }

@@ -19,3 +19,18 @@
     -fx-background-repeat:stretch;
     -fx-background-size:1245 466;
 }
+#geradezahl{
+    -fx-background-color:black;
+    -fx-text-fill:#ffffff;
+    -fx-font-size:20;
+}
+#ungeradezahl{
+    -fx-background-color:red;
+    -fx-text-fill:#ffffff;
+    -fx-font-size:20;
+}
+#greenbtn{
+    -fx-background-color:green;
+    -fx-text-fill:#ffffff;
+    -fx-font-size:20;
+}

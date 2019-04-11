@@ -180,26 +180,241 @@
             <ImageView fx:id="rouletteimage" fitHeight="493.0" fitWidth="590.0" layoutX="84.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane id="mainpane" layoutX="144.0" layoutY="225.0" prefHeight="466.0" prefWidth="1230.0" />
-      <Button layoutX="1268.0" layoutY="778.0" mnemonicParsing="false" onAction="#clickSpin" text="Drehen">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <GridPane layoutX="284.0" layoutY="693.0" prefHeight="180.0" prefWidth="525.0">
+      <Pane id="mainpane" layoutX="144.0" layoutY="225.0" prefHeight="466.0" prefWidth="1230.0">
+         <children>
+            <GridPane fx:id="roultable" layoutX="170.0" layoutY="47.0" prefHeight="200.0" prefWidth="955.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="10.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="10.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button id="ungeradezahl" fx:id="btn3" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="3">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button id="geradezahl" fx:id="btn6" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="6" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn9" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="9" GridPane.columnIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn12" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="12" GridPane.columnIndex="6">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn15" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="15" GridPane.columnIndex="8">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn18" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="18" GridPane.columnIndex="10">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn21" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="21" GridPane.columnIndex="12">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn24" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="24" GridPane.columnIndex="14">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn27" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="27" GridPane.columnIndex="16">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn30" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="30" GridPane.columnIndex="18">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn33" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="33" GridPane.columnIndex="20">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn36" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="36" GridPane.columnIndex="22">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="greenbtn" fx:id="btw1row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="76.0" text="2to1" GridPane.columnIndex="23">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn2" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn5" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="5" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn8" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="8" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn11" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="11" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn14" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="14" GridPane.columnIndex="8" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn17" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="17" GridPane.columnIndex="10" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn20" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="20" GridPane.columnIndex="12" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn23" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="23" GridPane.columnIndex="14" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn26" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="26" GridPane.columnIndex="16" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn29" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="29" GridPane.columnIndex="18" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn32" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="32" GridPane.columnIndex="20" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn35" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="35" GridPane.columnIndex="22" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="greenbtn" fx:id="btn2row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="76.0" text="2to1" GridPane.columnIndex="23" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn1" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn4" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="4" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn7" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="7" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn10" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="10" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn13" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="13" GridPane.columnIndex="8" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn16" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="16" GridPane.columnIndex="10" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn19" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="19" GridPane.columnIndex="12" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn22" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="22" GridPane.columnIndex="14" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn25" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="25" GridPane.columnIndex="16" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn28" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="28" GridPane.columnIndex="18" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="ungeradezahl" fx:id="btn31" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="31" GridPane.columnIndex="20" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="greenbtn" fx:id="btn3row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="73.0" text="2to1" GridPane.columnIndex="23" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button id="geradezahl" fx:id="btn34" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="34" GridPane.columnIndex="22" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                     <Label id="label1" fx:id="lb3and6" maxHeight="60.0" maxWidth="23.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="12.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                     <Label id="label1" fx:id="lb2and3and5and6" maxHeight="60.0" maxWidth="23.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                     
+               </children>
+            </GridPane>
+         </children></Pane>
+      <GridPane layoutX="141.0" layoutY="693.0" prefHeight="180.0" prefWidth="1073.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="onechipimage" fitHeight="181.0" fitWidth="174.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="tenchipimage" fitHeight="181.0" fitWidth="174.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-            <ImageView fitHeight="181.0" fitWidth="174.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+            <ImageView fx:id="onechipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="tenchipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+            <ImageView fx:id="fiftychipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+            <ImageView fx:id="hundredchipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+            <ImageView fx:id="twohundredchipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+            <ImageView fx:id="fivehundredchipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" />
          </children>
       </GridPane>
+      <Pane layoutX="1294.0" layoutY="753.0" prefHeight="62.0" prefWidth="100.0">
+         <children>
+            <Button layoutX="-9.0" layoutY="-2.0" mnemonicParsing="false" onAction="#clickSpin" prefHeight="74.0" prefWidth="111.0" text="Drehen">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

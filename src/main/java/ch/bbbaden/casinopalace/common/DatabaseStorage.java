@@ -6,10 +6,9 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class DatabaseStorage implements Storage {
@@ -35,8 +34,60 @@ public class DatabaseStorage implements Storage {
     }
 
     @Override
-    public Stats getStatsForUser(User user) {
-        throw new NotImplementedException();
+    public List<Stats> getStatsForUser(User user) throws IOException {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT statistic.game, statistic.name, statistic.value FROM statistic INNER JOIN player ON statistic.Player_ID = player.Player_ID WHERE player.name = ? ORDER BY statistic.game");
+            statement.setString(1, user.getUsername());
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<Stats> stats = new ArrayList<>();
+            while (resultSet.next()) {
+                Game game = Game.valueOf(resultSet.getString(1));
+                Stats stat = stats.stream().filter(x -> x.getGame() == game).findFirst().orElse(new Stats(game));
+                if (!stats.contains(stat)){
+                    stats.add(stat);
+                }
+
+                stat.getValues().put(resultSet.getString(2), resultSet.getBigDecimal(3));
+            }
+            return stats;
+        } catch (SQLException e) {
+            throw new IOException(e);
+        }
+
+    }
+
+    @Override
+    public void updateStatsForUser(User user, List<Stats> stats) throws IOException {
+        for (Stats stat : stats) {
+            for (Map.Entry<String, BigDecimal> entry : stat.getValues().entrySet()) {
+                try {
+                    PreparedStatement check = connection.prepareStatement("SELECT 1 FROM statistic INNER JOIN player ON statistic.Player_ID = player.Player_ID WHERE player.name = ? AND statistic.game = ? AND statistic.name = ?");
+                    check.setString(1, user.getUsername());
+                    check.setString(2, stat.getGame().toString());
+                    check.setString(3, entry.getKey());
+                    boolean exists = check.executeQuery().next();
+
+                    if (exists){
+                        PreparedStatement statement = connection.prepareStatement("UPDATE statistic SET value = ? FROM statistic INNER JOIN player ON statistic.Player_ID = player.Player_ID WHERE player.name = ? AND statistic.game = ? AND statistic.name = ?");
+                        statement.setBigDecimal(1, entry.getValue());
+                        statement.setString(2, user.getUsername());
+                        statement.setString(3, stat.getGame().toString());
+                        statement.setString(4, entry.getKey());
+                        statement.execute();
+                    } else {
+                        PreparedStatement statement = connection.prepareStatement("INSERT INTO statistic (Player_ID, game, name, value) VALUES ((SELECT player.Player_ID FROM player WHERE player.name = ? LIMIT 1), ?, ?, ?)");
+                        statement.setString(1, user.getUsername());
+                        statement.setString(2, stat.getGame().toString());
+                        statement.setString(3, entry.getKey());
+                        statement.setBigDecimal(4, entry.getValue());
+                        statement.execute();
+                    }
+
+                } catch (SQLException e) {
+                    throw new IOException(e);
+                }
+            }
+        }
     }
 
     @Override

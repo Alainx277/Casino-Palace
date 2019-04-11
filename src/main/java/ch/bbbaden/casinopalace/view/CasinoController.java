@@ -166,4 +166,13 @@ public class CasinoController extends Controller implements Initializable{
             chipsLabel.setText(currentUser.getChips().stripTrailingZeros().toPlainString());
         }
     }
+
+    public void handleStatistic(ActionEvent actionEvent) {
+        try {
+            getStateManager().getState().handleStatistik(getStateManager());
+        } catch (Exception e) {
+            // TODO: Notify user
+            e.printStackTrace();
+        }
+    }
 }

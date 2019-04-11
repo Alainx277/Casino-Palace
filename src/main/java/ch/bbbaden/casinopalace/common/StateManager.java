@@ -18,7 +18,20 @@ public class StateManager {
     public void transition(State state) throws IOException {
         this.state = state;
         Stage oldStage = sceneCreator.getCurrentStage();
-        sceneCreator.createScene(state.getURL()).setStateManager(this);
+        sceneCreator.createScene(state.getURL(), loader -> {
+            loader.setControllerFactory(param -> {
+                Object controller;
+                try {
+                    controller = param.getConstructor().newInstance();
+                } catch (ReflectiveOperationException ex) {
+                    throw new RuntimeException(ex);
+                }
+                if (controller instanceof Controller) {
+                    ((Controller) controller).setStateManager(this);
+                }
+                return controller;
+            });
+        });
         if (oldStage != null){
             oldStage.close();
         }

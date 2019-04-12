@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onKeyPressed="#onKeyPressed" prefHeight="588.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.view.CasinoController">
+<AnchorPane id="AnchorPane" fx:id="ap" onKeyPressed="#onKeyPressed" prefHeight="588.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.view.CasinoController">
     
     <stylesheets>
         <URL value="@Common.css" />

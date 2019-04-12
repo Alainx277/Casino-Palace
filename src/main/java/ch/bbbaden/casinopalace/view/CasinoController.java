@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class CasinoController extends Controller implements Initializable {
@@ -38,6 +39,8 @@ public class CasinoController extends Controller implements Initializable {
     private ImageView imgAdd;
     @FXML
     private ImageView imgGurl;
+    @FXML
+    private AnchorPane ap;
 
     public CasinoController() {
     }
@@ -114,8 +117,11 @@ public class CasinoController extends Controller implements Initializable {
             new Image("/images/poker.png"),
             new Image("/images/roulette.png"),
             new Image("/images/yatzy.png")};
-        changeGame();
+        changeGame();    
     }
+     public String getCommonStyleSheet(){
+         return ap.getStylesheets().get(0);
+     }
 
     public void changeGame() {
         if (index > games.length - 1) {

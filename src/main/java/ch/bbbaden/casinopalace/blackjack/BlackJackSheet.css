@@ -1,0 +1,22 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12.04.2019, 08:54:04
+    Author     : doemu
+*/
+#AnchorPane{
+    -fx-background-image: url("/images/background.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1000 700;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+.label{
+    -fx-text-fill: white;
+}
+#Rules{
+    -fx-font-size: 13px;
+}

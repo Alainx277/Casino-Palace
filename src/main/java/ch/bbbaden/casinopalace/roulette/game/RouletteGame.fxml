@@ -178,522 +178,14 @@
       <Pane layoutX="209.0" layoutY="66.0" prefHeight="350.0" prefWidth="624.0">
          <children>
             <ImageView fx:id="rouletteimage" fitHeight="493.0" fitWidth="590.0" layoutX="84.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true" />
+            <Label id="shownum" fx:id="shownum" alignment="CENTER" layoutX="307.0" layoutY="39.0" minHeight="60.0" minWidth="63.0" text="1" textFill="#460e0e" visible="false">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Pane id="mainpane" layoutX="144.0" layoutY="225.0" prefHeight="466.0" prefWidth="1230.0">
-         <children>
-            <GridPane fx:id="roultable" layoutX="170.0" layoutY="47.0" prefHeight="200.0" prefWidth="955.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="10.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="10.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button id="ungeradezahl" fx:id="btn3" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button id="geradezahl" fx:id="btn6" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="6" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn9" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="9" GridPane.columnIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn12" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="12" GridPane.columnIndex="6">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn15" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="15" GridPane.columnIndex="8">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn18" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="18" GridPane.columnIndex="10">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn21" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="21" GridPane.columnIndex="12">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn24" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="24" GridPane.columnIndex="14">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn27" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="27" GridPane.columnIndex="16">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn30" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="30" GridPane.columnIndex="18">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn33" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="33" GridPane.columnIndex="20">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn36" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="36" GridPane.columnIndex="22">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="greenbtn" fx:id="btw1row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="76.0" text="2to1" GridPane.columnIndex="23">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn2" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="2" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn5" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="5" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn8" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="8" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn11" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="11" GridPane.columnIndex="6" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn14" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="14" GridPane.columnIndex="8" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn17" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="17" GridPane.columnIndex="10" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn20" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="20" GridPane.columnIndex="12" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn23" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="23" GridPane.columnIndex="14" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn26" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="26" GridPane.columnIndex="16" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn29" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="29" GridPane.columnIndex="18" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn32" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="32" GridPane.columnIndex="20" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn35" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="35" GridPane.columnIndex="22" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="greenbtn" fx:id="btn2row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="76.0" text="2to1" GridPane.columnIndex="23" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn1" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="1" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn4" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="4" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn7" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="7" GridPane.columnIndex="4" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn10" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="10" GridPane.columnIndex="6" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn13" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="13" GridPane.columnIndex="8" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn16" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="16" GridPane.columnIndex="10" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn19" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="19" GridPane.columnIndex="12" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn22" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="22" GridPane.columnIndex="14" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn25" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="25" GridPane.columnIndex="16" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn28" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="28" GridPane.columnIndex="18" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="ungeradezahl" fx:id="btn31" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="31" GridPane.columnIndex="20" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="greenbtn" fx:id="btn3row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="73.0" text="2to1" GridPane.columnIndex="23" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button id="geradezahl" fx:id="btn34" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="34" GridPane.columnIndex="22" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                     <Label id="label1" fx:id="lb3and6" maxHeight="60.0" maxWidth="23.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="12.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb2and3and5and6" maxHeight="60.0" maxWidth="23.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb2and3" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb2and5" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb2and5and1and4" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb1and2" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb1and4" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb6and9" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb6and9and5and8" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb6and5" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb5and8" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb5and8and4and7" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb5and4" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb4and7" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb9and12" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb9and12and8and11" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb9and8" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb8and11" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb8and11and7and10" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb8and7" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                      <Label id="label1" fx:id="lb7and10" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb12and15" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb12and15and11and14" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb12and11" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb11and14" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb11and14and10and13" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb11and10" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb10and13" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb15and18" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb15and18and14and17" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb15and14" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="8" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb14and17" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb14and17and13and16" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb14and13" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="8" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb13and16" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb18and21" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb18and21and17and20" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb18and17" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="10" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb17and20" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb17and20and16and19" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb17and16" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="10" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb16and19" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb21and24" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb21and24and20and23" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb21and20" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="12" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb20and23" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb20and23and19and22" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb20and19" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="12" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb19and22" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb24and27" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb24and27and23and26" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb24and23" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="14" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb23and26" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb23and26and22and25" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb23and22" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="14" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb22and25" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb27and30" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb27and30and26and29" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb27and26" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="16" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb26and29" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb26and29and25and28" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb26and25" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="16" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb25and28" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb30and33" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb30and33and29and32" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb30and29" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="18" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb29and32" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb29and32and28and31" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb29and28" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="18" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb28and31" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb33and36" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb33and36and32and35" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb33and32" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="20" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb32and35" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb32and35and31and34" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb32and31" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="20" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb31and34" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb36and35" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="22" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                     <Label id="label1" fx:id="lb35and34" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="22" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-               </children>
-            </GridPane>
-         </children></Pane>
-      <GridPane layoutX="141.0" layoutY="693.0" prefHeight="180.0" prefWidth="1073.0">
+      <GridPane layoutX="164.0" layoutY="693.0" prefHeight="180.0" prefWidth="1073.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -723,5 +215,695 @@
             </Button>
          </children>
       </Pane>
+      <Pane id="mainpane" layoutX="73.0" layoutY="225.0" prefHeight="471.0" prefWidth="1352.0">
+         <children>
+            <Pane id="bgpane" layoutX="87.0" layoutY="29.0" minHeight="383.0" prefHeight="410.0" prefWidth="1083.0">
+               <children>
+                  <GridPane fx:id="roultable" layoutX="95.0" layoutY="48.0" prefHeight="200.0" prefWidth="955.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="10.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="10.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button id="ungeradezahl" fx:id="btn3" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn6" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="6" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn9" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="9" GridPane.columnIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn12" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="12" GridPane.columnIndex="6">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn15" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="15" GridPane.columnIndex="8">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn18" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="18" GridPane.columnIndex="10">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn21" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="21" GridPane.columnIndex="12">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn24" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="24" GridPane.columnIndex="14">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn27" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="27" GridPane.columnIndex="16">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn30" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="30" GridPane.columnIndex="18">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn33" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="33" GridPane.columnIndex="20">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn36" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="36" GridPane.columnIndex="22">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="greenbtn" fx:id="btw1row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="76.0" text="2to1" GridPane.columnIndex="23">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn2" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn5" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="5" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn8" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="8" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn11" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="11" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn14" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="14" GridPane.columnIndex="8" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn17" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="17" GridPane.columnIndex="10" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn20" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="20" GridPane.columnIndex="12" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn23" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="23" GridPane.columnIndex="14" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn26" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="26" GridPane.columnIndex="16" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn29" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="29" GridPane.columnIndex="18" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn32" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="32" GridPane.columnIndex="20" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn35" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="35" GridPane.columnIndex="22" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="greenbtn" fx:id="btn2row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="76.0" text="2to1" GridPane.columnIndex="23" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn1" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn4" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="4" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn7" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="7" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn10" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="10" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn13" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="13" GridPane.columnIndex="8" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn16" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="16" GridPane.columnIndex="10" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn19" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="19" GridPane.columnIndex="12" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn22" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="22" GridPane.columnIndex="14" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn25" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="25" GridPane.columnIndex="16" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn28" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="28" GridPane.columnIndex="18" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="ungeradezahl" fx:id="btn31" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="31" GridPane.columnIndex="20" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="greenbtn" fx:id="btn3row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="73.0" text="2to1" GridPane.columnIndex="23" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button id="geradezahl" fx:id="btn34" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="63.0" text="34" GridPane.columnIndex="22" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                           <Label id="label1" fx:id="lb3and6" maxHeight="60.0" maxWidth="23.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="12.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb2and3and5and6" maxHeight="60.0" maxWidth="23.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb2and3" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb2and5" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb2and5and1and4" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb1and2" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb1and4" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb6and9" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb6and9and5and8" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb6and5" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb5and8" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb5and8and4and7" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb5and4" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb4and7" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb9and12" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb9and12and8and11" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb9and8" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="64.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb8and11" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb8and11and7and10" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb8and7" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                            <Label id="label1" fx:id="lb7and10" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb12and15" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb12and15and11and14" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb12and11" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb11and14" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb11and14and10and13" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb11and10" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb10and13" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb15and18" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb15and18and14and17" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb15and14" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb14and17" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb14and17and13and16" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb14and13" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="8" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb13and16" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb18and21" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb18and21and17and20" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb18and17" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="10" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb17and20" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb17and20and16and19" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb17and16" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="10" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb16and19" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb21and24" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb21and24and20and23" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb21and20" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="12" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb20and23" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb20and23and19and22" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb20and19" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="12" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb19and22" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb24and27" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb24and27and23and26" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb24and23" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="14" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb23and26" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb23and26and22and25" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb23and22" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="14" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb22and25" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb27and30" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb27and30and26and29" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb27and26" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="16" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb26and29" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb26and29and25and28" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb26and25" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="16" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb25and28" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb30and33" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb30and33and29and32" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb30and29" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="18" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb29and32" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb29and32and28and31" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb29and28" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="18" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb28and31" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb33and36" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb33and36and32and35" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb33and32" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="20" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb32and35" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb32and35and31and34" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb32and31" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="20" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb31and34" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb36and35" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="22" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                           <Label id="label1" fx:id="lb35and34" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="22" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="cornerpane" layoutX="84.0" layoutY="29.0" prefHeight="236.0" prefWidth="20.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="43.53330688476562" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="42.0" minHeight="8.066693115234372" prefHeight="24.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="54.33336181640624" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="47.666668701171886" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label id="label1" fx:id="lbcorner3" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label id="label1" fx:id="lbmiddle3" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label id="label1" fx:id="lbcorner2" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label id="label1" fx:id="lbmiddle2" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label id="label1" fx:id="lbcorner1" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label id="label1" fx:id="lbmiddle1" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label id="label1" fx:id="lbcornerdown1" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                    </children>
+                  </GridPane>
+                  <Button id="greenbtn" fx:id="btn37" layoutX="428.0" layoutY="309.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="63.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children></Pane>
    </children>
 </AnchorPane>

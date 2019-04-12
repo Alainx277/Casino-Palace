@@ -6,8 +6,12 @@
 package ch.bbbaden.casinopalace.roulette.game;
 
 import ch.bbbaden.casinopalace.roulette.menu.Roulette_MenuController;
+import static java.awt.Color.red;
+import java.awt.Paint;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -305,6 +309,10 @@ public class RouletteGameController implements Initializable {
     private Label lb36and35;
     @FXML
     private Label lb35and34;
+    @FXML
+    private Label shownum;
+
+    private ArrayList<Field> table = new ArrayList<>();
 
     /**
      * Initializes the controller class.
@@ -312,10 +320,9 @@ public class RouletteGameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Images
-        
         //Icons
         //Hand
-        
+
         Image hand = new Image("/images/icons/hand.png");
         handimage.setImage(hand);
         //Dollar
@@ -333,11 +340,11 @@ public class RouletteGameController implements Initializable {
         //Total NoDollar
         Image totalnodollar = new Image("/images/icons/totalnodollar.png");
         totalnodollarimage.setImage(totalnodollar);
-        
+
         //Roulette
         Image roulette = new Image("/images/roulette_2.png");
         rouletteimage.setImage(roulette);
-        
+
         //Chips
         //Chip1
         Image onechip = new Image("/images/chips/chip1.png");
@@ -357,31 +364,46 @@ public class RouletteGameController implements Initializable {
         //Chip500
         Image fivehundredchip = new Image("/images/chips/chip500.png");
         fivehundredchipimage.setImage(fivehundredchip);
-        
-        //GridPane
+
+        //Hashmap
         /*
         HashMap<String, Field> table = new HashMap<String, Field>();
-        table.put("0", new Field("0", "green"));
-        table.put("00", new Field("00", "green"));*/
+        table.put("00",new Field("00","green"));
+        table.put("0",new Field("0","green"));
+        table.put("0",new Field("0","green"));*/
+        table.add(new Field("00", "green"));
+        for (int i = 0; i < 37; i++) {
+            if (i % 2 == 0) {
+                table.add(new Field("" + i, "black"));
+            } else {
+                table.add(new Field("" + i, "red"));
+            }
+        }
+
+        for (int i = 0; i < table.size(); i++) {
+            System.out.println(table.get(i).getText() + " " + table.get(i).getColour());
+        }
+
     }
 
     @FXML
     private void clickSpin(ActionEvent event) throws InterruptedException {
+        //Rotate Roulette
         RotateTransition imageRotate = new RotateTransition(seconds(1), rouletteimage);
         imageRotate.setByAngle(360);
-        imageRotate.play();/*
-        for (int i = 0; i < 100; i++) {
-            rouletteimage.setRotate(rouletteimage.getRotate() + 90);
-            Thread.sleep(100);
-        }/*
-        do {
-            rouletteimage.setRotate(rouletteimage.getRotate() + 1);
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Roulette_MenuController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } while (true);*/
+        imageRotate.play();
+        //show the Random Number
+        showNumber();
+    }
+
+    private void showNumber() throws InterruptedException {
+        Random random = new Random();
+        int num = random.nextInt(table.size());
+        String outputtext = table.get(num).getText();
+        String outputcolour = table.get(num).getColour();
+        shownum.setVisible(true);
+        shownum.setText(outputtext);
+        shownum.setStyle("-fx-background-color: " + outputcolour + ";");
     }
 
 }

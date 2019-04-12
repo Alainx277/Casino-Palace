@@ -10,21 +10,40 @@ package ch.bbbaden.casinopalace.roulette.game;
  * @author gabri
  */
 public class Field {
-    private String colour;
-    private String number;
 
-    public Field(String number, String colour) {
-        this.number = number;
+    private String text;
+    private String colour;
+    private int number;
+    private boolean side;
+
+    public Field(String text, String colour) {
+        this.text = text;
         this.colour = colour;
     }
 
-    public String getNumber() {
+    public String getText() {
+        return text;
+    }
+
+    public int getNumber() {
+        if (text.equals("00")) {
+            number = 0;
+        } else {
+            number = Integer.parseInt(this.text);
+        }
         return number;
     }
 
     public String getColour() {
         return colour;
     }
-    
-    
+
+    public boolean getSide(int number) {
+        if (number % 2 == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

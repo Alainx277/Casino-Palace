@@ -14,28 +14,51 @@
 }
 
 #mainpane{
-    -fx-background-color: #ffffff;
-    -fx-background-image: url("/roulette/wood_frame_1.png");    
+    -fx-background-image: url("/roulette/wood_frame_1.png");
     -fx-background-repeat:stretch;
     -fx-background-size:1245 466;
+}
+#bgpane{
+    -fx-background-color:#016D29;
 }
 #geradezahl{
     -fx-background-color:black;
     -fx-text-fill:#ffffff;
     -fx-font-size:20;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 #ungeradezahl{
     -fx-background-color:red;
     -fx-text-fill:#ffffff;
     -fx-font-size:20;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 #greenbtn{
     -fx-background-color:green;
     -fx-text-fill:#ffffff;
     -fx-font-size:20;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#label1{
+    -fx-text-fill:white;
+}
+#shownum{
+    -fx-text-fill:white;
+    -fx-font-size:20;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-border-radius: 20 20 0 0;
+    -fx-background-radius: 20 20 0 0;
 }
 #label1:hover{
     -fx-border-color: blue ;
-    -fx-border-width: 5 ; 
-    -fx-border-style: segments(10, 15, 15, 15)  line-cap round ;
+    -fx-border-width: 1 ; 
+}
+#geradezahl:hover{
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+#ungeradezahl:hover{
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+#greenbtn:hover{
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }

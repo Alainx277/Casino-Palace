@@ -1,6 +1,7 @@
 package ch.bbbaden.casinopalace.common;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class User {
     private final String username;
@@ -37,5 +38,19 @@ public class User {
 
     public boolean isAdmin() {
         return admin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(username);
     }
 }

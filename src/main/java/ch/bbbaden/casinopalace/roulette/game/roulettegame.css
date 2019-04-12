@@ -34,3 +34,8 @@
     -fx-text-fill:#ffffff;
     -fx-font-size:20;
 }
+#label1:hover{
+    -fx-border-color: blue ;
+    -fx-border-width: 5 ; 
+    -fx-border-style: segments(10, 15, 15, 15)  line-cap round ;
+}

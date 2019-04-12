@@ -147,6 +147,164 @@ public class RouletteGameController implements Initializable {
     private Button btn34;
     @FXML
     private Label lb3and6;
+    @FXML
+    private Button btn1;
+    @FXML
+    private Label lb2and3and5and6;
+    @FXML
+    private Label lb2and3;
+    @FXML
+    private Label lb2and5;
+    @FXML
+    private Label lb2and5and1and4;
+    @FXML
+    private Label lb1and2;
+    @FXML
+    private Label lb1and4;
+    @FXML
+    private Label lb6and9;
+    @FXML
+    private Label lb6and9and5and8;
+    @FXML
+    private Label lb6and5;
+    @FXML
+    private Label lb5and8;
+    @FXML
+    private Label lb5and8and4and7;
+    @FXML
+    private Label lb5and4;
+    @FXML
+    private Label lb4and7;
+    @FXML
+    private Label lb9and12;
+    @FXML
+    private Label lb9and12and8and11;
+    @FXML
+    private Label lb9and8;
+    @FXML
+    private Label lb8and11;
+    @FXML
+    private Label lb8and11and7and10;
+    @FXML
+    private Label lb8and7;
+    @FXML
+    private Label lb7and10;
+    @FXML
+    private Label lb12and15;
+    @FXML
+    private Label lb12and15and11and14;
+    @FXML
+    private Label lb12and11;
+    @FXML
+    private Label lb11and14;
+    @FXML
+    private Label lb11and14and10and13;
+    @FXML
+    private Label lb11and10;
+    @FXML
+    private Label lb10and13;
+    @FXML
+    private Label lb15and18;
+    @FXML
+    private Label lb15and18and14and17;
+    @FXML
+    private Label lb15and14;
+    @FXML
+    private Label lb14and17;
+    @FXML
+    private Label lb14and17and13and16;
+    @FXML
+    private Label lb14and13;
+    @FXML
+    private Label lb13and16;
+    @FXML
+    private Label lb18and21;
+    @FXML
+    private Label lb18and21and17and20;
+    @FXML
+    private Label lb18and17;
+    @FXML
+    private Label lb17and20;
+    @FXML
+    private Label lb17and20and16and19;
+    @FXML
+    private Label lb17and16;
+    @FXML
+    private Label lb16and19;
+    @FXML
+    private Label lb21and24;
+    @FXML
+    private Label lb21and24and20and23;
+    @FXML
+    private Label lb21and20;
+    @FXML
+    private Label lb20and23;
+    @FXML
+    private Label lb20and23and19and22;
+    @FXML
+    private Label lb20and19;
+    @FXML
+    private Label lb19and22;
+    @FXML
+    private Label lb24and27;
+    @FXML
+    private Label lb24and27and23and26;
+    @FXML
+    private Label lb24and23;
+    @FXML
+    private Label lb23and26;
+    @FXML
+    private Label lb23and26and22and25;
+    @FXML
+    private Label lb23and22;
+    @FXML
+    private Label lb22and25;
+    @FXML
+    private Label lb27and30;
+    @FXML
+    private Label lb27and30and26and29;
+    @FXML
+    private Label lb27and26;
+    @FXML
+    private Label lb26and29;
+    @FXML
+    private Label lb26and29and25and28;
+    @FXML
+    private Label lb26and25;
+    @FXML
+    private Label lb25and28;
+    @FXML
+    private Label lb30and33;
+    @FXML
+    private Label lb30and33and29and32;
+    @FXML
+    private Label lb30and29;
+    @FXML
+    private Label lb29and32;
+    @FXML
+    private Label lb29and32and28and31;
+    @FXML
+    private Label lb29and28;
+    @FXML
+    private Label lb28and31;
+    @FXML
+    private Label lb33and36;
+    @FXML
+    private Label lb33and36and32and35;
+    @FXML
+    private Label lb33and32;
+    @FXML
+    private Label lb32and35;
+    @FXML
+    private Label lb32and35and31and34;
+    @FXML
+    private Label lb32and31;
+    @FXML
+    private Label lb31and34;
+    @FXML
+    private Label lb36and35;
+    @FXML
+    private Label lb35and34;
 
     /**
      * Initializes the controller class.
@@ -205,9 +363,6 @@ public class RouletteGameController implements Initializable {
         HashMap<String, Field> table = new HashMap<String, Field>();
         table.put("0", new Field("0", "green"));
         table.put("00", new Field("00", "green"));*/
-        roultable.add(new Label(), 0, 1);
-        roultable.add(new Label(), 1, 0);
-        roultable.add(new Label(), 1, 1);
     }
 
     @FXML

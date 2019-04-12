@@ -33,6 +33,14 @@ import static javafx.util.Duration.seconds;
  */
 public class RouletteGameController implements Initializable {
 
+    //My Attributes
+    
+
+    private ArrayList<Field> table = new ArrayList<>();
+    
+    
+    
+    //FXML
     @FXML
     private ImageView handimage;
     @FXML
@@ -311,8 +319,30 @@ public class RouletteGameController implements Initializable {
     private Label lb35and34;
     @FXML
     private Label shownum;
-
-    private ArrayList<Field> table = new ArrayList<>();
+    @FXML
+    private GridPane cornerpane;
+    @FXML
+    private Label lbmiddle3;
+    @FXML
+    private Label lbcorner2;
+    @FXML
+    private Label lbmiddle2;
+    @FXML
+    private Label lbcorner1;
+    @FXML
+    private Label lbmiddle1;
+    @FXML
+    private Label lbcornerdown1;
+    @FXML
+    private Button btn0;
+    @FXML
+    private Button btn00;
+    @FXML
+    private Button btn1st12;
+    @FXML
+    private Button btn2nd12;
+    @FXML
+    private Button btn3rd12;
 
     /**
      * Initializes the controller class.
@@ -320,9 +350,9 @@ public class RouletteGameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Images
+
         //Icons
         //Hand
-
         Image hand = new Image("/images/icons/hand.png");
         handimage.setImage(hand);
         //Dollar
@@ -365,21 +395,17 @@ public class RouletteGameController implements Initializable {
         Image fivehundredchip = new Image("/images/chips/chip500.png");
         fivehundredchipimage.setImage(fivehundredchip);
 
-        //Hashmap
-        /*
-        HashMap<String, Field> table = new HashMap<String, Field>();
-        table.put("00",new Field("00","green"));
-        table.put("0",new Field("0","green"));
-        table.put("0",new Field("0","green"));*/
+        //Collection
         table.add(new Field("00", "green"));
-        for (int i = 0; i < 37; i++) {
+        table.add(new Field("0", "green"));
+        for (int i = 1; i < 37; i++) {
             if (i % 2 == 0) {
                 table.add(new Field("" + i, "black"));
             } else {
                 table.add(new Field("" + i, "red"));
             }
         }
-
+        //Die Felder werden herausgegeben
         for (int i = 0; i < table.size(); i++) {
             System.out.println(table.get(i).getText() + " " + table.get(i).getColour());
         }

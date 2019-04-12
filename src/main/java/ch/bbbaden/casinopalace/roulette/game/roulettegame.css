@@ -49,6 +49,16 @@
     -fx-border-radius: 20 20 0 0;
     -fx-background-radius: 20 20 0 0;
 }
+#redbtn{
+    -fx-background-color:red;
+    -fx-text-fill:white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#blackbtn{
+    -fx-background-color:black;
+    -fx-text-fill:white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
 #label1:hover{
     -fx-border-color: blue ;
     -fx-border-width: 1 ; 

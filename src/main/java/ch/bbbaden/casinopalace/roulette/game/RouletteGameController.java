@@ -35,8 +35,7 @@ public class RouletteGameController implements Initializable {
 
     //My Attributes
     
-
-    private ArrayList<Field> table = new ArrayList<>();
+    Roulette roulette = new Roulette();
     
     
     
@@ -343,6 +342,18 @@ public class RouletteGameController implements Initializable {
     private Button btn2nd12;
     @FXML
     private Button btn3rd12;
+    @FXML
+    private Button btnungerade;
+    @FXML
+    private Button btngerade;
+    @FXML
+    private Button btnblack;
+    @FXML
+    private Button btnred;
+    @FXML
+    private Button btn1to18;
+    @FXML
+    private Button btn19to36;
 
     /**
      * Initializes the controller class.
@@ -350,7 +361,7 @@ public class RouletteGameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Images
-
+        
         //Icons
         //Hand
         Image hand = new Image("/images/icons/hand.png");
@@ -372,8 +383,8 @@ public class RouletteGameController implements Initializable {
         totalnodollarimage.setImage(totalnodollar);
 
         //Roulette
-        Image roulette = new Image("/images/roulette_2.png");
-        rouletteimage.setImage(roulette);
+        Image roulettei = new Image("/images/roulette_2.png");
+        rouletteimage.setImage(roulettei);
 
         //Chips
         //Chip1
@@ -394,22 +405,8 @@ public class RouletteGameController implements Initializable {
         //Chip500
         Image fivehundredchip = new Image("/images/chips/chip500.png");
         fivehundredchipimage.setImage(fivehundredchip);
-
-        //Collection
-        table.add(new Field("00", "green"));
-        table.add(new Field("0", "green"));
-        for (int i = 1; i < 37; i++) {
-            if (i % 2 == 0) {
-                table.add(new Field("" + i, "black"));
-            } else {
-                table.add(new Field("" + i, "red"));
-            }
-        }
-        //Die Felder werden herausgegeben
-        for (int i = 0; i < table.size(); i++) {
-            System.out.println(table.get(i).getText() + " " + table.get(i).getColour());
-        }
-
+        
+        roulette.createTable();
     }
 
     @FXML
@@ -419,17 +416,219 @@ public class RouletteGameController implements Initializable {
         imageRotate.setByAngle(360);
         imageRotate.play();
         //show the Random Number
-        showNumber();
+        shownum.setVisible(true);
+        roulette.drawNumber();
+        shownum.setText(roulette.getNumberDrawnAsText());
+        shownum.setStyle("-fx-background-color: " + roulette.getNumberDrawnAsColour()+ ";");
     }
 
-    private void showNumber() throws InterruptedException {
-        Random random = new Random();
-        int num = random.nextInt(table.size());
-        String outputtext = table.get(num).getText();
-        String outputcolour = table.get(num).getColour();
-        shownum.setVisible(true);
-        shownum.setText(outputtext);
-        shownum.setStyle("-fx-background-color: " + outputcolour + ";");
+    
+
+    //ClickFields
+    @FXML
+    private void clickField3(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField6(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField9(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField12(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField15(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField18(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField21(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField24(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField27(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField30(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField33(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField36(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField2(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField5(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField8(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField11(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField14(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField17(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField20(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField23(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField26(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField29(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField32(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField35(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField1(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField4(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField7(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField10(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField13(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField16(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField19(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField22(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField25(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField28(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField31(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField34(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField0(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField00(ActionEvent event) {
+    }
+    
+    //Click 1-3 Rows
+    @FXML
+    private void clickField1to34(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickField2to35(ActionEvent event) {
+    }
+
+
+    @FXML
+    private void clickField3to36(ActionEvent event) {
+    }
+
+    //Click 1st, 2nd, 3rd
+    @FXML
+    private void click1to12(ActionEvent event) {
+    }
+
+    @FXML
+    private void click13to24(ActionEvent event) {
+    }
+
+    @FXML
+    private void click25to36(ActionEvent event) {
+    }
+
+    //Click Ungerade / Gerade
+    @FXML
+    private void clickUngerade(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickGerade(ActionEvent event) {
+    }
+    
+    //Click Schwarz / Rot
+    @FXML
+    private void clickSchwarz(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickRot(ActionEvent event) {
+    }
+    
+    //Click Niedrig / Hoch
+    @FXML
+    private void clickNiedrig(ActionEvent event) {
+    }
+
+    @FXML
+    private void clickHoch(ActionEvent event) {
     }
 
 }

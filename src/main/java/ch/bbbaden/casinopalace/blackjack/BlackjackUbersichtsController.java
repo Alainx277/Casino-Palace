@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -32,6 +33,8 @@ public class BlackjackUbersichtsController extends Controller implements Initial
     private Button startGame;
     @FXML
     private AnchorPane ap;
+    @FXML
+    private ImageView imgViewBack;
 
     @FXML
     private void startGame(ActionEvent event) {
@@ -42,8 +45,12 @@ public class BlackjackUbersichtsController extends Controller implements Initial
 
             Scene scene = new Scene(root);
 
-            Stage stage = (Stage) rules.getScene().getWindow();
+            Stage stage = new Stage();
             stage.setScene(scene);
+            stage.show();
+            Stage currentStage = (Stage) rules.getScene().getWindow();
+            currentStage.hide();
+            BlackJackController.fillBack(currentStage);
         } catch (Exception ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -52,6 +59,7 @@ public class BlackjackUbersichtsController extends Controller implements Initial
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ap.getStylesheets().add(CasinoController.class.getResource("Common.css").toExternalForm());
+        imgViewBack.setImage(new Image("/images/back.png"));
         startGame.setText("Spiel beginnen");
         imgChips.setImage(new Image("/images/chips.png"));
         setRulesLabel();
@@ -87,5 +95,14 @@ public class BlackjackUbersichtsController extends Controller implements Initial
 
     public void setScene(Scene scene) {
         scene.getRoot().requestFocus();
+    }
+
+    @FXML
+    private void back(MouseEvent event) {
+        try {
+            getStateManager().getState().handleCasino(getStateManager());
+        } catch (Exception ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -6,6 +6,7 @@
 package ch.bbbaden.casinopalace.roulette.game;
 
 import ch.bbbaden.casinopalace.roulette.menu.Roulette_MenuController;
+import java.awt.Color;
 import static java.awt.Color.red;
 import java.awt.MouseInfo;
 import java.awt.Paint;
@@ -17,10 +18,13 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.RotateTransition;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -30,6 +34,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import static javafx.util.Duration.seconds;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -43,7 +50,8 @@ public class RouletteGameController implements Initializable {
     Datenbank db = new Datenbank();
     BetMoney bm = new BetMoney();
     Chip chip = new Chip();
-    Field fl = new Field();
+    HashMap<Field, Integer> chipsinput = new HashMap<>();
+    ArrayList<int[]> labelchips = new ArrayList<>();
 
     // <editor-fold defaultstate="collapsed" desc=" Stats ">
     @FXML
@@ -376,6 +384,8 @@ public class RouletteGameController implements Initializable {
     private Label chiplb;
     @FXML
     private AnchorPane anchorpane;
+    @FXML
+    private Button btnmoneyback;
 
     /**
      * Initializes the controller class.
@@ -425,6 +435,7 @@ public class RouletteGameController implements Initializable {
         roulette.drawNumber();
         shownum.setText(roulette.getNumberDrawnAsText());
         shownum.setStyle("-fx-background-color: " + roulette.getNumberDrawnAsColour() + ";");
+        //roulette.playRoulette(chipsinput,shownum.getText(),shownum.getStyle());
     }
 
 // <editor-fold defaultstate="collapsed" desc=" Click Fields ">
@@ -482,27 +493,28 @@ public class RouletteGameController implements Initializable {
 
     @FXML
     private void clickField2(ActionEvent event) {
-
+        chipsinput.put(new Field("2", "red"), bm.getMoney());
     }
 
     @FXML
     private void clickField5(ActionEvent event) {
-
+        chipsinput.put(new Field("5", "red"), bm.getMoney());
+        //schipsinput.put(new Field(event.getSource().toString(),event.getSource().),bm.getMoney());
     }
 
     @FXML
     private void clickField8(ActionEvent event) {
-
+        chipsinput.put(new Field("8", "black"), bm.getMoney());
     }
 
     @FXML
     private void clickField11(ActionEvent event) {
-
+        chipsinput.put(new Field("11", "red"), bm.getMoney());
     }
 
     @FXML
     private void clickField14(ActionEvent event) {
-
+        chipsinput.put(new Field("14", "black"), bm.getMoney());
     }
 
     @FXML
@@ -685,43 +697,129 @@ public class RouletteGameController implements Initializable {
     private void clickChip50(ActionEvent event) {
         bm.addChip(50);
         resultlb.setText("" + bm.getMoney());
+        chip.setValue(chip.getValue() + 50);
+        chip.setText("" + chip.getValue());
+        chip.setUrl("/images/chips/chip10.png");
     }
 
     @FXML
     private void clickChip100(ActionEvent event) {
         bm.addChip(100);
         resultlb.setText("" + bm.getMoney());
+        chip.setValue(chip.getValue() + 100);
+        chip.setText("" + chip.getValue());
+        chip.setUrl("/images/chips/chip10.png");
     }
 
     @FXML
     private void clickChip250(ActionEvent event) {
         bm.addChip(250);
         resultlb.setText("" + bm.getMoney());
+        chip.setValue(chip.getValue() + 250);
+        chip.setText("" + chip.getValue());
+        chip.setUrl("/images/chips/chip10.png");
     }
 
     @FXML
     private void clickChip500(ActionEvent event) {
         bm.addChip(500);
         resultlb.setText("" + bm.getMoney());
+        chip.setValue(chip.getValue() + 500);
+        chip.setText("" + chip.getValue());
+        chip.setUrl("/images/chips/chip10.png");
     }
 // </editor-fold>
 
     @FXML
     private void clickFieldMouse(MouseEvent event) {
-        roulette.setMouseX(event.getScreenX() - 230);
-        roulette.setMouseY(event.getScreenY() - 80);
-        chiplb = new Label();
-        chiplb.setText(chip.getText());
-        chiplb.setStyle("-fx-background-image : url(" + "/images/chips/chipdrop.png" + ")");
-        chiplb.setAlignment(Pos.CENTER);
-        chiplb.setMinSize(50, 50);
-        chiplb.setLayoutX(roulette.getMouseX());
-        chiplb.setLayoutY(roulette.getMouseY());
-        chiplb.setMouseTransparent(true);
-        anchorpane.getChildren().add(chiplb);
-        //Stuck here!!!!!
-            
-        //Clear Chip value
-        chip.clearValue();
+        if (bm.getMoney() > db.getKonto()) {
+            JOptionPane d = new JOptionPane();
+            d.showMessageDialog(null, "Du kannst nicht mehr als dein Kontostand setzen",
+                    "STOP", JOptionPane.ERROR_MESSAGE);
+        } else if (chip.getValue() == 0) {
+            JOptionPane d = new JOptionPane();
+            d.showMessageDialog(null, "Du kannst nicht 0 setzen",
+                    "STOP", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            //Chips einsetzen mit Bild und Text
+            chiplb = new Label();
+            chiplb.setText(chip.getText());
+            chiplb.setStyle("-fx-background-image : url(" + "/images/chips/chipdrop.png" + ")");
+            chiplb.setAlignment(Pos.CENTER);
+            chiplb.setMinSize(50, 50);
+            Point2D relative = anchorpane.screenToLocal(event.getScreenX(), event.getScreenY());
+            chiplb.setLayoutX(relative.getX() - 20);
+            chiplb.setLayoutY(relative.getY() - 18);
+            chiplb.setMouseTransparent(true);
+            anchorpane.getChildren().add(chiplb);
+            //Feld speichert Geld
+            try {
+                Button theButton = (Button) event.getSource();
+                theButton.localToScreen(theButton.getBoundsInLocal());
+                System.out.println(theButton.getText());
+                chipsinput.put(new Field(theButton.getText(), roulette.findColorFromSelectedField(theButton.getText())), bm.getMoney());
+            } catch (Exception e) {
+                ObservableList<Node> childrens = roultable.getChildren();
+                Label theLabel = (Label) event.getSource();
+                theLabel.localToScreen(theLabel.getBoundsInLocal());
+                System.out.println(getNodeByRowColumnIndex(roultable.getRowIndex(theLabel), roultable.getColumnIndex(theLabel)+1, roultable).toString());
+                /*
+                if (roultable.getRowIndex(theLabel) % 2 == 0) {
+                        Label label = roultable.getColumnIndex(theLabel) + 1;
+                        labelchips.add(new int[2]);
+                    } else if (roultable.getColumnIndex(theLabel) % 2 != 0) {
+
+                    } else if (roultable.getRowIndex(theLabel) % 2 != 0 && roultable.getColumnIndex(theLabel) % 2 != 0) {
+
+                    }*/
+
+                roultable.getRowIndex(theLabel);
+                roultable.getColumnIndex(theLabel);
+            }
+
+            //Kontostand aktualisieren
+            db.setKonto(db.getKonto() - bm.getMoney());
+            kontobestand.setText("" + db.getKonto());
+
+            //Aktueller Einsatz aktualisieren
+            einsatz.setText("" + bm.getCommitMoney());
+
+            //Clear Chip value
+            chip.clearValue();
+
+            //Reset BetMoney
+            bm.clearBetMoney();
+            resultlb.setText("" + bm.getMoney());
+        }
+
+    }
+
+    @FXML
+    private void clickGeldBack(ActionEvent event) {
+        chip.setValue(0);
+        chip.setText("" + 0);
+        bm.clearBetMoney();
+        bm.clearCommitMoney();
+        resultlb.setText("" + bm.getMoney());
+    }
+
+    public Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane) {
+        Node result = null;
+        ObservableList<Node> childrens = gridPane.getChildren();
+
+        for (Node node : childrens) {
+            if (gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
+                result = node;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    @FXML
+    private void clicklabel2514(MouseEvent event) {
+        System.out.println("hello");
     }
 }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class BetMoney {
 
     private ArrayList<Integer> betmoney = new ArrayList<>();
+    private ArrayList<Integer> commitmoney = new ArrayList<>();
     private int result;
 
     public ArrayList<Integer> getBetmoney() {
@@ -22,10 +23,7 @@ public class BetMoney {
 
     public void addChip(int money) {
         betmoney.add(money);
-    }
-
-    public void clearBetMoney() {
-        betmoney.clear();
+        commitmoney.add(money);
     }
 
     public int getMoney() {
@@ -35,5 +33,21 @@ public class BetMoney {
             result += betmoney.get(i);
         }
         return result;
+    }
+
+    public int getCommitMoney() {
+        result = 0;
+        for (int i = 0; i < commitmoney.size(); i++) {
+            result += commitmoney.get(i);
+        }
+        return result;
+    }
+
+    public void clearBetMoney() {
+        betmoney.clear();
+    }
+
+    public void clearCommitMoney() {
+        commitmoney.clear();
     }
 }

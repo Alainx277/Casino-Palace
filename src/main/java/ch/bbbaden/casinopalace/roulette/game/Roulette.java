@@ -14,10 +14,12 @@ import java.util.Random;
  */
 public class Roulette {
 
-    private ArrayList<Field> table = new ArrayList<>();
+    private final ArrayList<Field> table = new ArrayList<>();
     private String outputtext;
     private String outputcolour;
     private int numdrawn;
+    private double MouseY;
+    private double MouseX;
 
     public void createTable() {
         //Collection
@@ -53,6 +55,22 @@ public class Roulette {
     public String getNumberDrawnAsColour() {
         outputcolour = table.get(numdrawn).getColour();
         return outputcolour;
+    }
+
+    public void setMouseX(double MouseX) {
+        this.MouseX = MouseX;
+    }
+
+    public void setMouseY(double MouseY) {
+        this.MouseY = MouseY;
+    }
+
+    public double getMouseY() {
+        return MouseY;
+    }
+
+    public double getMouseX() {
+        return MouseX;
     }
 
 }

@@ -11,12 +11,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1500.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.roulette.game.RouletteGameController">
+<AnchorPane id="AnchorPane" fx:id="anchorpane" prefHeight="900.0" prefWidth="1500.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.roulette.game.RouletteGameController">
     <stylesheets>
         <URL value="@roulettegame.css" />
     </stylesheets>
    <children>
-      <GridPane layoutX="979.0" layoutY="33.0" prefHeight="147.0" prefWidth="517.0">
+      <GridPane layoutX="979.0" layoutY="33.0" prefHeight="147.0" prefWidth="517.0" visible="false">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="48.0" minWidth="10.0" prefWidth="48.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="120.0" />
@@ -175,17 +175,17 @@
             </Pane>
          </children>
       </GridPane>
-      <Pane layoutX="209.0" layoutY="66.0" prefHeight="350.0" prefWidth="624.0">
+      <Pane layoutX="209.0" layoutY="66.0" prefHeight="350.0" prefWidth="624.0" visible="false">
          <children>
             <ImageView fx:id="rouletteimage" fitHeight="493.0" fitWidth="590.0" layoutX="84.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true" />
-            <Label id="shownum" fx:id="shownum" alignment="CENTER" layoutX="307.0" layoutY="39.0" minHeight="60.0" minWidth="63.0" text="1" textFill="#460e0e" visible="false">
+            <Label id="shownum" fx:id="shownum" alignment="CENTER" layoutX="628.0" layoutY="38.0" minHeight="60.0" minWidth="63.0" text="1" textFill="#460e0e" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <GridPane layoutX="164.0" layoutY="693.0" prefHeight="180.0" prefWidth="1073.0">
+      <GridPane layoutX="206.0" layoutY="690.0" prefHeight="180.0" prefWidth="1073.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -198,19 +198,19 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="onechipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="tenchipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-            <ImageView fx:id="fiftychipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-            <ImageView fx:id="hundredchipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
-            <ImageView fx:id="twohundredchipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
-            <ImageView fx:id="fivehundredchipimage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" />
+            <Button id="chip1" fx:id="chip1" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#clickChip1" />
+            <Button id="chip10" fx:id="chip10" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#clickChip10" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" />
+            <Button id="chip50" fx:id="chip50" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#clickChip50" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" />
+            <Button id="chip100" fx:id="chip100" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#clickChip100" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" />
+            <Button id="chip250" fx:id="chip250" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#clickChip250" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" />
+            <Button id="chip500" fx:id="chip500" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#clickChip500" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5" />
          </children>
       </GridPane>
-      <Pane layoutX="1294.0" layoutY="753.0" prefHeight="62.0" prefWidth="100.0">
+      <Pane layoutX="1306.0" layoutY="734.0" prefHeight="80.0" prefWidth="170.0">
          <children>
-            <Button layoutX="-9.0" layoutY="-2.0" mnemonicParsing="false" onAction="#clickSpin" prefHeight="74.0" prefWidth="111.0" text="Drehen">
+            <Button fx:id="btnspin" layoutX="6.0" layoutY="8.0" mnemonicParsing="false" onAction="#clickSpin" prefHeight="74.0" prefWidth="144.0" text="Drehen">
                <font>
-                  <Font size="20.0" />
+                  <Font size="30.0" />
                </font>
             </Button>
          </children>
@@ -254,592 +254,592 @@
                         <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button id="ungeradezahl" fx:id="btn3" mnemonicParsing="false" onAction="#clickField3" prefHeight="60.0" prefWidth="63.0" text="3">
+                        <Button id="ungeradezahl" fx:id="btn3" mnemonicParsing="false" onAction="#clickField3" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn6" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField6" prefHeight="60.0" prefWidth="63.0" text="6" GridPane.columnIndex="2">
+                        <Button id="geradezahl" fx:id="btn6" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField6" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="6" GridPane.columnIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn9" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField9" prefHeight="60.0" prefWidth="63.0" text="9" GridPane.columnIndex="4">
+                        <Button id="ungeradezahl" fx:id="btn9" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField9" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="9" GridPane.columnIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn12" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField12" prefHeight="60.0" prefWidth="63.0" text="12" GridPane.columnIndex="6">
+                        <Button id="geradezahl" fx:id="btn12" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField12" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="12" GridPane.columnIndex="6">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn15" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField15" prefHeight="60.0" prefWidth="63.0" text="15" GridPane.columnIndex="8">
+                        <Button id="ungeradezahl" fx:id="btn15" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField15" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="15" GridPane.columnIndex="8">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn18" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField18" prefHeight="60.0" prefWidth="63.0" text="18" GridPane.columnIndex="10">
+                        <Button id="geradezahl" fx:id="btn18" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField18" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="18" GridPane.columnIndex="10">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn21" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField21" prefHeight="60.0" prefWidth="63.0" text="21" GridPane.columnIndex="12">
+                        <Button id="ungeradezahl" fx:id="btn21" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField21" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="21" GridPane.columnIndex="12">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn24" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField24" prefHeight="60.0" prefWidth="63.0" text="24" GridPane.columnIndex="14">
+                        <Button id="geradezahl" fx:id="btn24" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField24" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="24" GridPane.columnIndex="14">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn27" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField27" prefHeight="60.0" prefWidth="63.0" text="27" GridPane.columnIndex="16">
+                        <Button id="ungeradezahl" fx:id="btn27" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField27" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="27" GridPane.columnIndex="16">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn30" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField30" prefHeight="60.0" prefWidth="63.0" text="30" GridPane.columnIndex="18">
+                        <Button id="geradezahl" fx:id="btn30" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField30" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="30" GridPane.columnIndex="18">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn33" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField33" prefHeight="60.0" prefWidth="63.0" text="33" GridPane.columnIndex="20">
+                        <Button id="ungeradezahl" fx:id="btn33" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField33" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="33" GridPane.columnIndex="20">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn36" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField36" prefHeight="60.0" prefWidth="63.0" text="36" GridPane.columnIndex="22">
+                        <Button id="geradezahl" fx:id="btn36" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField36" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="36" GridPane.columnIndex="22">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="greenbtn" fx:id="btw1row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField3to36" prefHeight="60.0" prefWidth="76.0" text="2to1" GridPane.columnIndex="23">
+                        <Button id="greenbtn" fx:id="btw1row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField3to36" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="76.0" text="2to1" GridPane.columnIndex="23">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn2" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField2" prefHeight="60.0" prefWidth="63.0" text="2" GridPane.rowIndex="2">
+                        <Button id="geradezahl" fx:id="btn2" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField2" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="2" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn5" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField5" prefHeight="60.0" prefWidth="63.0" text="5" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Button id="ungeradezahl" fx:id="btn5" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField5" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="5" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn8" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField8" prefHeight="60.0" prefWidth="63.0" text="8" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                        <Button id="geradezahl" fx:id="btn8" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField8" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="8" GridPane.columnIndex="4" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn11" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField11" prefHeight="60.0" prefWidth="63.0" text="11" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                        <Button id="ungeradezahl" fx:id="btn11" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField11" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="11" GridPane.columnIndex="6" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn14" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField14" prefHeight="60.0" prefWidth="63.0" text="14" GridPane.columnIndex="8" GridPane.rowIndex="2">
+                        <Button id="geradezahl" fx:id="btn14" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField14" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="14" GridPane.columnIndex="8" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn17" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField17" prefHeight="60.0" prefWidth="63.0" text="17" GridPane.columnIndex="10" GridPane.rowIndex="2">
+                        <Button id="ungeradezahl" fx:id="btn17" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField17" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="17" GridPane.columnIndex="10" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn20" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField20" prefHeight="60.0" prefWidth="63.0" text="20" GridPane.columnIndex="12" GridPane.rowIndex="2">
+                        <Button id="geradezahl" fx:id="btn20" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField20" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="20" GridPane.columnIndex="12" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn23" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField23" prefHeight="60.0" prefWidth="63.0" text="23" GridPane.columnIndex="14" GridPane.rowIndex="2">
+                        <Button id="ungeradezahl" fx:id="btn23" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField23" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="23" GridPane.columnIndex="14" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn26" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField26" prefHeight="60.0" prefWidth="63.0" text="26" GridPane.columnIndex="16" GridPane.rowIndex="2">
+                        <Button id="geradezahl" fx:id="btn26" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField26" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="26" GridPane.columnIndex="16" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn29" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField29" prefHeight="60.0" prefWidth="63.0" text="29" GridPane.columnIndex="18" GridPane.rowIndex="2">
+                        <Button id="ungeradezahl" fx:id="btn29" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField29" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="29" GridPane.columnIndex="18" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn32" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField32" prefHeight="60.0" prefWidth="63.0" text="32" GridPane.columnIndex="20" GridPane.rowIndex="2">
+                        <Button id="geradezahl" fx:id="btn32" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField32" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="32" GridPane.columnIndex="20" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn35" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField35" prefHeight="60.0" prefWidth="63.0" text="35" GridPane.columnIndex="22" GridPane.rowIndex="2">
+                        <Button id="ungeradezahl" fx:id="btn35" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField35" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="35" GridPane.columnIndex="22" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="greenbtn" fx:id="btn2row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField2to35" prefHeight="60.0" prefWidth="76.0" text="2to1" GridPane.columnIndex="23" GridPane.rowIndex="2">
+                        <Button id="greenbtn" fx:id="btn2row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField2to35" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="76.0" text="2to1" GridPane.columnIndex="23" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn1" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField1" prefHeight="60.0" prefWidth="63.0" text="1" GridPane.rowIndex="4">
+                        <Button id="ungeradezahl" fx:id="btn1" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField1" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="1" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn4" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField4" prefHeight="60.0" prefWidth="63.0" text="4" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button id="geradezahl" fx:id="btn4" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField4" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="4" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn7" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField7" prefHeight="60.0" prefWidth="63.0" text="7" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                        <Button id="ungeradezahl" fx:id="btn7" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField7" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="7" GridPane.columnIndex="4" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn10" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField10" prefHeight="60.0" prefWidth="63.0" text="10" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                        <Button id="geradezahl" fx:id="btn10" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField10" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="10" GridPane.columnIndex="6" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn13" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField13" prefHeight="60.0" prefWidth="63.0" text="13" GridPane.columnIndex="8" GridPane.rowIndex="4">
+                        <Button id="ungeradezahl" fx:id="btn13" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField13" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="13" GridPane.columnIndex="8" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn16" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField16" prefHeight="60.0" prefWidth="74.0" text="16" GridPane.columnIndex="10" GridPane.rowIndex="4">
+                        <Button id="geradezahl" fx:id="btn16" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField16" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="74.0" text="16" GridPane.columnIndex="10" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn19" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField19" prefHeight="60.0" prefWidth="63.0" text="19" GridPane.columnIndex="12" GridPane.rowIndex="4">
+                        <Button id="ungeradezahl" fx:id="btn19" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField19" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="19" GridPane.columnIndex="12" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn22" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField22" prefHeight="60.0" prefWidth="63.0" text="22" GridPane.columnIndex="14" GridPane.rowIndex="4">
+                        <Button id="geradezahl" fx:id="btn22" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField22" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="22" GridPane.columnIndex="14" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn25" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField25" prefHeight="60.0" prefWidth="63.0" text="25" GridPane.columnIndex="16" GridPane.rowIndex="4">
+                        <Button id="ungeradezahl" fx:id="btn25" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField25" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="25" GridPane.columnIndex="16" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn28" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField28" prefHeight="60.0" prefWidth="63.0" text="28" GridPane.columnIndex="18" GridPane.rowIndex="4">
+                        <Button id="geradezahl" fx:id="btn28" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField28" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="28" GridPane.columnIndex="18" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="ungeradezahl" fx:id="btn31" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField31" prefHeight="60.0" prefWidth="63.0" text="31" GridPane.columnIndex="20" GridPane.rowIndex="4">
+                        <Button id="ungeradezahl" fx:id="btn31" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField31" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="31" GridPane.columnIndex="20" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="greenbtn" fx:id="btn3row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField1to34" prefHeight="60.0" prefWidth="73.0" text="2to1" GridPane.columnIndex="23" GridPane.rowIndex="4">
+                        <Button id="greenbtn" fx:id="btn3row" maxHeight="60.0" maxWidth="76.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField1to34" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="73.0" text="2to1" GridPane.columnIndex="23" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="geradezahl" fx:id="btn34" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField34" prefHeight="60.0" prefWidth="63.0" text="34" GridPane.columnIndex="22" GridPane.rowIndex="4">
+                        <Button id="geradezahl" fx:id="btn34" maxHeight="60.0" maxWidth="63.0" minHeight="60.0" minWidth="63.0" mnemonicParsing="false" onAction="#clickField34" onMouseClicked="#clickFieldMouse" prefHeight="60.0" prefWidth="63.0" text="34" GridPane.columnIndex="22" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                           <Label id="label1" fx:id="lb3and6" maxHeight="60.0" maxWidth="23.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="12.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <Label id="label1" fx:id="lb3and6" maxHeight="60.0" maxWidth="23.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="25.0" prefWidth="12.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb2and3and5and6" maxHeight="60.0" maxWidth="23.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb2and3and5and6" maxHeight="60.0" maxWidth="23.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="12.0" prefWidth="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb2and3" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb2and3" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb2and5" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <Label id="label1" fx:id="lb2and5" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb2and5and1and4" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb2and5and1and4" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb1and2" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb1and2" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb1and4" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <Label id="label1" fx:id="lb1and4" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb6and9" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                           <Label id="label1" fx:id="lb6and9" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb6and9and5and8" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb6and9and5and8" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb6and5" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb6and5" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb5and8" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <Label id="label1" fx:id="lb5and8" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb5and8and4and7" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb5and8and4and7" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb5and4" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb5and4" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb4and7" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                           <Label id="label1" fx:id="lb4and7" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb9and12" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="0">
+                           <Label id="label1" fx:id="lb9and12" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb9and12and8and11" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb9and12and8and11" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb9and8" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="64.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb9and8" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="10.0" prefWidth="64.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb8and11" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                           <Label id="label1" fx:id="lb8and11" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb8and11and7and10" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb8and11and7and10" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb8and7" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb8and7" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                            <Label id="label1" fx:id="lb7and10" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                            <Label id="label1" fx:id="lb7and10" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb12and15" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="0">
+                           <Label id="label1" fx:id="lb12and15" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb12and15and11and14" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb12and15and11and14" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb12and11" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb12and11" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb11and14" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
+                           <Label id="label1" fx:id="lb11and14" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb11and14and10and13" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb11and14and10and13" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb11and10" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb11and10" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb10and13" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                           <Label id="label1" fx:id="lb10and13" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb15and18" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="0">
+                           <Label id="label1" fx:id="lb15and18" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb15and18and14and17" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb15and18and14and17" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb15and14" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb15and14" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="8" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb14and17" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="2">
+                           <Label id="label1" fx:id="lb14and17" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb14and17and13and16" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb14and17and13and16" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb14and13" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="8" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb14and13" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="8" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb13and16" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="4">
+                           <Label id="label1" fx:id="lb13and16" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="9" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb18and21" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="0">
+                           <Label id="label1" fx:id="lb18and21" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb18and21and17and20" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb18and21and17and20" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb18and17" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="10" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb18and17" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="10" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb17and20" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="2">
+                           <Label id="label1" fx:id="lb17and20" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb17and20and16and19" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb17and20and16and19" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb17and16" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="10" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb17and16" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="10" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb16and19" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="4">
+                           <Label id="label1" fx:id="lb16and19" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="11" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb21and24" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="0">
+                           <Label id="label1" fx:id="lb21and24" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb21and24and20and23" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb21and24and20and23" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb21and20" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="12" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb21and20" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="12" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb20and23" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="2">
+                           <Label id="label1" fx:id="lb20and23" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb20and23and19and22" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb20and23and19and22" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb20and19" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="12" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb20and19" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="12" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb19and22" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="4">
+                           <Label id="label1" fx:id="lb19and22" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="13" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb24and27" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="0">
+                           <Label id="label1" fx:id="lb24and27" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb24and27and23and26" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb24and27and23and26" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb24and23" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="14" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb24and23" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="14" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb23and26" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="2">
+                           <Label id="label1" fx:id="lb23and26" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb23and26and22and25" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb23and26and22and25" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb23and22" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="14" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb23and22" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="14" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb22and25" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="4">
+                           <Label id="label1" fx:id="lb22and25" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="15" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb27and30" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="0">
+                           <Label id="label1" fx:id="lb27and30" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb27and30and26and29" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb27and30and26and29" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb27and26" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="16" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb27and26" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="16" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb26and29" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="2">
+                           <Label id="label1" fx:id="lb26and29" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb26and29and25and28" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb26and29and25and28" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb26and25" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="16" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb26and25" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="16" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb25and28" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="4">
+                           <Label id="label1" fx:id="lb25and28" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="17" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb30and33" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="0">
+                           <Label id="label1" fx:id="lb30and33" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb30and33and29and32" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb30and33and29and32" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb30and29" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="18" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb30and29" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="18" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb29and32" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="2">
+                           <Label id="label1" fx:id="lb29and32" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb29and32and28and31" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb29and32and28and31" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb29and28" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="18" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb29and28" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="18" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb28and31" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="4">
+                           <Label id="label1" fx:id="lb28and31" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="19" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb33and36" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="0">
+                           <Label id="label1" fx:id="lb33and36" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb33and36and32and35" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb33and36and32and35" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb33and32" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="20" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb33and32" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="20" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb32and35" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="2">
+                           <Label id="label1" fx:id="lb32and35" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb32and35and31and34" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb32and35and31and34" maxHeight="60.0" maxWidth="70.0" minHeight="12.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb32and31" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="20" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb32and31" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="20" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb31and34" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="4">
+                           <Label id="label1" fx:id="lb31and34" maxHeight="60.0" maxWidth="70.0" minHeight="25.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="21" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb36and35" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="22" GridPane.rowIndex="1">
+                           <Label id="label1" fx:id="lb36and35" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="22" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                           <Label id="label1" fx:id="lb35and34" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="22" GridPane.rowIndex="3">
+                           <Label id="label1" fx:id="lb35and34" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="22" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -860,44 +860,44 @@
                         <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label id="label1" fx:id="lbmiddle3" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label id="label1" fx:id="lbmiddle3" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label id="label1" fx:id="lbcorner2" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <Label id="label1" fx:id="lbcorner2" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label id="label1" fx:id="lbmiddle2" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                        <Label id="label1" fx:id="lbmiddle2" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label id="label1" fx:id="lbcorner1" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                        <Label id="label1" fx:id="lbcorner1" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label id="label1" fx:id="lbmiddle1" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                        <Label id="label1" fx:id="lbmiddle1" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label id="label1" fx:id="lbcornerdown1" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                        <Label id="label1" fx:id="lbcornerdown1" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0" GridPane.columnIndex="0" GridPane.rowIndex="6">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
                     </children>
                   </GridPane>
-                  <Button id="greenbtn" fx:id="btn0" layoutX="21.0" layoutY="48.0" mnemonicParsing="false" onAction="#clickField0" prefHeight="93.0" prefWidth="63.0" text="0">
+                  <Button id="greenbtn" fx:id="btn0" layoutX="21.0" layoutY="48.0" mnemonicParsing="false" onAction="#clickField0" onMouseClicked="#clickFieldMouse" prefHeight="93.0" prefWidth="63.0" text="0">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button id="greenbtn" fx:id="btn00" layoutX="21.0" layoutY="153.0" mnemonicParsing="false" onAction="#clickField00" prefHeight="95.0" prefWidth="63.0" text="00">
+                  <Button id="greenbtn" fx:id="btn00" layoutX="21.0" layoutY="153.0" mnemonicParsing="false" onAction="#clickField00" onMouseClicked="#clickFieldMouse" prefHeight="95.0" prefWidth="63.0" text="00">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -914,17 +914,17 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button id="greenbtn" fx:id="btn1st12" mnemonicParsing="false" onAction="#click1to12" prefHeight="44.0" prefWidth="292.0" text="1st12">
+                        <Button id="greenbtn" fx:id="btn1st12" mnemonicParsing="false" onAction="#click1to12" onMouseClicked="#clickFieldMouse" prefHeight="44.0" prefWidth="292.0" text="1st12">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="greenbtn" fx:id="btn2nd12" mnemonicParsing="false" onAction="#click13to24" prefHeight="44.0" prefWidth="350.0" text="2nd12" GridPane.columnIndex="2">
+                        <Button id="greenbtn" fx:id="btn2nd12" mnemonicParsing="false" onAction="#click13to24" onMouseClicked="#clickFieldMouse" prefHeight="44.0" prefWidth="350.0" text="2nd12" GridPane.columnIndex="2">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button id="greenbtn" fx:id="btn3rd12" mnemonicParsing="false" onAction="#click25to36" prefHeight="44.0" prefWidth="321.0" text="3rd12" GridPane.columnIndex="4">
+                        <Button id="greenbtn" fx:id="btn3rd12" mnemonicParsing="false" onAction="#click25to36" onMouseClicked="#clickFieldMouse" prefHeight="44.0" prefWidth="321.0" text="3rd12" GridPane.columnIndex="4">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -949,28 +949,33 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button id="greenbtn" fx:id="btnungerade" mnemonicParsing="false" onAction="#clickUngerade" prefHeight="56.0" prefWidth="149.0" text="Ungerade" />
-                        <Button id="greenbtn" fx:id="btngerade" mnemonicParsing="false" onAction="#clickGerade" prefHeight="104.0" prefWidth="178.0" text="Gerade" GridPane.columnIndex="2" />
-                        <Button id="blackbtn" fx:id="btnblack" mnemonicParsing="false" onAction="#clickSchwarz" prefHeight="71.0" prefWidth="156.0" text="SCHWARZ" GridPane.columnIndex="4">
+                        <Button id="greenbtn" fx:id="btnungerade" mnemonicParsing="false" onAction="#clickUngerade" onMouseClicked="#clickFieldMouse" prefHeight="56.0" prefWidth="149.0" text="Ungerade" />
+                        <Button id="greenbtn" fx:id="btngerade" mnemonicParsing="false" onAction="#clickGerade" onMouseClicked="#clickFieldMouse" prefHeight="104.0" prefWidth="178.0" text="Gerade" GridPane.columnIndex="2" />
+                        <Button id="blackbtn" fx:id="btnblack" mnemonicParsing="false" onAction="#clickSchwarz" onMouseClicked="#clickFieldMouse" prefHeight="71.0" prefWidth="156.0" text="SCHWARZ" GridPane.columnIndex="4">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button id="redbtn" fx:id="btnred" mnemonicParsing="false" onAction="#clickRot" prefHeight="84.0" prefWidth="177.0" text="ROT" GridPane.columnIndex="6">
+                        <Button id="redbtn" fx:id="btnred" mnemonicParsing="false" onAction="#clickRot" onMouseClicked="#clickFieldMouse" prefHeight="84.0" prefWidth="177.0" text="ROT" GridPane.columnIndex="6">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button id="greenbtn" fx:id="btn1to18" mnemonicParsing="false" onAction="#clickNiedrig" prefHeight="56.0" prefWidth="152.0" text=" 1-18 Niedrig" GridPane.columnIndex="8">
+                        <Button id="greenbtn" fx:id="btn1to18" mnemonicParsing="false" onAction="#clickNiedrig" onMouseClicked="#clickFieldMouse" prefHeight="56.0" prefWidth="152.0" text=" 1-18 Niedrig" GridPane.columnIndex="8">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Button>
-                        <Button id="greenbtn" fx:id="btn19to36" mnemonicParsing="false" onAction="#clickHoch" prefHeight="56.0" prefWidth="161.0" text="19-36 Hoch" GridPane.columnIndex="10" />
+                        <Button id="greenbtn" fx:id="btn19to36" mnemonicParsing="false" onAction="#clickHoch" onMouseClicked="#clickFieldMouse" prefHeight="56.0" prefWidth="161.0" text="19-36 Hoch" GridPane.columnIndex="10" />
                      </children>
                   </GridPane>
                </children>
             </Pane>
          </children></Pane>
+      <Label fx:id="resultlb" layoutX="1363.0" layoutY="844.0" text="0" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ package ch.bbbaden.casinopalace.roulette.game;
 
 import ch.bbbaden.casinopalace.roulette.menu.Roulette_MenuController;
 import static java.awt.Color.red;
+import java.awt.MouseInfo;
 import java.awt.Paint;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,10 +20,14 @@ import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import static javafx.util.Duration.seconds;
 
@@ -34,12 +39,13 @@ import static javafx.util.Duration.seconds;
 public class RouletteGameController implements Initializable {
 
     //My Attributes
-    
     Roulette roulette = new Roulette();
-    
-    
-    
-    //FXML
+    Datenbank db = new Datenbank();
+    BetMoney bm = new BetMoney();
+    Chip chip = new Chip();
+    Field fl = new Field();
+
+    // <editor-fold defaultstate="collapsed" desc=" Stats ">
     @FXML
     private ImageView handimage;
     @FXML
@@ -52,6 +58,7 @@ public class RouletteGameController implements Initializable {
     private ImageView totaldollarimage;
     @FXML
     private ImageView totalnodollarimage;
+
     @FXML
     private Label einsatz;
     @FXML
@@ -64,22 +71,8 @@ public class RouletteGameController implements Initializable {
     private Label totalgewinn;
     @FXML
     private Label totalverlust;
-    @FXML
-    private ImageView rouletteimage;
-    @FXML
-    private ImageView onechipimage;
-    @FXML
-    private ImageView tenchipimage;
-    @FXML
-    private ImageView fiftychipimage;
-    @FXML
-    private ImageView hundredchipimage;
-    @FXML
-    private ImageView twohundredchipimage;
-    @FXML
-    private ImageView fivehundredchipimage;
-    @FXML
-    private GridPane roultable;
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Table Buttons ">
     @FXML
     private Button btn3;
     @FXML
@@ -157,9 +150,33 @@ public class RouletteGameController implements Initializable {
     @FXML
     private Button btn34;
     @FXML
-    private Label lb3and6;
-    @FXML
     private Button btn1;
+    @FXML
+    private Button btn0;
+    @FXML
+    private Button btn00;
+    @FXML
+    private Button btn1st12;
+    @FXML
+    private Button btn2nd12;
+    @FXML
+    private Button btn3rd12;
+    @FXML
+    private Button btnungerade;
+    @FXML
+    private Button btngerade;
+    @FXML
+    private Button btnblack;
+    @FXML
+    private Button btnred;
+    @FXML
+    private Button btn1to18;
+    @FXML
+    private Button btn19to36;
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Table Labels ">
+    @FXML
+    private Label lb3and6;
     @FXML
     private Label lb2and3and5and6;
     @FXML
@@ -317,10 +334,6 @@ public class RouletteGameController implements Initializable {
     @FXML
     private Label lb35and34;
     @FXML
-    private Label shownum;
-    @FXML
-    private GridPane cornerpane;
-    @FXML
     private Label lbmiddle3;
     @FXML
     private Label lbcorner2;
@@ -332,28 +345,37 @@ public class RouletteGameController implements Initializable {
     private Label lbmiddle1;
     @FXML
     private Label lbcornerdown1;
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Buttons Chips ">
+
     @FXML
-    private Button btn0;
+    private Button chip1;
     @FXML
-    private Button btn00;
+    private Button chip10;
     @FXML
-    private Button btn1st12;
+    private Button chip50;
     @FXML
-    private Button btn2nd12;
+    private Button chip100;
     @FXML
-    private Button btn3rd12;
+    private Button chip250;
     @FXML
-    private Button btnungerade;
+    private Button chip500;
+    // </editor-fold>
     @FXML
-    private Button btngerade;
+    private Label shownum;
     @FXML
-    private Button btnblack;
+    private GridPane cornerpane;
     @FXML
-    private Button btnred;
+    private ImageView rouletteimage;
     @FXML
-    private Button btn1to18;
+    private GridPane roultable;
     @FXML
-    private Button btn19to36;
+    private Button btnspin;
+    @FXML
+    private Label resultlb;
+    private Label chiplb;
+    @FXML
+    private AnchorPane anchorpane;
 
     /**
      * Initializes the controller class.
@@ -361,7 +383,7 @@ public class RouletteGameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Images
-        
+
         //Icons
         //Hand
         Image hand = new Image("/images/icons/hand.png");
@@ -387,26 +409,9 @@ public class RouletteGameController implements Initializable {
         rouletteimage.setImage(roulettei);
 
         //Chips
-        //Chip1
-        Image onechip = new Image("/images/chips/chip1.png");
-        onechipimage.setImage(onechip);
-        //Chip10
-        Image tenchip = new Image("/images/chips/chip10.png");
-        tenchipimage.setImage(tenchip);
-        //Chip50
-        Image fiftychip = new Image("/images/chips/chip50.png");
-        fiftychipimage.setImage(fiftychip);
-        //Chip100
-        Image hundredchip = new Image("/images/chips/chip100.png");
-        hundredchipimage.setImage(hundredchip);
-        //Chip250
-        Image twohundredchip = new Image("/images/chips/chip250.png");
-        twohundredchipimage.setImage(twohundredchip);
-        //Chip500
-        Image fivehundredchip = new Image("/images/chips/chip500.png");
-        fivehundredchipimage.setImage(fivehundredchip);
-        
         roulette.createTable();
+        //Konto angeben
+        kontobestand.setText("" + db.getKonto());
     }
 
     @FXML
@@ -419,14 +424,14 @@ public class RouletteGameController implements Initializable {
         shownum.setVisible(true);
         roulette.drawNumber();
         shownum.setText(roulette.getNumberDrawnAsText());
-        shownum.setStyle("-fx-background-color: " + roulette.getNumberDrawnAsColour()+ ";");
+        shownum.setStyle("-fx-background-color: " + roulette.getNumberDrawnAsColour() + ";");
     }
 
-    
-
-    //ClickFields
+// <editor-fold defaultstate="collapsed" desc=" Click Fields ">
+// <editor-fold defaultstate="collapsed" desc=" Click Row 3 ">
     @FXML
     private void clickField3(ActionEvent event) {
+
     }
 
     @FXML
@@ -472,54 +477,70 @@ public class RouletteGameController implements Initializable {
     @FXML
     private void clickField36(ActionEvent event) {
     }
+// </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Click Row 2 ">
 
     @FXML
     private void clickField2(ActionEvent event) {
+
     }
 
     @FXML
     private void clickField5(ActionEvent event) {
+
     }
 
     @FXML
     private void clickField8(ActionEvent event) {
+
     }
 
     @FXML
     private void clickField11(ActionEvent event) {
+
     }
 
     @FXML
     private void clickField14(ActionEvent event) {
+
     }
 
     @FXML
     private void clickField17(ActionEvent event) {
+
     }
 
     @FXML
     private void clickField20(ActionEvent event) {
+
     }
 
     @FXML
     private void clickField23(ActionEvent event) {
+
     }
 
     @FXML
     private void clickField26(ActionEvent event) {
+
     }
 
     @FXML
     private void clickField29(ActionEvent event) {
+
     }
 
     @FXML
     private void clickField32(ActionEvent event) {
+
     }
 
     @FXML
     private void clickField35(ActionEvent event) {
+
     }
+// </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Click Row 1 ">
 
     @FXML
     private void clickField1(ActionEvent event) {
@@ -568,6 +589,8 @@ public class RouletteGameController implements Initializable {
     @FXML
     private void clickField34(ActionEvent event) {
     }
+// </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Click Field 0 / 00 ">
 
     @FXML
     private void clickField0(ActionEvent event) {
@@ -576,8 +599,10 @@ public class RouletteGameController implements Initializable {
     @FXML
     private void clickField00(ActionEvent event) {
     }
-    
-    //Click 1-3 Rows
+    // </editor-fold>
+// </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Click 1-3 Rows ">
+
     @FXML
     private void clickField1to34(ActionEvent event) {
     }
@@ -586,12 +611,12 @@ public class RouletteGameController implements Initializable {
     private void clickField2to35(ActionEvent event) {
     }
 
-
     @FXML
     private void clickField3to36(ActionEvent event) {
     }
+// </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Click 1st, 2nd, 3rd ">
 
-    //Click 1st, 2nd, 3rd
     @FXML
     private void click1to12(ActionEvent event) {
     }
@@ -603,8 +628,9 @@ public class RouletteGameController implements Initializable {
     @FXML
     private void click25to36(ActionEvent event) {
     }
+// </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Click Ungerade / Gerade ">
 
-    //Click Ungerade / Gerade
     @FXML
     private void clickUngerade(ActionEvent event) {
     }
@@ -612,8 +638,9 @@ public class RouletteGameController implements Initializable {
     @FXML
     private void clickGerade(ActionEvent event) {
     }
-    
-    //Click Schwarz / Rot
+
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Click Schwarz / Rot ">
     @FXML
     private void clickSchwarz(ActionEvent event) {
     }
@@ -621,8 +648,9 @@ public class RouletteGameController implements Initializable {
     @FXML
     private void clickRot(ActionEvent event) {
     }
-    
-    //Click Niedrig / Hoch
+
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Click Niedrig / Hoch ">
     @FXML
     private void clickNiedrig(ActionEvent event) {
     }
@@ -630,5 +658,70 @@ public class RouletteGameController implements Initializable {
     @FXML
     private void clickHoch(ActionEvent event) {
     }
+// </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc=" Click Chips ">
 
+    @FXML
+    private void clickChip1(ActionEvent event) {
+        //BetMoney
+        bm.addChip(1);
+        resultlb.setText("" + bm.getMoney());
+        //Chip value
+        chip.setValue(chip.getValue() + 1);
+        chip.setText("" + chip.getValue());
+        chip.setUrl("/images/chips/chip1.png");
+    }
+
+    @FXML
+    private void clickChip10(ActionEvent event) {
+        bm.addChip(10);
+        resultlb.setText("" + bm.getMoney());
+        chip.setValue(chip.getValue() + 10);
+        chip.setText("" + chip.getValue());
+        chip.setUrl("/images/chips/chip10.png");
+    }
+
+    @FXML
+    private void clickChip50(ActionEvent event) {
+        bm.addChip(50);
+        resultlb.setText("" + bm.getMoney());
+    }
+
+    @FXML
+    private void clickChip100(ActionEvent event) {
+        bm.addChip(100);
+        resultlb.setText("" + bm.getMoney());
+    }
+
+    @FXML
+    private void clickChip250(ActionEvent event) {
+        bm.addChip(250);
+        resultlb.setText("" + bm.getMoney());
+    }
+
+    @FXML
+    private void clickChip500(ActionEvent event) {
+        bm.addChip(500);
+        resultlb.setText("" + bm.getMoney());
+    }
+// </editor-fold>
+
+    @FXML
+    private void clickFieldMouse(MouseEvent event) {
+        roulette.setMouseX(event.getScreenX() - 230);
+        roulette.setMouseY(event.getScreenY() - 80);
+        chiplb = new Label();
+        chiplb.setText(chip.getText());
+        chiplb.setStyle("-fx-background-image : url(" + "/images/chips/chipdrop.png" + ")");
+        chiplb.setAlignment(Pos.CENTER);
+        chiplb.setMinSize(50, 50);
+        chiplb.setLayoutX(roulette.getMouseX());
+        chiplb.setLayoutY(roulette.getMouseY());
+        chiplb.setMouseTransparent(true);
+        anchorpane.getChildren().add(chiplb);
+        //Stuck here!!!!!
+            
+        //Clear Chip value
+        chip.clearValue();
+    }
 }

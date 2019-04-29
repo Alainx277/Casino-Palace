@@ -15,6 +15,11 @@ public class Field {
     private String colour;
     private int number;
     private boolean side;
+    private boolean setonboard;
+
+    public Field() {
+
+    }
 
     public Field(String text, String colour) {
         this.text = text;
@@ -45,5 +50,4 @@ public class Field {
             return false;
         }
     }
-
 }

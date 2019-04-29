@@ -59,16 +59,99 @@
     -fx-text-fill:white;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
+#chip1{
+    -fx-background-image: url("/images/chips/chip1.png");
+    -fx-background-color:transparent;
+}
+#chip10{
+    -fx-background-image: url("/images/chips/chip10.png");
+    -fx-background-color:transparent;
+}
+#chip50{
+    -fx-background-image: url("/images/chips/chip50.png");
+    -fx-background-color:transparent;
+}
+#chip100{
+    -fx-background-image: url("/images/chips/chip100.png");
+    -fx-background-color:transparent;
+}
+#chip250{
+    -fx-background-image: url("/images/chips/chip250.png");
+    -fx-background-color:transparent;
+}
+#chip500{
+    -fx-background-image: url("/images/chips/chip500.png");
+    -fx-background-color:transparent;
+}
+#btnspin{
+  -fx-background-color:
+        linear-gradient(#f0ff35, #a9ff00),
+        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: #395306;
+}
 #label1:hover{
     -fx-border-color: blue ;
     -fx-border-width: 1 ; 
 }
 #geradezahl:hover{
     -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+    
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
 }
 #ungeradezahl:hover{
     -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+    
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
 }
 #greenbtn:hover{
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+#redbtn:hover{
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+#blackbtn:hover{
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+#chip1:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+#chip10:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+#chip50:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+#chip100:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+#chip250:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+#chip500:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+#btnspin:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
     -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }

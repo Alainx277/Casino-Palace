@@ -5,7 +5,10 @@
  */
 package ch.bbbaden.casinopalace.blackjack;
 
+import java.util.Random;
+import javafx.fxml.FXML;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
 
 /**
  *
@@ -14,7 +17,7 @@ import javafx.scene.image.Image;
 public class BlackJack {
 
     private BJState state;
-    
+
     private int bet;
 
     private final int cardStack = 52;
@@ -24,22 +27,61 @@ public class BlackJack {
     private final Karte[] completeStack = new Karte[cardStack * stacks];
 
     private Image[] imagecards = new Image[cardStack];
+    
+    private BJState currentState = (BJState) new StandBy();
+    
+    @FXML
+    private HBox hand1;
+     @FXML
+    private HBox hand2;
+      @FXML
+    private HBox croupier;
 
-    public BlackJack() {
+    public BlackJack(HBox hand1, HBox hand2, HBox croupier) {
         //add cards
+        this.hand1 = hand1;
+        this.hand2 = hand2;
+        this.croupier = croupier;
         addImages();
         addCards();
-        
-    }
-
-    public void requestState() {
 
     }
 
-    public Karte play(int bet) {
+    public HBox getHand1() {
+        return hand1;
+    }
+
+    public HBox getHand2() {
+        return hand2;
+    }
+
+    public HBox getCroupier() {
+        return croupier;
+    }
+    
+
+    public BJState requestState() {
+        return currentState;
+    }
+    
+    public void setState(BJState state){
+        currentState = state;
+    }
+
+    public int getBet() {
+        return bet;
+    }
+
+    public Karte play() {
         Karte retVal = null;
-        retVal = completeStack[1];
+        Random r = new Random();
+        
+        retVal = completeStack[r.nextInt(completeStack.length)];
         return retVal;
+    }
+
+    public void setBet(int bet) {
+        this.bet = bet;
     }
 
     public void shuffle() {

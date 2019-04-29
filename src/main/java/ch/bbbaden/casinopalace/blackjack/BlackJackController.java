@@ -44,25 +44,30 @@ public class BlackJackController extends Controller implements Initializable {
     private ImageView chip500;
     @FXML
     private ImageView imgViewBack;
+    @FXML
+    private HBox croupier;
+        @FXML
+    private HBox hand1;
+    @FXML
+    private HBox hand2;
 
-    private BlackJack bj = new BlackJack();
+    
     private int betAmount;
     private Image bet = new Image("/images/chips.png");
 
     private static Stage ubersichtsStage;
+    
+    private BlackJack bj;
 
     @FXML
     private ImageView imgStacks;
     @FXML
     private AnchorPane ap;
     @FXML
-    private HBox hand1;
-    @FXML
-    private HBox hand2;
-    @FXML
     private ImageView betImgView;
     @FXML
     private Label betLbl;
+    
 
     /**
      * Initializes the controller class.
@@ -70,37 +75,37 @@ public class BlackJackController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        bj = new BlackJack(hand1, hand2, croupier);
         ap.getStylesheets().add(CasinoController.class.getResource("Common.css").toExternalForm());
         addImages();
     }
 
     @FXML
     private void handleInsurrance(ActionEvent event) {
+        bj.requestState().handleInsurance(bj);
     }
 
     @FXML
     private void handleSplit(ActionEvent event) {
+        bj.requestState().handleSplit(bj);
     }
 
     @FXML
     private void handleDouble(ActionEvent event) {
+        bj.requestState().handleDouble(bj);
     }
 
     @FXML
     private void handleStand(ActionEvent event) {
+        bj.requestState().handleStand(bj);
     }
 
     @FXML
     private void handleHit(ActionEvent event) {
-        System.out.println(betAmount);
-        if (betAmount > 0) {
-            System.out.println("ok");
-            Image card = bj.play(betAmount).getImage();
-            ImageView cardo = new ImageView(card);
-            hand1.getChildren().add(cardo);
-            cardo.setFitHeight(120);
-            cardo.setFitWidth(120);
-        }
+        
+        System.out.println(bj.requestState());
+        bj.setBet(betAmount);
+        bj.requestState().handleHit(bj);
 
     }
 

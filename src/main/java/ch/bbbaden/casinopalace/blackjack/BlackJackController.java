@@ -15,9 +15,12 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -42,7 +45,24 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private ImageView imgViewBack;
 
+    private BlackJack bj = new BlackJack();
+    private int betAmount;
+    private Image bet = new Image("/images/chips.png");
+
     private static Stage ubersichtsStage;
+
+    @FXML
+    private ImageView imgStacks;
+    @FXML
+    private AnchorPane ap;
+    @FXML
+    private HBox hand1;
+    @FXML
+    private HBox hand2;
+    @FXML
+    private ImageView betImgView;
+    @FXML
+    private Label betLbl;
 
     /**
      * Initializes the controller class.
@@ -50,6 +70,7 @@ public class BlackJackController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        ap.getStylesheets().add(CasinoController.class.getResource("Common.css").toExternalForm());
         addImages();
     }
 
@@ -71,6 +92,16 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleHit(ActionEvent event) {
+        System.out.println(betAmount);
+        if (betAmount > 0) {
+            System.out.println("ok");
+            Image card = bj.play(betAmount).getImage();
+            ImageView cardo = new ImageView(card);
+            hand1.getChildren().add(cardo);
+            cardo.setFitHeight(120);
+            cardo.setFitWidth(120);
+        }
+
     }
 
     private void addImages() {
@@ -81,6 +112,7 @@ public class BlackJackController extends Controller implements Initializable {
         chip250.setImage(new Image("/images/chips/Chip250.png"));
         chip500.setImage(new Image("/images/chips/Chip500.png"));
         imgViewBack.setImage(new Image("/images/back.png"));
+        imgStacks.setImage(new Image("/images/cards/background.png"));
     }
 
     @FXML
@@ -88,11 +120,53 @@ public class BlackJackController extends Controller implements Initializable {
         Stage currentStage = (Stage) chip1.getScene().getWindow();
         currentStage.close();
         ubersichtsStage.show();
-       
+
     }
 
     public static void fillBack(Stage stage) {
         ubersichtsStage = stage;
+    }
+
+    @FXML
+    private void handleOne(MouseEvent event) {
+        betAmount++;
+        betImgView.setImage(bet);
+        betLbl.setText(Integer.toString(betAmount));
+    }
+
+    @FXML
+    private void handleTen(MouseEvent event) {
+        betAmount += 10;
+        betImgView.setImage(bet);
+        betLbl.setText(Integer.toString(betAmount));
+    }
+
+    @FXML
+    private void handleFifty(MouseEvent event) {
+        betAmount += 50;
+        betImgView.setImage(bet);
+        betLbl.setText(Integer.toString(betAmount));
+    }
+
+    @FXML
+    private void handleHundred(MouseEvent event) {
+        betAmount += 100;
+        betImgView.setImage(bet);
+        betLbl.setText(Integer.toString(betAmount));
+    }
+
+    @FXML
+    private void handleTwoFifty(MouseEvent event) {
+        betAmount += 250;
+        betImgView.setImage(bet);
+        betLbl.setText(Integer.toString(betAmount));
+    }
+
+    @FXML
+    private void handleFivehundred(MouseEvent event) {
+        betAmount += 500;
+        betImgView.setImage(bet);
+        betLbl.setText(Integer.toString(betAmount));
     }
 
 }

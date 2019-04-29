@@ -17,6 +17,11 @@ and open the template in the editor.
 .label{
     -fx-text-fill: white;
 }
+#LowerHBox{
+    -fx-background-color: #663300;
+    -fx-border-color:#663300;
+    -fx-border-width: 10px;
+}
 #Rules{
     -fx-font-size: 13px;
-}
+} 

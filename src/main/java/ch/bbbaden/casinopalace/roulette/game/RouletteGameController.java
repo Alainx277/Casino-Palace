@@ -50,8 +50,8 @@ public class RouletteGameController implements Initializable {
     Datenbank db = new Datenbank();
     BetMoney bm = new BetMoney();
     Chip chip = new Chip();
-    HashMap<Field, Integer> chipsinput = new HashMap<>();
-    ArrayList<int[]> labelchips = new ArrayList<>();
+    HashMap<Field, Integer> fieldinput = new HashMap<>();
+    HashMap<int[], Integer> rowcolumninput = new HashMap<>();
 
     // <editor-fold defaultstate="collapsed" desc=" Stats ">
     @FXML
@@ -435,7 +435,7 @@ public class RouletteGameController implements Initializable {
         roulette.drawNumber();
         shownum.setText(roulette.getNumberDrawnAsText());
         shownum.setStyle("-fx-background-color: " + roulette.getNumberDrawnAsColour() + ";");
-        //roulette.playRoulette(chipsinput,shownum.getText(),shownum.getStyle());
+        roulette.playRoulette(fieldinput, rowcolumninput, new Field(shownum.getText(), shownum.getStyle()));
     }
 
 // <editor-fold defaultstate="collapsed" desc=" Click Fields ">
@@ -493,28 +493,28 @@ public class RouletteGameController implements Initializable {
 
     @FXML
     private void clickField2(ActionEvent event) {
-        chipsinput.put(new Field("2", "red"), bm.getMoney());
+        fieldinput.put(new Field("2", "red"), bm.getMoney());
     }
 
     @FXML
     private void clickField5(ActionEvent event) {
-        chipsinput.put(new Field("5", "red"), bm.getMoney());
+        fieldinput.put(new Field("5", "red"), bm.getMoney());
         //schipsinput.put(new Field(event.getSource().toString(),event.getSource().),bm.getMoney());
     }
 
     @FXML
     private void clickField8(ActionEvent event) {
-        chipsinput.put(new Field("8", "black"), bm.getMoney());
+        fieldinput.put(new Field("8", "black"), bm.getMoney());
     }
 
     @FXML
     private void clickField11(ActionEvent event) {
-        chipsinput.put(new Field("11", "red"), bm.getMoney());
+        fieldinput.put(new Field("11", "red"), bm.getMoney());
     }
 
     @FXML
     private void clickField14(ActionEvent event) {
-        chipsinput.put(new Field("14", "black"), bm.getMoney());
+        fieldinput.put(new Field("14", "black"), bm.getMoney());
     }
 
     @FXML
@@ -754,28 +754,57 @@ public class RouletteGameController implements Initializable {
             chiplb.setMouseTransparent(true);
             anchorpane.getChildren().add(chiplb);
             //Feld speichert Geld
-            try {
+            if (event.getSource() instanceof Button) {
                 Button theButton = (Button) event.getSource();
                 theButton.localToScreen(theButton.getBoundsInLocal());
                 System.out.println(theButton.getText());
-                chipsinput.put(new Field(theButton.getText(), roulette.findColorFromSelectedField(theButton.getText())), bm.getMoney());
-            } catch (Exception e) {
-                ObservableList<Node> childrens = roultable.getChildren();
+                fieldinput.put(new Field(theButton.getText(), roulette.findColorFromSelectedField(theButton.getText())), bm.getMoney());
+                System.out.println(bm.getMoney());
+            } else if (event.getSource() instanceof Label) {
                 Label theLabel = (Label) event.getSource();
                 theLabel.localToScreen(theLabel.getBoundsInLocal());
-                System.out.println(getNodeByRowColumnIndex(roultable.getRowIndex(theLabel), roultable.getColumnIndex(theLabel)+1, roultable).toString());
-                /*
-                if (roultable.getRowIndex(theLabel) % 2 == 0) {
-                        Label label = roultable.getColumnIndex(theLabel) + 1;
-                        labelchips.add(new int[2]);
-                    } else if (roultable.getColumnIndex(theLabel) % 2 != 0) {
+                if (GridPane.getRowIndex(theLabel) % 2 == 0 && GridPane.getColumnIndex(theLabel) % 1 == 0) {
+                    Button linkebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel), GridPane.getColumnIndex(theLabel) - 1, roultable);
+                    Button rechtebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel), GridPane.getColumnIndex(theLabel) + 1, roultable);
+                    /*System.out.println(this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel), GridPane.getColumnIndex(theLabel) - 1, roultable).toString());
+                    System.out.println(this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel), GridPane.getColumnIndex(theLabel) + 1, roultable).toString());*/
+                    int[] buttons = new int[2];
+                    buttons[0] = Integer.parseInt(linkebtn.getText());
+                    buttons[1] = Integer.parseInt(rechtebtn.getText());
+                    rowcolumninput.put(buttons, bm.getMoney());
+                    bm.clearBetMoney();
+                    resultlb.setText("" + bm.getMoney());
+                }
+                if (GridPane.getColumnIndex(theLabel) % 2 == 0 && GridPane.getRowIndex(theLabel) % 1 == 0) {
+                    Button obenbtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) - 1, GridPane.getColumnIndex(theLabel), roultable);
+                    Button untenbtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) + 1, GridPane.getColumnIndex(theLabel), roultable);
+                    /*System.out.println(this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) - 1, GridPane.getColumnIndex(theLabel), roultable).toString());
+                    System.out.println(this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) + 1, GridPane.getColumnIndex(theLabel), roultable).toString());*/
+                    int[] buttons = new int[2];
+                    buttons[0] = Integer.parseInt(obenbtn.getText());
+                    buttons[1] = Integer.parseInt(untenbtn.getText());
+                    rowcolumninput.put(buttons, bm.getMoney());
+                    bm.clearBetMoney();
+                    resultlb.setText("" + bm.getMoney());
+                } else if (GridPane.getRowIndex(theLabel) % 1 == 0 && GridPane.getColumnIndex(theLabel) % 1 == 0) {
 
-                    } else if (roultable.getRowIndex(theLabel) % 2 != 0 && roultable.getColumnIndex(theLabel) % 2 != 0) {
-
-                    }*/
-
-                roultable.getRowIndex(theLabel);
-                roultable.getColumnIndex(theLabel);
+                    Button obenlinkebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) - 1, GridPane.getColumnIndex(theLabel) - 1, roultable);
+                    Button obenrechtebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) - 1, GridPane.getColumnIndex(theLabel) + 1, roultable);
+                    Button untenlinkebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) + 1, GridPane.getColumnIndex(theLabel) - 1, roultable);
+                    Button untenrechtebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) + 1, GridPane.getColumnIndex(theLabel) + 1, roultable);
+                    /*System.out.println(this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) - 1, GridPane.getColumnIndex(theLabel) - 1, roultable).toString());
+                    System.out.println(this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) + 1, GridPane.getColumnIndex(theLabel) + 1, roultable).toString());
+                    System.out.println(this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) - 1, GridPane.getColumnIndex(theLabel) + 1, roultable).toString());
+                    System.out.println(this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) + 1, GridPane.getColumnIndex(theLabel) - 1, roultable).toString());*/
+                    int[] buttons = new int[4];
+                    buttons[0] = Integer.parseInt(obenlinkebtn.getText());
+                    buttons[1] = Integer.parseInt(obenrechtebtn.getText());
+                    buttons[2] = Integer.parseInt(untenlinkebtn.getText());
+                    buttons[3] = Integer.parseInt(untenrechtebtn.getText());
+                    rowcolumninput.put(buttons, bm.getMoney());
+                    bm.clearBetMoney();
+                    resultlb.setText("" + bm.getMoney());
+                }
             }
 
             //Kontostand aktualisieren
@@ -804,14 +833,25 @@ public class RouletteGameController implements Initializable {
         resultlb.setText("" + bm.getMoney());
     }
 
-    public Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane) {
-        Node result = null;
+    // Code from https://stackoverflow.com/questions/20655024/javafx-gridpane-retrieve-specific-cell-content/20656861 [29.04.2019]
+    public Node getNodeByRowColumnIndex(int row, int column, GridPane gridPane) {
+        Node result = new Button();
         ObservableList<Node> childrens = gridPane.getChildren();
-
+        /*for (int i = 0; i < childrens.size(); i++) {
+            System.out.println(childrens.get(i).toString());
+        }*/
         for (Node node : childrens) {
-            if (gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
-                result = node;
-                break;
+            if (GridPane.getRowIndex(node) == null) {
+                GridPane.setRowIndex(node, 0);
+            }
+            if (GridPane.getColumnIndex(node) == null) {
+                GridPane.setColumnIndex(node, 0);
+            }/*
+            System.out.println(node.toString());
+            System.out.println(GridPane.getRowIndex(node));
+            System.out.println(GridPane.getColumnIndex(node));*/
+            if ((GridPane.getRowIndex(node) == row) && (GridPane.getColumnIndex(node) == column)) {
+                return node;
             }
         }
 
@@ -820,6 +860,5 @@ public class RouletteGameController implements Initializable {
 
     @FXML
     private void clicklabel2514(MouseEvent event) {
-        System.out.println("hello");
     }
 }

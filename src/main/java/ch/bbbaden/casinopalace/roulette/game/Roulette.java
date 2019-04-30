@@ -8,6 +8,7 @@ package ch.bbbaden.casinopalace.roulette.game;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -21,6 +22,8 @@ public class Roulette {
     private String outputcolour;
     private int numdrawn;
     private ArrayList<String> fields = new ArrayList<>();
+    private ArrayList<Integer> won = new ArrayList<>();
+    private ArrayList<Integer> loss = new ArrayList<>();
 
     public void createTable() {
         //Collection
@@ -129,6 +132,51 @@ public class Roulette {
         return color;
     }
 
-    public void playRoulette(HashMap<Field, Integer> input, String text, String color) {
+    public Integer winStraightUpBets(HashMap<Field, Integer> fieldinput, Field drawnum) {
+        int result = 0;
+        ArrayList<Integer> numbers = new ArrayList<>();
+        for (Field field : fieldinput.keySet()) {
+            if (field.getText().equals(drawnum.getText())) {
+                numbers.add(fieldinput.get(field) * 36);
+            } else {
+                loss.add(fieldinput.get(field));
+            }
+        }
+        for (int i = 0; i < numbers.size(); i++) {
+            result += numbers.get(i);
+        }
+        return result;
+    }
+
+    public Integer winSplitBets(HashMap<int[], Integer> rowcolumninput, Field drawnum) {
+
+        int result = 0;
+        int num = 0;
+        ArrayList<Integer> numbers = new ArrayList<>();
+
+        for (HashMap.Entry<int[], Integer> hashmap : rowcolumninput.entrySet()) {
+            if (hashmap.getKey().length > 2) {
+                //Do Nothing
+            } else {
+                for (int i : hashmap.getKey()) {
+                    if (i == Integer.parseInt(drawnum.getText())) {
+                        System.out.println(hashmap.getKey().toString());
+                        numbers.add(hashmap.getValue() * 18);
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < numbers.size(); i++) {
+            result += numbers.get(i);
+        }
+
+        return result;
+    }
+    public Integer winStreetBets(){
+        return null;
+    }
+
+    public void playRoulette(HashMap<Field, Integer> fieldinput, HashMap<int[], Integer> rowcolumninput, Field drawnum) {
+        winStraightUpBets(fieldinput, drawnum);
     }
 }

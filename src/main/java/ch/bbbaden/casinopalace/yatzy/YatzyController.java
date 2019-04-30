@@ -20,7 +20,7 @@ import javafx.stage.StageStyle;
  *
  * @author denni
  */
-public class Start extends Application {
+public class YatzyController extends Application {
 
     private double xOffset = 0;
     private double yOffset = 0;

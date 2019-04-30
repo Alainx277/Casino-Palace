@@ -21,7 +21,7 @@ public class Calculation {
     
     public void setT1(int i){
         T1+=i;
-        if(T1 >= 35){
+        if(T1 >= 63){
             setSB();
         }
         setGPT1();

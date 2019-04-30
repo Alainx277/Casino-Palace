@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -46,7 +47,7 @@ public class BlackJackController extends Controller implements Initializable {
     private ImageView imgViewBack;
     @FXML
     private HBox croupier;
-        @FXML
+    @FXML
     private HBox hand1;
     @FXML
     private HBox hand2;
@@ -67,6 +68,16 @@ public class BlackJackController extends Controller implements Initializable {
     private ImageView betImgView;
     @FXML
     private Label betLbl;
+    @FXML
+    private Button insuranceBtn;
+    @FXML
+    private Button splitBtn;
+    @FXML
+    private Button doubleBtn;
+    @FXML
+    private Button standBtn;
+    @FXML
+    private Button hitBtn;
     
 
     /**
@@ -75,10 +86,19 @@ public class BlackJackController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        bj = new BlackJack(hand1, hand2, croupier);
+        bj = new BlackJack(ap);
         ap.getStylesheets().add(CasinoController.class.getResource("Common.css").toExternalForm());
         addImages();
+//        disableButtons();
     }
+    
+//    private void disableButtons(){
+//        insuranceBtn.setDisable(true);
+//        splitBtn.setDisable(true);
+//        doubleBtn.setDisable(true);
+//        standBtn.setDisable(true);
+//        hitBtn.setDisable(true);
+//    }
 
     @FXML
     private void handleInsurrance(ActionEvent event) {
@@ -101,9 +121,7 @@ public class BlackJackController extends Controller implements Initializable {
     }
 
     @FXML
-    private void handleHit(ActionEvent event) {
-        
-        System.out.println(bj.requestState());
+    private void handleHit(ActionEvent event) { 
         bj.setBet(betAmount);
         bj.requestState().handleHit(bj);
 
@@ -134,6 +152,7 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleOne(MouseEvent event) {
+        hitBtn.setDisable(false);
         betAmount++;
         betImgView.setImage(bet);
         betLbl.setText(Integer.toString(betAmount));
@@ -141,6 +160,7 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleTen(MouseEvent event) {
+        hitBtn.setDisable(false);
         betAmount += 10;
         betImgView.setImage(bet);
         betLbl.setText(Integer.toString(betAmount));
@@ -148,6 +168,7 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleFifty(MouseEvent event) {
+        hitBtn.setDisable(false);
         betAmount += 50;
         betImgView.setImage(bet);
         betLbl.setText(Integer.toString(betAmount));
@@ -155,6 +176,7 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleHundred(MouseEvent event) {
+        hitBtn.setDisable(false);
         betAmount += 100;
         betImgView.setImage(bet);
         betLbl.setText(Integer.toString(betAmount));
@@ -162,6 +184,7 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleTwoFifty(MouseEvent event) {
+        hitBtn.setDisable(false);
         betAmount += 250;
         betImgView.setImage(bet);
         betLbl.setText(Integer.toString(betAmount));
@@ -169,6 +192,7 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleFivehundred(MouseEvent event) {
+        hitBtn.setDisable(false);
         betAmount += 500;
         betImgView.setImage(bet);
         betLbl.setText(Integer.toString(betAmount));

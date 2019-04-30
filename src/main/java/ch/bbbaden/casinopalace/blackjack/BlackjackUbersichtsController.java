@@ -63,6 +63,7 @@ public class BlackjackUbersichtsController extends Controller implements Initial
         startGame.setText("Spiel beginnen");
         imgChips.setImage(new Image("/images/chips.png"));
         setRulesLabel();
+        
 
     }
 

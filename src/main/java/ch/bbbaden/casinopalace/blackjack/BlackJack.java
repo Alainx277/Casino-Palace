@@ -8,7 +8,7 @@ package ch.bbbaden.casinopalace.blackjack;
 import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
@@ -27,44 +27,34 @@ public class BlackJack {
     private final Karte[] completeStack = new Karte[cardStack * stacks];
 
     private Image[] imagecards = new Image[cardStack];
-    
+
     private BJState currentState = (BJState) new StandBy();
     
-    @FXML
-    private HBox hand1;
-     @FXML
-    private HBox hand2;
-      @FXML
-    private HBox croupier;
+    private int cardAmountPointeur = 0;
+    private int cardAmountCroupier = 0;
+    private int worthCroupier = 0;
+    private int worthpointeur = 0;
 
-    public BlackJack(HBox hand1, HBox hand2, HBox croupier) {
+    @FXML
+    private AnchorPane ap;
+
+    public BlackJack(AnchorPane ap) {
         //add cards
-        this.hand1 = hand1;
-        this.hand2 = hand2;
-        this.croupier = croupier;
+        this.ap = ap;
         addImages();
         addCards();
 
     }
 
-    public HBox getHand1() {
-        return hand1;
+    public AnchorPane getAp() {
+        return ap;
     }
-
-    public HBox getHand2() {
-        return hand2;
-    }
-
-    public HBox getCroupier() {
-        return croupier;
-    }
-    
 
     public BJState requestState() {
         return currentState;
     }
-    
-    public void setState(BJState state){
+
+    public void setState(BJState state) {
         currentState = state;
     }
 
@@ -75,8 +65,9 @@ public class BlackJack {
     public Karte play() {
         Karte retVal = null;
         Random r = new Random();
-        
-        retVal = completeStack[r.nextInt(completeStack.length)];
+        int i = r.nextInt(completeStack.length);
+        retVal = completeStack[i];
+        completeStack[i] = null;
         return retVal;
     }
 
@@ -84,9 +75,38 @@ public class BlackJack {
         this.bet = bet;
     }
 
-    public void shuffle() {
-
+    public int getWorthCroupier() {
+        return worthCroupier;
     }
+
+    public void setWorthCroupier(int worthCroupier) {
+        this.worthCroupier = worthCroupier;
+    }
+
+    public void setCardAmountPointeur(int cardAmount) {
+        this.cardAmountPointeur = cardAmount;
+    }
+
+    public int getCardAmountpointeur() {
+        return cardAmountPointeur;
+    }
+
+    public int getCardAmountCroupier() {
+        return cardAmountCroupier;
+    }
+
+    public void setCardAmountCroupier(int cardAmountCroupier) {
+        this.cardAmountCroupier = cardAmountCroupier;
+    }
+
+    public int getWorthpointeur() {
+        return worthpointeur;
+    }
+
+    public void setWorthpointeur(int worthpointeur) {
+        this.worthpointeur = worthpointeur;
+    }
+
 
     private void addImages() {
         for (int i = 0; i < cardStack; i++) {

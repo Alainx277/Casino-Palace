@@ -72,22 +72,15 @@ public class Stand implements BJState {
                         boolean broken = false;
                         System.out.println("Reached");
                         System.out.println("Size: " + bj.getcoC().size());
-                        for(int e = 0; e < bj.getcoC().size(); e++){
+                        for (int e = 0; e < bj.getcoC().size(); e++) {
                             System.out.println(bj.getcoC().get(e));
-                            System.out.println("Worth Of Card 1: " +bj.getcoC().get(e).getCount());
-                        }
-                        for (Karte k : bj.getcoC()) {
-                            System.out.println("Worth of card: " + k.getCount());
-                            if (k.getCount() == 11) {
-                                System.out.println("YES");
+                            System.out.println("Worth Of Card 1: " + bj.getcoC().get(e).getCount());
+                            if (bj.getcoC().get(e).getCount() == 11) {
                                 int hypotheticalWorth = bj.getWorthCroupier() - 10;
                                 if (hypotheticalWorth <= 21) {
                                     bj.setWorthCroupier(hypotheticalWorth);
-                                    k.setCount(1);
-                                    System.out.println("Worth Cro: " +bj.getWorthCroupier());
-                                    System.out.println("LOL");
+                                    bj.getcoC().get(e).setCount(1);
                                 } else {
-                                    System.out.println("TOO BAD");
                                     broken = true;
                                     break;
 
@@ -98,9 +91,7 @@ public class Stand implements BJState {
                                 break;
                             }
                         }
-                        if (broken) {
-                            break;
-                        }
+
                         System.out.println("THIS: " + bj.getWorthCroupier());
                         System.out.println("Stand on 17");
 
@@ -118,7 +109,7 @@ public class Stand implements BJState {
                         bj.setCardAmountCroupier(bj.getCardAmountCroupier() + 1);
                         bj.setWorthCroupier(bj.getWorthCroupier() + k.getCount());
                         bj.setcoC(k);
-                        System.out.println("New Size: "+ bj.getcoC().size());
+                        System.out.println("New Size: " + bj.getcoC().size());
                         System.out.println("Size of Pointeur: " + bj.getcoP().size());
 
                         ImageView croupierView = new ImageView(image);

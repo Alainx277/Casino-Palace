@@ -52,12 +52,13 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private HBox hand2;
 
-    
     private int betAmount;
     private Image bet = new Image("/images/chips.png");
 
     private static Stage ubersichtsStage;
-    
+
+    private int hit = 0;
+
     private BlackJack bj;
 
     @FXML
@@ -78,7 +79,6 @@ public class BlackJackController extends Controller implements Initializable {
     private Button standBtn;
     @FXML
     private Button hitBtn;
-    
 
     /**
      * Initializes the controller class.
@@ -89,42 +89,80 @@ public class BlackJackController extends Controller implements Initializable {
         bj = new BlackJack(ap);
         ap.getStylesheets().add(CasinoController.class.getResource("Common.css").toExternalForm());
         addImages();
-//        disableButtons();
+        disableButtons();
     }
-    
-//    private void disableButtons(){
-//        insuranceBtn.setDisable(true);
-//        splitBtn.setDisable(true);
-//        doubleBtn.setDisable(true);
-//        standBtn.setDisable(true);
-//        hitBtn.setDisable(true);
-//    }
+
+    private void disableButtons() {
+        insuranceBtn.setDisable(true);
+        splitBtn.setDisable(true);
+        doubleBtn.setDisable(true);
+        standBtn.setDisable(true);
+        hitBtn.setDisable(true);
+    }
 
     @FXML
     private void handleInsurrance(ActionEvent event) {
+        bj.setState((BJState) new Insurance());
         bj.requestState().handleInsurance(bj);
+        System.out.println("Insurance");
     }
 
     @FXML
     private void handleSplit(ActionEvent event) {
-        bj.requestState().handleSplit(bj);
+        bj.setState((BJState) new Split());
+        bj.requestState().handleSplit(bj); // Not supported yet
+        System.out.println("Split");
+        splitBtn.setDisable(true);
+        bj.setState((BJState) new Hit());
     }
 
     @FXML
     private void handleDouble(ActionEvent event) {
-        bj.requestState().handleDouble(bj);
+        bj.setState((BJState) new Double());
+        bj.setBet(betAmount * 2);
+        betLbl.setText(Integer.toString(bj.getBet()));
+        doubleBtn.setDisable(true);
+        System.out.println("Double");
     }
 
     @FXML
     private void handleStand(ActionEvent event) {
+        bj.setState((BJState) new Stand());
         bj.requestState().handleStand(bj);
+        hitBtn.setDisable(true);
+        System.out.println("Stand");
     }
 
     @FXML
-    private void handleHit(ActionEvent event) { 
+    private void handleHit(ActionEvent event) {
         bj.setBet(betAmount);
         bj.requestState().handleHit(bj);
+        if (bj.getWorthpointeur() >= 21) {
+            bj.setState((BJState) new Stand());
+            handleStand(event);
+            disableButtons();
+            hitBtn.setDisable(true);
+        } else {
+            if (hit == 0) {
+                doubleBtn.setDisable(false);
+                standBtn.setDisable(false);
+                if (bj.getcoP().get(0).getNumber() == (bj.getcoP().get(1).getNumber())) {
+                    System.out.println("SPLIT");
+                    splitBtn.setDisable(false);
+                } else {
+                    System.out.println("FUCK OFF");
+                }
+            }
+            if (hit == 1) {
+                insuranceBtn.setDisable(true);
+                System.out.println(bj.getcoP());
+                splitBtn.setDisable(true);
+                System.out.println("Hit = 1");
 
+            }
+        }
+
+        hit++;
     }
 
     private void addImages() {

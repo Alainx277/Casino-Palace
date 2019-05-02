@@ -18,7 +18,6 @@ public class StandBy implements BJState {
     @Override
     public void handleHit(BlackJack bj) {
         if (bj.getBet() > 0) {
-            bj.setState((BJState) new Hit());
 
             HBox hbox = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("croupier")).findAny().get();
             HBox hbox1 = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("hand1")).findAny().get();
@@ -27,7 +26,7 @@ public class StandBy implements BJState {
             hbox1.setLayoutY(340);
             hbox1.setLayoutX(100);
             hbox.setLayoutX(100);
-            
+
             ImageView poineturView = new ImageView();
             ImageView croupierView = new ImageView();
             ImageView pointeurTwo = new ImageView();
@@ -44,16 +43,20 @@ public class StandBy implements BJState {
                 switch (i) {
                     case 0:
                         bj.setCardAmountPointeur(bj.getCardAmountpointeur() + 1);
+                        bj.setcoP(k);
                         bj.setWorthpointeur(bj.getWorthpointeur() + k.getCount());
                         poineturView.setImage(image);
                         break;
                     case 1:
                         bj.setCardAmountPointeur(bj.getCardAmountpointeur() + 1);
+                        bj.setcoP(k);
                         bj.setWorthpointeur(bj.getWorthpointeur() + k.getCount());
                         pointeurTwo.setImage(image);
                         break;
                     case 2:
                         bj.setCardAmountCroupier(bj.getCardAmountCroupier() + 1);
+                        bj.setWorthCroupier(k.getCount());
+                        bj.setcoC(k);
                         croupierView.setImage(image);
                         break;
                     default:
@@ -77,6 +80,8 @@ public class StandBy implements BJState {
             hbox1.getChildren().add(pointeurTwo);
             hbox.getChildren().add(croupierView);
             hbox.getChildren().add(croupierTwo);
+
+            bj.setState((BJState) new Hit());
         }
     }
 
@@ -98,10 +103,6 @@ public class StandBy implements BJState {
         throw new UnsupportedOperationException("Shouldnt work");
     }
 
-    @Override
-    public void handleDouble(BlackJack bj) {
-        throw new UnsupportedOperationException("Shouldnt work");
-    }
 
     @Override
     public void handleInsurance(BlackJack bj) {
@@ -110,6 +111,11 @@ public class StandBy implements BJState {
 
     @Override
     public void handleSplit(BlackJack bj) {
+        throw new UnsupportedOperationException("Shoudlnt work");
+    }
+
+    @Override
+    public void handleDouble(BlackJack bj) {
         throw new UnsupportedOperationException("Shoudlnt work");
     }
 

@@ -5,6 +5,7 @@
  */
 package ch.bbbaden.casinopalace.blackjack;
 
+import java.util.ArrayList;
 import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -25,11 +26,15 @@ public class BlackJack {
     private final int stacks = 6;
 
     private final Karte[] completeStack = new Karte[cardStack * stacks];
+    
+    private ArrayList<Karte> coP = new ArrayList();
+    
+    private ArrayList<Karte> coC = new ArrayList();
 
     private Image[] imagecards = new Image[cardStack];
 
     private BJState currentState = (BJState) new StandBy();
-    
+
     private int cardAmountPointeur = 0;
     private int cardAmountCroupier = 0;
     private int worthCroupier = 0;
@@ -44,6 +49,22 @@ public class BlackJack {
         addImages();
         addCards();
 
+    }
+
+    public ArrayList<Karte> getcoP() {
+        return coP;
+    }
+
+    public void setcoP(Karte cardsOfPointeur) {
+        coP.add(cardsOfPointeur);
+    }
+
+    public ArrayList<Karte> getcoC() {
+        return coC;
+    }
+
+    public void setcoC(Karte cardsOfCroupier) {
+        coC.add(cardsOfCroupier);
     }
 
     public AnchorPane getAp() {
@@ -106,7 +127,6 @@ public class BlackJack {
     public void setWorthpointeur(int worthpointeur) {
         this.worthpointeur = worthpointeur;
     }
-
 
     private void addImages() {
         for (int i = 0; i < cardStack; i++) {
@@ -280,160 +300,160 @@ public class BlackJack {
                 Karte k;
                 switch (j) {
                     case 0:
-                        k = new Karte(2, Symbol.Heart, imagecards[j]);
+                        k = new Karte(2, 2, Symbol.Heart, imagecards[j]);
                         break;
                     case 1:
-                        k = new Karte(3, Symbol.Heart, imagecards[j]);
+                        k = new Karte(3, 3, Symbol.Heart, imagecards[j]);
                         break;
                     case 2:
-                        k = new Karte(4, Symbol.Heart, imagecards[j]);
+                        k = new Karte(4, 4, Symbol.Heart, imagecards[j]);
                         break;
                     case 3:
-                        k = new Karte(5, Symbol.Heart, imagecards[j]);
+                        k = new Karte(5, 5, Symbol.Heart, imagecards[j]);
                         break;
                     case 4:
-                        k = new Karte(6, Symbol.Heart, imagecards[j]);
+                        k = new Karte(6, 6, Symbol.Heart, imagecards[j]);
                         break;
                     case 5:
-                        k = new Karte(7, Symbol.Heart, imagecards[j]);
+                        k = new Karte(7, 7, Symbol.Heart, imagecards[j]);
                         break;
                     case 6:
-                        k = new Karte(8, Symbol.Heart, imagecards[j]);
+                        k = new Karte(8, 8, Symbol.Heart, imagecards[j]);
                         break;
                     case 7:
-                        k = new Karte(9, Symbol.Heart, imagecards[j]);
+                        k = new Karte(9, 9, Symbol.Heart, imagecards[j]);
                         break;
                     case 8:
-                        k = new Karte(10, Symbol.Heart, imagecards[j]);
+                        k = new Karte(10, 10, Symbol.Heart, imagecards[j]);
                         break;
                     case 9:
-                        k = new Karte(10, Symbol.Heart, imagecards[j]);
+                        k = new Karte(10, 11, Symbol.Heart, imagecards[j]);
                         break;
                     case 10:
-                        k = new Karte(10, Symbol.Heart, imagecards[j]);
+                        k = new Karte(10, 12, Symbol.Heart, imagecards[j]);
                         break;
                     case 11:
-                        k = new Karte(10, Symbol.Heart, imagecards[j]);
+                        k = new Karte(10, 13, Symbol.Heart, imagecards[j]);
                         break;
                     case 12:
-                        k = new Karte(11, Symbol.Heart, imagecards[j]);
+                        k = new Karte(11, 14, Symbol.Heart, imagecards[j]);
                         break;
                     case 13:
-                        k = new Karte(2, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(2, 2, Symbol.Diamond, imagecards[j]);
                         break;
                     case 14:
-                        k = new Karte(3, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(3, 3, Symbol.Diamond, imagecards[j]);
                         break;
                     case 15:
-                        k = new Karte(4, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(4, 4, Symbol.Diamond, imagecards[j]);
                         break;
                     case 16:
-                        k = new Karte(5, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(5, 5, Symbol.Diamond, imagecards[j]);
                         break;
                     case 17:
-                        k = new Karte(6, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(6, 6, Symbol.Diamond, imagecards[j]);
                         break;
                     case 18:
-                        k = new Karte(7, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(7, 7, Symbol.Diamond, imagecards[j]);
                         break;
                     case 19:
-                        k = new Karte(8, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(8, 8, Symbol.Diamond, imagecards[j]);
                         break;
                     case 20:
-                        k = new Karte(9, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(9, 9, Symbol.Diamond, imagecards[j]);
                         break;
                     case 21:
-                        k = new Karte(10, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(10, 10, Symbol.Diamond, imagecards[j]);
                         break;
                     case 22:
-                        k = new Karte(10, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(10, 11, Symbol.Diamond, imagecards[j]);
                         break;
                     case 23:
-                        k = new Karte(10, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(10, 12, Symbol.Diamond, imagecards[j]);
                         break;
                     case 24:
-                        k = new Karte(10, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(10, 13, Symbol.Diamond, imagecards[j]);
                         break;
                     case 25:
-                        k = new Karte(11, Symbol.Diamond, imagecards[j]);
+                        k = new Karte(11, 14, Symbol.Diamond, imagecards[j]);
                         break;
                     case 26:
-                        k = new Karte(2, Symbol.Club, imagecards[j]);
+                        k = new Karte(2, 2, Symbol.Club, imagecards[j]);
                         break;
                     case 27:
-                        k = new Karte(3, Symbol.Club, imagecards[j]);
+                        k = new Karte(3, 3, Symbol.Club, imagecards[j]);
                         break;
                     case 28:
-                        k = new Karte(4, Symbol.Club, imagecards[j]);
+                        k = new Karte(4, 4, Symbol.Club, imagecards[j]);
                         break;
                     case 29:
-                        k = new Karte(5, Symbol.Club, imagecards[j]);
+                        k = new Karte(5, 5, Symbol.Club, imagecards[j]);
                         break;
                     case 30:
-                        k = new Karte(6, Symbol.Club, imagecards[j]);
+                        k = new Karte(6, 6, Symbol.Club, imagecards[j]);
                         break;
                     case 31:
-                        k = new Karte(7, Symbol.Club, imagecards[j]);
+                        k = new Karte(7, 7, Symbol.Club, imagecards[j]);
                         break;
                     case 32:
-                        k = new Karte(8, Symbol.Club, imagecards[j]);
+                        k = new Karte(8, 8, Symbol.Club, imagecards[j]);
                         break;
                     case 33:
-                        k = new Karte(9, Symbol.Club, imagecards[j]);
+                        k = new Karte(9, 9, Symbol.Club, imagecards[j]);
                         break;
                     case 34:
-                        k = new Karte(10, Symbol.Club, imagecards[j]);
+                        k = new Karte(10, 10, Symbol.Club, imagecards[j]);
                         break;
                     case 35:
-                        k = new Karte(10, Symbol.Club, imagecards[j]);
+                        k = new Karte(10, 11, Symbol.Club, imagecards[j]);
                         break;
                     case 36:
-                        k = new Karte(10, Symbol.Club, imagecards[j]);
+                        k = new Karte(10, 12, Symbol.Club, imagecards[j]);
                         break;
                     case 37:
-                        k = new Karte(10, Symbol.Club, imagecards[j]);
+                        k = new Karte(10, 13, Symbol.Club, imagecards[j]);
                         break;
                     case 38:
-                        k = new Karte(11, Symbol.Club, imagecards[j]);
+                        k = new Karte(11, 14, Symbol.Club, imagecards[j]);
                         break;
                     case 39:
-                        k = new Karte(2, Symbol.Spade, imagecards[j]);
+                        k = new Karte(2, 2, Symbol.Spade, imagecards[j]);
                         break;
                     case 40:
-                        k = new Karte(3, Symbol.Spade, imagecards[j]);
+                        k = new Karte(3, 3, Symbol.Spade, imagecards[j]);
                         break;
                     case 41:
-                        k = new Karte(4, Symbol.Spade, imagecards[j]);
+                        k = new Karte(4, 4, Symbol.Spade, imagecards[j]);
                         break;
                     case 42:
-                        k = new Karte(5, Symbol.Spade, imagecards[j]);
+                        k = new Karte(5, 5, Symbol.Spade, imagecards[j]);
                         break;
                     case 43:
-                        k = new Karte(6, Symbol.Spade, imagecards[j]);
+                        k = new Karte(6, 6, Symbol.Spade, imagecards[j]);
                         break;
                     case 44:
-                        k = new Karte(7, Symbol.Spade, imagecards[j]);
+                        k = new Karte(7, 7, Symbol.Spade, imagecards[j]);
                         break;
                     case 45:
-                        k = new Karte(8, Symbol.Spade, imagecards[j]);
+                        k = new Karte(8, 8, Symbol.Spade, imagecards[j]);
                         break;
                     case 46:
-                        k = new Karte(9, Symbol.Spade, imagecards[j]);
+                        k = new Karte(9, 9, Symbol.Spade, imagecards[j]);
                         break;
                     case 47:
-                        k = new Karte(10, Symbol.Spade, imagecards[j]);
+                        k = new Karte(10, 10, Symbol.Spade, imagecards[j]);
                         break;
                     case 48:
-                        k = new Karte(10, Symbol.Spade, imagecards[j]);
+                        k = new Karte(10, 11, Symbol.Spade, imagecards[j]);
                         break;
                     case 49:
-                        k = new Karte(10, Symbol.Spade, imagecards[j]);
+                        k = new Karte(10, 12, Symbol.Spade, imagecards[j]);
                         break;
                     case 50:
-                        k = new Karte(10, Symbol.Spade, imagecards[j]);
+                        k = new Karte(10, 13, Symbol.Spade, imagecards[j]);
                         break;
                     case 51:
-                        k = new Karte(11, Symbol.Spade, imagecards[j]);
+                        k = new Karte(11, 14, Symbol.Spade, imagecards[j]);
                         break;
                     default:
                         System.out.println("Not implemented");

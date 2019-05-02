@@ -23,7 +23,6 @@ public class Stand implements BJState {
     @Override
     public void handleStand(BlackJack bj) {
         //Check results and Cash out
-        System.out.println("Stand in class");
         int counter = 0;
         //make croupier pick
         HBox hbox = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("croupier")).findAny().get();
@@ -67,14 +66,9 @@ public class Stand implements BJState {
 
                     hbox.getChildren().add(croupierView);
                 } else {
-                    System.out.println("this: " + bj.getWorthCroupier());
                     if (bj.getWorthCroupier() > 16) {
                         boolean broken = false;
-                        System.out.println("Reached");
-                        System.out.println("Size: " + bj.getcoC().size());
                         for (int e = 0; e < bj.getcoC().size(); e++) {
-                            System.out.println(bj.getcoC().get(e));
-                            System.out.println("Worth Of Card 1: " + bj.getcoC().get(e).getCount());
                             if (bj.getcoC().get(e).getCount() == 11) {
                                 int hypotheticalWorth = bj.getWorthCroupier() - 10;
                                 if (hypotheticalWorth <= 21) {
@@ -83,21 +77,14 @@ public class Stand implements BJState {
                                 } else {
                                     broken = true;
                                     break;
-
                                 }
-
                             } else {
                                 broken = true;
                                 break;
                             }
                         }
 
-                        System.out.println("THIS: " + bj.getWorthCroupier());
-                        System.out.println("Stand on 17");
-
                     } else {
-                        System.out.println("Not 16 yet");
-                        System.out.println(bj.getWorthCroupier());
                         Image image = null;
                         Karte k = null;
                         do {
@@ -109,15 +96,12 @@ public class Stand implements BJState {
                         bj.setCardAmountCroupier(bj.getCardAmountCroupier() + 1);
                         bj.setWorthCroupier(bj.getWorthCroupier() + k.getCount());
                         bj.setcoC(k);
-                        System.out.println("New Size: " + bj.getcoC().size());
-                        System.out.println("Size of Pointeur: " + bj.getcoP().size());
 
                         ImageView croupierView = new ImageView(image);
                         croupierView.setFitWidth(80);
                         croupierView.setFitHeight(120);
 
                         hbox.getChildren().add(croupierView);
-                        System.out.println("this new: " + bj.getWorthCroupier());
                     }
                 }
             }

@@ -27,7 +27,7 @@ public class Field {
 
     public int getNumber() {
         if (text.equals("00")) {
-            number = 0;
+            number = 100;
         } else {
             number = Integer.parseInt(this.text);
         }

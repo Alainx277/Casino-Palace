@@ -5,11 +5,14 @@
  */
 package ch.bbbaden.casinopalace.blackjack;
 
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+
 /**
  *
  * @author doemu
  */
-public class Insurance implements BJState{
+public class Insurance implements BJState {
 
     @Override
     public void handleHit(BlackJack bj) {
@@ -33,7 +36,25 @@ public class Insurance implements BJState{
 
     @Override
     public void handleInsurance(BlackJack bj) {
+        HBox hbox = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("croupier")).findAny().get();
+
+        ImageView imgView = new ImageView();
+
         System.out.println("LAWL");
+        Karte k = bj.takeCard();
+        bj.handleNewCard(true, k);
+        imgView.setImage(k.getImage());
+        hbox.getChildren().remove(1);
+        imgView.setFitWidth(80);
+        imgView.setFitHeight(120);
+        hbox.getChildren().add(imgView);
+        if (bj.getWorthCroupier() == 21) {
+            
+            System.out.println("BLACK JACK BUT INSURED");
+            //pay off
+            
+        }
+        
     }
 
     @Override
@@ -41,5 +62,4 @@ public class Insurance implements BJState{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-  
 }

@@ -27,6 +27,7 @@ public class Stand implements BJState {
         //make croupier pick
         HBox hbox = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("croupier")).findAny().get();
         if (counter == 0) {
+            hbox.getChildren().remove(1);
             for (int i = 0; i < 21; i++) {
 
                 counter++;
@@ -69,7 +70,26 @@ public class Stand implements BJState {
 
     @Override
     public void handleInsurance(BlackJack bj) {
-        throw new UnsupportedOperationException("Shouldnt work");
+        HBox hbox = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("croupier")).findAny().get();
+        
+        if()
+
+        ImageView imgView = new ImageView();
+
+        System.out.println("LAWL");
+        Karte k = bj.takeCard();
+        bj.handleNewCard(true, k);
+        imgView.setImage(k.getImage());
+        hbox.getChildren().remove(1);
+        imgView.setFitWidth(80);
+        imgView.setFitHeight(120);
+        hbox.getChildren().add(imgView);
+        if (bj.getWorthCroupier() == 21) {
+
+            System.out.println("BLACK JACK BUT INSURED");
+            //pay out
+
+        }
     }
 
     @Override

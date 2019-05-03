@@ -106,8 +106,6 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleInsurrance(ActionEvent event) {
-        bj.setState((BJState) new Insurance());
-        bj.requestState().handleInsurance(bj);
         hitBtn.setDisable(true);
         insurance = true;
         insuranceBtn.setDisable(true);
@@ -134,11 +132,13 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleStand(ActionEvent event) {
+        if(insurance){
+            bj.setState((BJState) new Insurance());
+            bj.requestState().handleInsurance(bj);
+        }
         bj.setState((BJState) new Stand());
         bj.requestState().handleStand(bj);
-        hitBtn.setDisable(true);
-        doubleBtn.setDisable(true);
-        standBtn.setDisable(true);
+        disableButtons();
         System.out.println("Stand");
     }
 
@@ -173,7 +173,6 @@ public class BlackJackController extends Controller implements Initializable {
             }
             if (hit == 1) {
                 insuranceBtn.setDisable(true);
-                System.out.println(bj.getcoP());
                 splitBtn.setDisable(true);
 
             }

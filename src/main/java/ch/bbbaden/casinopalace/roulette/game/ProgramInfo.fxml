@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorpane" prefHeight="752.0" prefWidth="1174.0" stylesheets="@roulettegame.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.roulette.game.ProgramInfoController">
+   <children>
+      <Pane id="imageanleitung" layoutX="99.0" layoutY="7.0" prefHeight="588.0" prefWidth="962.0">
+         <children>
+            <ImageView id="imageanleitung" fx:id="imageanleitung" fitHeight="571.0" fitWidth="966.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" y="7.0">
+               <image>
+                  <Image url="@../../../../../../resources/images/roulette_bedienungsanleitung.PNG" />
+               </image>
+            </ImageView>
+            <Pane id="panean" fx:id="pane1" layoutX="590.0" layoutY="89.0" prefHeight="155.0" prefWidth="480.0" visible="false">
+               <children>
+                  <Label id="paneanleitung" fx:id="titel1" layoutX="17.0" layoutY="34.0" text="1) Oben rechts werden die wichtigen Werten gezeigt:" visible="false">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" fx:id="line11" layoutX="52.0" layoutY="59.0" text="Kontostand: Der Kontostand des Benutzers" visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" fx:id="line12" layoutX="28.0" layoutY="77.0" text="aktueller Einsatz: Das Geld, dass auf das Brett in der aktuellen Runde gelegt wird" visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" fx:id="line13" layoutX="25.0" layoutY="95.0" text="aktueller Gewinn: Der Gewinn der aktuellen Runde" visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" fx:id="line14" layoutX="44.0" layoutY="113.0" text="Total Gewinn: Alle Gewinne zusammenaddiert" visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Label id="labelanleitung" layoutX="237.0" layoutY="468.0" prefHeight="18.0" prefWidth="14.0" text="2" />
+      <Label id="labelanleitung" layoutX="221.0" layoutY="192.0" prefHeight="18.0" prefWidth="14.0" text="5" />
+      <Label id="labelanleitung" layoutX="708.0" layoutY="26.0" onMouseEntered="#enterLabel1" onMouseExited="#exitLabel1" prefHeight="18.0" prefWidth="14.0" text="1" />
+      <Label id="labelanleitung" layoutX="918.0" layoutY="477.0" prefHeight="18.0" prefWidth="14.0" text="6" />
+      <Label id="labelanleitung" layoutX="918.0" layoutY="510.0" prefHeight="18.0" prefWidth="14.0" text="4" />
+      <Label id="labelanleitung" layoutX="918.0" layoutY="540.0" prefHeight="18.0" prefWidth="14.0" text="3" />
+      <Label id="labelanleitung" layoutX="625.0" layoutY="67.0" prefHeight="18.0" prefWidth="14.0" text="7" />
+      <Pane fx:id="pane2" layoutX="565.0" layoutY="573.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label id="paneanleitung" fx:id="titel2" layoutX="-3.0" layoutY="37.0" text="2) Chips, die gewählt werden können:">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

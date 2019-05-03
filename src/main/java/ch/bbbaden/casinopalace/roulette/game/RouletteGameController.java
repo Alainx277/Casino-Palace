@@ -10,6 +10,7 @@ import java.awt.Color;
 import static java.awt.Color.red;
 import java.awt.MouseInfo;
 import java.awt.Paint;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +22,13 @@ import javafx.animation.RotateTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -33,6 +37,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import static javafx.util.Duration.seconds;
 import javax.swing.JButton;
@@ -388,6 +394,8 @@ public class RouletteGameController implements Initializable {
     private Button btnmoneyback;
     @FXML
     private Label hand;
+    @FXML
+    private Button infobtn;
 
     /**
      * Initializes the controller class.
@@ -440,7 +448,6 @@ public class RouletteGameController implements Initializable {
         //Rotate Roulette
         Thread thread;
         RotateTransition imageRotate = new RotateTransition(seconds(1), rouletteimage);
-        //imageRotate.setByAngle(roulette.getRotation(shownum.getText()));
         imageRotate.setByAngle(1440);
         imageRotate.setDuration(Duration.millis(4000));
         imageRotate.play();
@@ -457,7 +464,6 @@ public class RouletteGameController implements Initializable {
         thread.start();
         //Get Win or Loss
         roulette.setReceivedMoney(fieldinput, rowcolumninput, new Field(shownum.getText(), roulette.getColorFromField(shownum.getText())));
-        //roulette.setGivenMoney(fieldinput, rowcolumninput, new Field(shownum.getText(), roulette.getColorFromField(shownum.getText())));
         //Update Stats
         gewinn.setText("" + roulette.getWonMoney());
         totalgewinn.setText("" + roulette.getAllWonMoney());
@@ -536,8 +542,6 @@ public class RouletteGameController implements Initializable {
         chip.setUrl("/images/chips/chip10.png");
     }
 // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc=" Unnötigs Lösch Stuff ">
-
 
     @FXML
     private void clickFieldMouse(MouseEvent event) {
@@ -688,6 +692,17 @@ public class RouletteGameController implements Initializable {
 
         return result;
     }
+
+    @FXML
+    private void clickInfoButton(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Information.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Info");
+        stage.setScene(scene);
+        stage.show();
+    }
+// <editor-fold defaultstate="collapsed" desc=" Unnötigs Lösch Stuff ">
 
     @FXML
     private void clickField3(ActionEvent event) {

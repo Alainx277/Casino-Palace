@@ -94,7 +94,7 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5">
                <children>
-                  <Label alignment="CENTER" layoutX="-4.0" layoutY="-1.0" prefHeight="37.0" prefWidth="120.0" text="Kontobestand" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="-4.0" layoutY="-1.0" prefHeight="37.0" prefWidth="120.0" text="Kontostand" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="13.0" />
                      </font>
@@ -208,14 +208,14 @@
       </GridPane>
       <Pane layoutX="1306.0" layoutY="740.0" prefHeight="95.0" prefWidth="170.0">
          <children>
-            <Button fx:id="btnspin" layoutX="6.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickSpin" prefHeight="30.0" prefWidth="158.0" text="Drehen">
+            <Button fx:id="btnspin" layoutX="6.0" mnemonicParsing="false" onAction="#clickSpin" prefHeight="30.0" prefWidth="158.0" text="Drehen">
                <font>
-                  <Font size="15.0" />
+                  <Font size="16.0" />
                </font>
             </Button>
             <Button id="btnspin" fx:id="btnmoneyback" layoutX="6.0" layoutY="51.0" mnemonicParsing="false" onAction="#clickGeldBack" prefHeight="30.0" prefWidth="158.0" text="Hand zurücksetzen">
                <font>
-                  <Font size="15.0" />
+                  <Font size="16.0" />
                </font>
             </Button>
          </children>
@@ -977,15 +977,20 @@
                </children>
             </Pane>
          </children></Pane>
-      <Label fx:id="hand" layoutX="1440.0" layoutY="844.0" text="0" textFill="WHITE">
+      <Label fx:id="hand" layoutX="1433.0" layoutY="843.0" text="0" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label id="label1" layoutX="1316.0" layoutY="843.0" text="Deine Hand:">
+      <Label layoutX="1316.0" layoutY="845.0" style="-fx-text-fill: #ffffff;" text="Deine Hand:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Button id="btnspin" fx:id="infobtn" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#clickInfoButton" text="?">
          <font>
             <Font size="20.0" />
          </font>
-      </Label>
+      </Button>
    </children>
 </AnchorPane>

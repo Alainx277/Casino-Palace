@@ -98,6 +98,21 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
     -fx-text-fill: #395306;
 }
+#labelanleitung{
+    -fx-background-color: #ffffff;
+    -fx-alignment: center;
+}
+#panean{
+    -fx-background-color: #000000;
+}
+#paneanleitung{
+    -fx-text-fill: white;
+}
+#imageanleitung{
+    -fx-border-color:black;
+    -fx-border-width:5;
+    -fx-border-lenght:5;
+}
 #label1:hover{
     -fx-border-color: blue ;
     -fx-border-width: 1 ; 

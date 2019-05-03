@@ -39,6 +39,8 @@ public class BlackJack {
     private int cardAmountCroupier = 0;
     private int worthCroupier = 0;
     private int worthpointeur = 0;
+    private int splitPointeur1 = 0;
+    private int splitPointeur = 0;
 
     @FXML
     private AnchorPane ap;
@@ -61,6 +63,22 @@ public class BlackJack {
 
     public ArrayList<Karte> getcoC() {
         return coC;
+    }
+
+    public int getSplitPointeur1() {
+        return splitPointeur1;
+    }
+
+    public void setSplitPointeur1(int splitPointeur1) {
+        this.splitPointeur1 = splitPointeur1;
+    }
+
+    public int getSplitPointeur() {
+        return splitPointeur;
+    }
+
+    public void setSplitPointeur(int splitPointeur) {
+        this.splitPointeur = splitPointeur;
     }
 
     public void setcoC(Karte cardsOfCroupier) {
@@ -475,15 +493,31 @@ public class BlackJack {
         return k;
     }
 
-    public void handleNewCard(boolean croupier, Karte k) {
-        if (croupier) {
-            worthCroupier += k.getCount();
-            setCardAmountCroupier(getCardAmountCroupier() + 1);
-            setcoC(k);
+    public void handleNewCard(int definition, Karte k) {
+        switch (definition) {
+            case 0:
+                worthCroupier += k.getCount();
+                setCardAmountCroupier(getCardAmountCroupier() + 1);
+                setcoC(k);
+                break;
+            case 1:
+                worthpointeur += k.getCount();
+                setCardAmountPointeur(getCardAmountpointeur() + 1);
+                setcoP(k);
+                break;
+            case 2:
+                splitPointeur += k.getCount();
+                break;
+            case 3:
+                splitPointeur1 += k.getCount();
+                break;
+            default:
+                throw new AssertionError();
+        }
+        if (definition == 0) {
+
         } else {
-            worthpointeur += k.getCount();
-            setCardAmountPointeur(getCardAmountpointeur() + 1);
-            setcoP(k);
+
         }
     }
 
@@ -495,9 +529,4 @@ public class BlackJack {
         return b;
     }
 
-//    public int changeAce(boolean croupier, int worth) {
-//        int b = 0;
-//        
-//        return b;
-//    }
 }

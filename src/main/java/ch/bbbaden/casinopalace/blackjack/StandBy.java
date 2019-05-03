@@ -34,21 +34,20 @@ public class StandBy implements BJState {
 
             for (int i = 0; i < 3; i++) {
                 Karte k = bj.takeCard();
-
                 switch (i) {
                     case 0:
-                        bj.handleNewCard(false, k);
+                        bj.handleNewCard(1, k);
                         poineturView.setImage(k.getImage());
                         break;
                     case 1:
-                        bj.handleNewCard(false, k);
+                        bj.handleNewCard(1, k);
                         pointeurTwo.setImage(k.getImage());
                         break;
                     case 2:
                         if (bj.getWorthCroupier() > 10 && k.getNumber() == 14) {
                             k.setCount(1);
                         }
-                        bj.handleNewCard(true, k);
+                        bj.handleNewCard(0, k);
                         croupierView.setImage(k.getImage());
                         break;
                     default:

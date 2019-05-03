@@ -30,7 +30,7 @@ public class Double implements BJState {
             if (bj.getWorthpointeur()> 10 && k.getNumber() == 14) {
                 k.setCount(1);
             }
-            bj.handleNewCard(false, k);
+            bj.handleNewCard(1, k);
             nextcard.setImage(k.getImage());
 
             nextcard.setFitWidth(80);

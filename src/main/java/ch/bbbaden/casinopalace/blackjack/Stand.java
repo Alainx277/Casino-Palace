@@ -38,7 +38,7 @@ public class Stand implements BJState {
                     }
                     System.out.println(k.getCount());
 
-                    bj.handleNewCard(true, k);
+                    bj.handleNewCard(0, k);
 
                     ImageView croupierView = new ImageView(k.getImage());
                     croupierView.setFitWidth(80);
@@ -58,7 +58,7 @@ public class Stand implements BJState {
                         if (bj.getWorthCroupier() > 10 && k.getNumber() == 14) {
                             k.setCount(1);
                         }
-                        bj.handleNewCard(true, k);
+                        bj.handleNewCard(0, k);
 
                         ImageView croupierView = new ImageView(k.getImage());
                         croupierView.setFitWidth(80);

@@ -46,7 +46,7 @@ public class Insurance implements BJState {
         if (bj.getWorthCroupier() > 10 && k.getNumber() == 14) {
             k.setCount(1);
         }
-        bj.handleNewCard(true, k);
+        bj.handleNewCard(0, k);
 
         imgView.setImage(k.getImage());
         hbox.getChildren().remove(1);

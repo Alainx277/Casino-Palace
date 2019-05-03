@@ -59,6 +59,7 @@ public class BlackJackController extends Controller implements Initializable {
 
     private int hit = 0;
     private boolean insurance = false;
+    private boolean split = false;
     private int betting = betAmount;
 
     private BlackJack bj;
@@ -115,10 +116,10 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private void handleSplit(ActionEvent event) {
         bj.setState((BJState) new Split());
-        bj.requestState().handleSplit(bj); // Not supported yet
+        bj.requestState().handleSplit(bj);
         System.out.println("Split");
         splitBtn.setDisable(true);
-        
+
     }
 
     @FXML
@@ -132,11 +133,12 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleStand(ActionEvent event) {
-        if(insurance){
+        if (insurance) {
             bj.setState((BJState) new Insurance());
             bj.requestState().handleInsurance(bj);
         }
         bj.setState((BJState) new Stand());
+        split = false;
         bj.requestState().handleStand(bj);
         disableButtons();
         System.out.println("Stand");
@@ -145,36 +147,37 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private void handleHit(ActionEvent event) {
         bj.setBet(betAmount);
-        bj.requestState().handleHit(bj);
-        insurance = false;
-        if (bj.getWorthpointeur() > 21) {
-            for (int i = 0; i < bj.getcoP().size(); i++) {
-                if (bj.getcoP().get(i).getCount() == 11) {
-                    System.out.println("ACE FOUND");
-                    bj.getcoP().get(i).setCount(1);
-                    bj.setWorthpointeur(bj.getWorthpointeur() - 10);
-                    handleHit(event);
-                }
-            }
+        if (bj.getSplitPointeur() > 21 || bj.getSplitPointeur1() > 21) {
+            split = true;
+        }
+        if (split) {
+            disableButtons();
             bj.setState((BJState) new Stand());
             handleStand(event);
-            disableButtons();
-            hitBtn.setDisable(true);
         } else {
-            if (hit == 0) {
-                doubleBtn.setDisable(false);
-                standBtn.setDisable(false);
-                if (bj.getcoP().get(0).getNumber() == (bj.getcoP().get(1).getNumber())) {
-                    splitBtn.setDisable(false);
+            bj.requestState().handleHit(bj);
+            insurance = false;
+            if (bj.getWorthpointeur() > 21) {
+                bj.setState((BJState) new Stand());
+                handleStand(event);
+                disableButtons();
+                hitBtn.setDisable(true);
+            } else {
+                if (hit == 0) {
+                    doubleBtn.setDisable(false);
+                    standBtn.setDisable(false);
+                    if (bj.getcoP().get(0).getNumber() == (bj.getcoP().get(1).getNumber())) {
+                        splitBtn.setDisable(false);
+                    }
+                    if (bj.getcoC().get(0).getNumber() == 14) {
+                        insuranceBtn.setDisable(false);
+                    }
                 }
-                if (bj.getcoC().get(0).getNumber() == 14) {
-                    insuranceBtn.setDisable(false);
-                }
-            }
-            if (hit == 1) {
-                insuranceBtn.setDisable(true);
-                splitBtn.setDisable(true);
+                if (hit == 1) {
+                    insuranceBtn.setDisable(true);
+                    splitBtn.setDisable(true);
 
+                }
             }
         }
 

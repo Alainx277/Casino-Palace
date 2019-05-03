@@ -38,7 +38,7 @@
         </HBox>
         <ImageView fx:id="imgViewBack" fitHeight="48.0" fitWidth="66.0" layoutX="844.0" layoutY="14.0" onMouseClicked="#handleBack" pickOnBounds="true" preserveRatio="true" />
         <ImageView fx:id="imgStacks" fitHeight="150.0" fitWidth="103.0" layoutX="807.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" />
-      <HBox fx:id="hand1" layoutX="426.0" layoutY="336.0" prefHeight="150.0" prefWidth="90.0" spacing="20.0" stylesheets="@BlackJackSheet.css" />
+      <HBox fx:id="hand1" layoutX="426.0" layoutY="336.0" prefHeight="150.0" prefWidth="122.0" spacing="20.0" stylesheets="@BlackJackSheet.css" />
       <HBox fx:id="hand2" layoutX="104.0" layoutY="361.0" prefHeight="100.0" prefWidth="82.0" AnchorPane.leftAnchor="15.0" />
       <ImageView fx:id="betImgView" fitHeight="40.0" fitWidth="42.0" layoutX="451.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="betLbl" layoutX="458.0" layoutY="282.0" text="Label" />

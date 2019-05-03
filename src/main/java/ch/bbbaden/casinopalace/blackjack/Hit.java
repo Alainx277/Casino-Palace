@@ -5,10 +5,8 @@
  */
 package ch.bbbaden.casinopalace.blackjack;
 
-import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
@@ -18,10 +16,8 @@ import javafx.scene.layout.HBox;
  */
 public class Hit implements BJState {
 
-    private Image[] cardsInHandForDeck2 = new Image[7];
-    private Image[] cardsInHandForDeck3 = new Image[7];
     private int miniState = 0;
-    private int goal = 21;
+    private final int goal = 21;
     private HBox newHand2;
     private HBox newHand3;
     private Button deck2;
@@ -41,7 +37,7 @@ public class Hit implements BJState {
                 if (bj.getWorthpointeur() > 10 && k.getNumber() == 14) {
                     k.setCount(1);
                 }
-                bj.handleNewCard(false, k);
+                bj.handleNewCard(1, k);
                 //Show card on screen
                 nextcard.setImage(k.getImage());
 

@@ -177,7 +177,7 @@
       </GridPane>
       <Pane layoutX="209.0" layoutY="66.0" prefHeight="350.0" prefWidth="624.0">
          <children>
-            <ImageView fx:id="rouletteimage" fitHeight="493.0" fitWidth="590.0" layoutX="84.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+            <ImageView fx:id="rouletteimage" fitHeight="493.0" fitWidth="590.0" layoutX="84.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true" />
             <Label id="shownum" fx:id="shownum" alignment="CENTER" layoutX="628.0" layoutY="38.0" minHeight="60.0" minWidth="63.0" text="1" textFill="#460e0e" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -206,14 +206,14 @@
             <Button id="chip500" fx:id="chip500" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#clickChip500" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5" />
          </children>
       </GridPane>
-      <Pane layoutX="1306.0" layoutY="734.0" prefHeight="80.0" prefWidth="170.0">
+      <Pane layoutX="1306.0" layoutY="740.0" prefHeight="95.0" prefWidth="170.0">
          <children>
-            <Button fx:id="btnspin" layoutX="6.0" layoutY="8.0" mnemonicParsing="false" onAction="#clickSpin" prefHeight="30.0" prefWidth="158.0" text="Drehen">
+            <Button fx:id="btnspin" layoutX="6.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickSpin" prefHeight="30.0" prefWidth="158.0" text="Drehen">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button id="btnspin" fx:id="btnmoneyback" layoutX="6.0" layoutY="51.0" mnemonicParsing="false" onAction="#clickGeldBack" prefHeight="30.0" prefWidth="158.0" text="Geld zurücksetzen">
+            <Button id="btnspin" fx:id="btnmoneyback" layoutX="6.0" layoutY="51.0" mnemonicParsing="false" onAction="#clickGeldBack" prefHeight="30.0" prefWidth="158.0" text="Hand zurücksetzen">
                <font>
                   <Font size="15.0" />
                </font>
@@ -977,7 +977,12 @@
                </children>
             </Pane>
          </children></Pane>
-      <Label fx:id="hand" layoutX="1363.0" layoutY="844.0" text="0" textFill="WHITE">
+      <Label fx:id="hand" layoutX="1440.0" layoutY="844.0" text="0" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label id="label1" layoutX="1316.0" layoutY="843.0" text="Deine Hand:">
          <font>
             <Font size="20.0" />
          </font>

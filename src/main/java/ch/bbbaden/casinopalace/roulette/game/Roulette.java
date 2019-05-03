@@ -535,6 +535,123 @@ public class Roulette {
         return result;
     }
 //
+//    public int getRotation(String text) {
+//        int result = 0;
+//        switch (text) {
+//            case "00":
+//                result = 1440;
+//                break;
+//            case "0":
+//                result = 1440;
+//                break;
+//            case "35":
+//                result = 1470;
+//                break;
+//            case "12":
+//                result = 1480;
+//                break;
+//            case "28":
+//                result = 1490;
+//                break;
+//            case "7":
+//                result = 1500;
+//                break;
+//            case "29":
+//                result = 1510;
+//                break;
+//            case "18":
+//                result = 1520;
+//                break;
+//            case "22":
+//                result = 1530;
+//                break;
+//            case "9":
+//                result = 1540;
+//                break;
+//            case "31":
+//                result = 1550;
+//                break;
+//            case "14":
+//                result = 1560;
+//                break;
+//            case "20":
+//                result = 1568;
+//                break;
+//            case "1":
+//                result = 1578;
+//                break;
+//            case "33":
+//                result = 1588;
+//                break;
+//            case "16":
+//                result = 1598;
+//                break;
+//            case "24":
+//                result = 1607;
+//                break;
+//            case "5":
+//                result = 1617;
+//                break;
+//            case "10":
+//                result = 1500;
+//                break;
+//            case "23":
+//                result = 1500;
+//                break;
+//            case "8":
+//                result = 1500;
+//                break;
+//            case "30":
+//                result = 1500;
+//                break;
+//            case "11":
+//                result = 1500;
+//                break;
+//            case "36":
+//                result = 1500;
+//                break;
+//            case "13":
+//                result = 1500;
+//                break;
+//            case "27":
+//                result = 1500;
+//                break;
+//            case "6":
+//                result = 1500;
+//                break;
+//            case "34":
+//                result = 1500;
+//                break;
+//            case "17":
+//                result = 1500;
+//                break;
+//            case "25":
+//                result = 1500;
+//                break;
+//            case "2":
+//                result = 1500;
+//                break;
+//            case "21":
+//                result = 1500;
+//                break;
+//            case "4":
+//                result = 1500;
+//                break;
+//            case "19":
+//                result = 1500;
+//                break;
+//            case "15":
+//                result = 1500;
+//                break;
+//            case "32":
+//                result = 1500;
+//                break;
+//            default:
+//                throw new AssertionError();
+//        }
+//        return result;
+//    }
+//
 //    public int getAllLostMoney() {
 //        int result = 0;
 //        for (int i = 0; i < allloss.size(); i++) {

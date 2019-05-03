@@ -33,6 +33,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 import static javafx.util.Duration.seconds;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -423,19 +424,36 @@ public class RouletteGameController implements Initializable {
         roulette.createTable();
         //Konto angeben
         kontobestand.setText("" + db.getKonto());
+        //Disable btnspin true
+        btnspin.setDisable(true);
     }
 
     @FXML
     private void clickSpin(ActionEvent event) throws InterruptedException {
-        //Rotate Roulette
-        RotateTransition imageRotate = new RotateTransition(seconds(1), rouletteimage);
-        imageRotate.setByAngle(360);
-        imageRotate.play();
-        //show the Random Number
-        shownum.setVisible(true);
+        //Disable btnspin true
+        btnspin.setDisable(true);
+        //get the random number
         roulette.drawNumber();
         shownum.setText(roulette.getNumberDrawnAsText());
         shownum.setStyle("-fx-background-color: " + roulette.getNumberDrawnAsColour() + ";");
+        //Rotate Roulette
+        Thread thread;
+        RotateTransition imageRotate = new RotateTransition(seconds(1), rouletteimage);
+        //imageRotate.setByAngle(roulette.getRotation(shownum.getText()));
+        imageRotate.setByAngle(1440);
+        imageRotate.setDuration(Duration.millis(4000));
+        imageRotate.play();
+        thread = new Thread() {
+            public void run() {
+                try {
+                    Thread.sleep(4000);
+                    shownum.setVisible(true);
+                } catch (Exception e) {
+                }
+            }
+        };
+        thread.setDaemon(true);
+        thread.start();
         //Get Win or Loss
         roulette.setReceivedMoney(fieldinput, rowcolumninput, new Field(shownum.getText(), roulette.getColorFromField(shownum.getText())));
         //roulette.setGivenMoney(fieldinput, rowcolumninput, new Field(shownum.getText(), roulette.getColorFromField(shownum.getText())));
@@ -462,240 +480,7 @@ public class RouletteGameController implements Initializable {
         hand.setText("" + bm.getMoney());
     }
 
-// <editor-fold defaultstate="collapsed" desc=" Click Fields ">
-// <editor-fold defaultstate="collapsed" desc=" Click Row 3 ">
-    @FXML
-    private void clickField3(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField6(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField9(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField12(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField15(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField18(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField21(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField24(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField27(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField30(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField33(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField36(ActionEvent event) {
-    }
-// </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc=" Click Row 2 ">
-
-    @FXML
-    private void clickField2(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField5(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField8(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField11(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField14(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField17(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField20(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField23(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField26(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField29(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField32(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickField35(ActionEvent event) {
-
-    }
-// </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc=" Click Row 1 ">
-
-    @FXML
-    private void clickField1(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField4(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField7(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField10(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField13(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField16(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField19(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField22(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField25(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField28(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField31(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField34(ActionEvent event) {
-    }
-// </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc=" Click Field 0 / 00 ">
-
-    @FXML
-    private void clickField0(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField00(ActionEvent event) {
-    }
-    // </editor-fold>
-// </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc=" Click 1-3 Rows ">
-
-    @FXML
-    private void clickField1to34(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField2to35(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField3to36(ActionEvent event) {
-    }
-// </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc=" Click 1st, 2nd, 3rd ">
-
-    @FXML
-    private void click1to12(ActionEvent event) {
-    }
-
-    @FXML
-    private void click13to24(ActionEvent event) {
-    }
-
-    @FXML
-    private void click25to36(ActionEvent event) {
-    }
-// </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc=" Click Ungerade / Gerade ">
-
-    @FXML
-    private void clickUngerade(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickGerade(ActionEvent event) {
-    }
-
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc=" Click Schwarz / Rot ">
-    @FXML
-    private void clickSchwarz(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickRot(ActionEvent event) {
-    }
-
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc=" Click Niedrig / Hoch ">
-    @FXML
-    private void clickNiedrig(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickHoch(ActionEvent event) {
-    }
-// </editor-fold>
     // <editor-fold defaultstate="collapsed" desc=" Click Chips ">
-
     @FXML
     private void clickChip1(ActionEvent event) {
         //BetMoney
@@ -767,7 +552,8 @@ public class RouletteGameController implements Initializable {
                     "HALT STOP", JOptionPane.ERROR_MESSAGE);
             illegal = true;
         } else {
-
+            //Disable btnspin false
+            btnspin.setDisable(false);
             //Chips einsetzen mit Bild und Text
             chiplb = new Label();
             chiplb.setId("chiplb");
@@ -902,7 +688,4 @@ public class RouletteGameController implements Initializable {
         return result;
     }
 
-    @FXML
-    private void clicklabel2514(MouseEvent event) {
-    }
 }

@@ -25,10 +25,10 @@ public class BlackJack {
 
     private final int stacks = 6;
 
-    private final Karte[] completeStack = new Karte[cardStack * stacks];
-    
+    private ArrayList<Karte> completeStack = new ArrayList();
+
     private ArrayList<Karte> coP = new ArrayList();
-    
+
     private ArrayList<Karte> coC = new ArrayList();
 
     private Image[] imagecards = new Image[cardStack];
@@ -86,9 +86,9 @@ public class BlackJack {
     public Karte play() {
         Karte retVal = null;
         Random r = new Random();
-        int i = r.nextInt(completeStack.length);
-        retVal = completeStack[i];
-        completeStack[i] = null;
+        int i = r.nextInt(completeStack.size());
+        retVal = completeStack.get(i);
+        completeStack.remove(i);
         return retVal;
     }
 
@@ -459,32 +459,10 @@ public class BlackJack {
                         System.out.println("Not implemented");
                         throw new AssertionError();
                 }
-                switch (i) {
-                    case 0:
-                        completeStack[j] = k;
-                        break;
-                    case 1:
-                        completeStack[j + cardStack] = k;
-                        break;
-                    case 2:
-                        completeStack[j + 2 * cardStack] = k;
-                        break;
-                    case 3:
-                        completeStack[j + 3 * cardStack] = k;
-                        break;
-                    case 4:
-                        completeStack[j + 4 * cardStack] = k;
-                        break;
-                    case 5:
-                        completeStack[j + 5 * cardStack] = k;
-                        break;
-                    default:
-                        System.out.println("Did you seriously think this would work?");
-                        throw new AssertionError();
-
-                }
+                completeStack.add(k);
 
             }
+
         }
     }
 }

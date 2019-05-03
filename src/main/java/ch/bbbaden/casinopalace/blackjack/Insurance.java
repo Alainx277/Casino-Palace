@@ -40,16 +40,18 @@ public class Insurance implements BJState {
 
         ImageView imgView = new ImageView();
 
-        System.out.println("LAWL");
+        System.out.println(bj.getcoC().size());
 
         Karte k = bj.takeCard();
         if (bj.getWorthCroupier() > 10 && k.getNumber() == 14) {
             k.setCount(1);
         }
         bj.handleNewCard(0, k);
+        System.out.println(bj.getcoC().size());
 
-        imgView.setImage(k.getImage());
         hbox.getChildren().remove(1);
+        imgView.setImage(k.getImage());
+
         imgView.setFitWidth(80);
         imgView.setFitHeight(120);
         hbox.getChildren().add(imgView);
@@ -59,6 +61,7 @@ public class Insurance implements BJState {
             //pay off
 
         }
+        bj.setState((BJState) new Stand());
 
     }
 

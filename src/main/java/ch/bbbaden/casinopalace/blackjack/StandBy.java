@@ -32,7 +32,7 @@ public class StandBy implements BJState {
             ImageView pointeurTwo = new ImageView();
             ImageView croupierTwo = new ImageView();
 
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) {              
                 Karte k = bj.takeCard();
                 switch (i) {
                     case 0:

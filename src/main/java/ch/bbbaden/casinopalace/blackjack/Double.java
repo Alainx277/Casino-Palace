@@ -27,6 +27,9 @@ public class Double implements BJState {
             HBox hand1 = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("hand1")).findAny().get();
 
             Karte k = bj.takeCard();
+            if (bj.getWorthpointeur()> 10 && k.getNumber() == 14) {
+                k.setCount(1);
+            }
             bj.handleNewCard(false, k);
             nextcard.setImage(k.getImage());
 

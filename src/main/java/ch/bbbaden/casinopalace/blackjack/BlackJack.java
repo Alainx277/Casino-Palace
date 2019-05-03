@@ -86,7 +86,6 @@ public class BlackJack {
     public Karte play() {
         Karte retVal = null;
         Random r = new Random();
-        System.out.println(completeStack.size());
         int i = r.nextInt(completeStack.size());
         retVal = completeStack.get(i);
         completeStack.remove(i);
@@ -495,4 +494,10 @@ public class BlackJack {
         }
         return b;
     }
+
+//    public int changeAce(boolean croupier, int worth) {
+//        int b = 0;
+//        
+//        return b;
+//    }
 }

@@ -33,6 +33,11 @@ public class Stand implements BJState {
                 counter++;
                 if (bj.getCardAmountCroupier() == 1) {
                     Karte k = bj.takeCard();
+                    if (bj.getWorthCroupier() > 10 && k.getNumber() == 14) {
+                        k.setCount(1);
+                    }
+                    System.out.println(k.getCount());
+
                     bj.handleNewCard(true, k);
 
                     ImageView croupierView = new ImageView(k.getImage());
@@ -40,11 +45,19 @@ public class Stand implements BJState {
                     croupierView.setFitHeight(120);
 
                     hbox.getChildren().add(croupierView);
+                    System.out.println("croupier: " + bj.getWorthCroupier());
                 } else {
+                    System.out.println("croupier : " + bj.getWorthCroupier());
                     if (bj.getWorthCroupier() > 16) {
                         System.out.println("16");
+                        System.out.println("Worth Croupoer: " + bj.getWorthCroupier());
+
+                        break;
                     } else {
                         Karte k = bj.takeCard();
+                        if (bj.getWorthCroupier() > 10 && k.getNumber() == 14) {
+                            k.setCount(1);
+                        }
                         bj.handleNewCard(true, k);
 
                         ImageView croupierView = new ImageView(k.getImage());
@@ -70,26 +83,7 @@ public class Stand implements BJState {
 
     @Override
     public void handleInsurance(BlackJack bj) {
-        HBox hbox = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("croupier")).findAny().get();
-        
-        if()
-
-        ImageView imgView = new ImageView();
-
-        System.out.println("LAWL");
-        Karte k = bj.takeCard();
-        bj.handleNewCard(true, k);
-        imgView.setImage(k.getImage());
-        hbox.getChildren().remove(1);
-        imgView.setFitWidth(80);
-        imgView.setFitHeight(120);
-        hbox.getChildren().add(imgView);
-        if (bj.getWorthCroupier() == 21) {
-
-            System.out.println("BLACK JACK BUT INSURED");
-            //pay out
-
-        }
+        throw new UnsupportedOperationException("Shouldnt work");
     }
 
     @Override

@@ -34,7 +34,7 @@ public class StandBy implements BJState {
 
             for (int i = 0; i < 3; i++) {
                 Karte k = bj.takeCard();
-                
+
                 switch (i) {
                     case 0:
                         bj.handleNewCard(false, k);
@@ -45,6 +45,9 @@ public class StandBy implements BJState {
                         pointeurTwo.setImage(k.getImage());
                         break;
                     case 2:
+                        if (bj.getWorthCroupier() > 10 && k.getNumber() == 14) {
+                            k.setCount(1);
+                        }
                         bj.handleNewCard(true, k);
                         croupierView.setImage(k.getImage());
                         break;
@@ -54,6 +57,7 @@ public class StandBy implements BJState {
             }
             Image hiddenCard = new Image("/images/cards/background.png");
             croupierTwo.setImage(hiddenCard);
+            System.out.println(bj.getWorthCroupier());
 
             poineturView.setFitWidth(80);
             poineturView.setFitHeight(120);
@@ -73,8 +77,6 @@ public class StandBy implements BJState {
         }
     }
 
-    
-
     @Override
     public void handleStand(BlackJack bj) {
         throw new UnsupportedOperationException("Shouldnt work");
@@ -84,7 +86,6 @@ public class StandBy implements BJState {
     public void handleStandby(BlackJack bj) {
         throw new UnsupportedOperationException("Shouldnt work");
     }
-
 
     @Override
     public void handleInsurance(BlackJack bj) {

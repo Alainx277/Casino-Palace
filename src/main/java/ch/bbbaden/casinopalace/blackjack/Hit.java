@@ -38,6 +38,9 @@ public class Hit implements BJState {
                 //Draw card 
                 Karte k = bj.takeCard();
                 // Make count of card
+                if (bj.getWorthpointeur() > 10 && k.getNumber() == 14) {
+                    k.setCount(1);
+                }
                 bj.handleNewCard(false, k);
                 //Show card on screen
                 nextcard.setImage(k.getImage());

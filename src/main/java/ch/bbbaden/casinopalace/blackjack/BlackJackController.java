@@ -118,7 +118,7 @@ public class BlackJackController extends Controller implements Initializable {
         bj.requestState().handleSplit(bj); // Not supported yet
         System.out.println("Split");
         splitBtn.setDisable(true);
-        bj.setState((BJState) new Hit());
+        
     }
 
     @FXML

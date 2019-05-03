@@ -30,7 +30,7 @@ import javafx.stage.Stage;
  * @author doemu
  */
 public class BlackJackController extends Controller implements Initializable {
-    
+
     @FXML
     private ImageView chip1;
     @FXML
@@ -51,16 +51,18 @@ public class BlackJackController extends Controller implements Initializable {
     private HBox hand1;
     @FXML
     private HBox hand2;
-    
+
     private int betAmount;
     private Image bet = new Image("/images/chips.png");
-    
+
     private static Stage ubersichtsStage;
-    
+
     private int hit = 0;
-    
+    private boolean insurance = false;
+    private int betting = betAmount;
+
     private BlackJack bj;
-    
+
     @FXML
     private ImageView imgStacks;
     @FXML
@@ -79,6 +81,8 @@ public class BlackJackController extends Controller implements Initializable {
     private Button standBtn;
     @FXML
     private Button hitBtn;
+    @FXML
+    private Label insuranceBetLbl;
 
     /**
      * Initializes the controller class.
@@ -91,7 +95,7 @@ public class BlackJackController extends Controller implements Initializable {
         addImages();
         disableButtons();
     }
-    
+
     private void disableButtons() {
         insuranceBtn.setDisable(true);
         splitBtn.setDisable(true);
@@ -99,14 +103,17 @@ public class BlackJackController extends Controller implements Initializable {
         standBtn.setDisable(true);
         hitBtn.setDisable(true);
     }
-    
+
     @FXML
     private void handleInsurrance(ActionEvent event) {
         bj.setState((BJState) new Insurance());
         bj.requestState().handleInsurance(bj);
+        hitBtn.setDisable(true);
+        insurance = true;
+        insuranceBtn.setDisable(true);
         System.out.println("Insurance");
     }
-    
+
     @FXML
     private void handleSplit(ActionEvent event) {
         bj.setState((BJState) new Split());
@@ -115,7 +122,7 @@ public class BlackJackController extends Controller implements Initializable {
         splitBtn.setDisable(true);
         bj.setState((BJState) new Hit());
     }
-    
+
     @FXML
     private void handleDouble(ActionEvent event) {
         bj.setState((BJState) new Double());
@@ -124,20 +131,23 @@ public class BlackJackController extends Controller implements Initializable {
         doubleBtn.setDisable(true);
         System.out.println("Double");
     }
-    
+
     @FXML
     private void handleStand(ActionEvent event) {
         bj.setState((BJState) new Stand());
         bj.requestState().handleStand(bj);
         hitBtn.setDisable(true);
+        doubleBtn.setDisable(true);
+        standBtn.setDisable(true);
         System.out.println("Stand");
     }
-    
+
     @FXML
     private void handleHit(ActionEvent event) {
         bj.setBet(betAmount);
         bj.requestState().handleHit(bj);
-        if (bj.getWorthpointeur() >= 21) {
+        insurance = false;
+        if (bj.getWorthpointeur() > 21) {
             for (int i = 0; i < bj.getcoP().size(); i++) {
                 if (bj.getcoP().get(i).getCount() == 11) {
                     System.out.println("ACE FOUND");
@@ -155,24 +165,23 @@ public class BlackJackController extends Controller implements Initializable {
                 doubleBtn.setDisable(false);
                 standBtn.setDisable(false);
                 if (bj.getcoP().get(0).getNumber() == (bj.getcoP().get(1).getNumber())) {
-                    System.out.println("SPLIT");
                     splitBtn.setDisable(false);
-                } else {
-                    System.out.println("FUCK OFF");
+                }
+                if (bj.getcoC().get(0).getNumber() == 14) {
+                    insuranceBtn.setDisable(false);
                 }
             }
             if (hit == 1) {
                 insuranceBtn.setDisable(true);
                 System.out.println(bj.getcoP());
                 splitBtn.setDisable(true);
-                System.out.println("Hit = 1");
-                
+
             }
         }
-        
+
         hit++;
     }
-    
+
     private void addImages() {
         chip1.setImage(new Image("/images/chips/Chip1.png"));
         chip10.setImage(new Image("/images/chips/Chip10.png"));
@@ -183,65 +192,116 @@ public class BlackJackController extends Controller implements Initializable {
         imgViewBack.setImage(new Image("/images/back.png"));
         imgStacks.setImage(new Image("/images/cards/background.png"));
     }
-    
+
     @FXML
     private void handleBack(MouseEvent event) {
         Stage currentStage = (Stage) chip1.getScene().getWindow();
         currentStage.close();
         ubersichtsStage.show();
-        
+
     }
-    
+
     public static void fillBack(Stage stage) {
         ubersichtsStage = stage;
     }
-    
+
     @FXML
     private void handleOne(MouseEvent event) {
-        hitBtn.setDisable(false);
-        betAmount++;
-        betImgView.setImage(bet);
-        betLbl.setText(Integer.toString(betAmount));
+        if (hit == 0) {
+            hitBtn.setDisable(false);
+            betAmount++;
+            betImgView.setImage(bet);
+            betLbl.setText(Integer.toString(betAmount));
+        }
+        if (insurance) {
+            hitBtn.setDisable(false);
+            betting++;
+            betImgView.setImage(bet);
+            insuranceBetLbl.setText(Integer.toString(betting));
+        }
+
     }
-    
+
     @FXML
     private void handleTen(MouseEvent event) {
-        hitBtn.setDisable(false);
-        betAmount += 10;
-        betImgView.setImage(bet);
-        betLbl.setText(Integer.toString(betAmount));
+        if (hit == 0) {
+            hitBtn.setDisable(false);
+            System.out.println("TEn");
+            betAmount += 10;
+            betImgView.setImage(bet);
+            betLbl.setText(Integer.toString(betAmount));
+        }
+        if (insurance) {
+            hitBtn.setDisable(false);
+            System.out.println("TEn");
+            betting += 10;
+            betImgView.setImage(bet);
+            betLbl.setText(Integer.toString(betting));
+        }
     }
-    
+
     @FXML
     private void handleFifty(MouseEvent event) {
-        hitBtn.setDisable(false);
-        betAmount += 50;
-        betImgView.setImage(bet);
-        betLbl.setText(Integer.toString(betAmount));
+        if (hit == 0) {
+            hitBtn.setDisable(false);
+            betAmount += 50;
+            betImgView.setImage(bet);
+            betLbl.setText(Integer.toString(betAmount));
+        }
+        if (insurance) {
+            hitBtn.setDisable(false);
+            betting += 50;
+            betImgView.setImage(bet);
+            betLbl.setText(Integer.toString(betting));
+        }
     }
-    
+
     @FXML
     private void handleHundred(MouseEvent event) {
-        hitBtn.setDisable(false);
-        betAmount += 100;
-        betImgView.setImage(bet);
-        betLbl.setText(Integer.toString(betAmount));
+        if (hit == 0) {
+            hitBtn.setDisable(false);
+            betAmount += 100;
+            betImgView.setImage(bet);
+            betLbl.setText(Integer.toString(betAmount));
+        }
+        if (insurance) {
+            hitBtn.setDisable(false);
+            betting += 100;
+            betImgView.setImage(bet);
+            betLbl.setText(Integer.toString(betting));
+        }
     }
-    
+
     @FXML
     private void handleTwoFifty(MouseEvent event) {
-        hitBtn.setDisable(false);
-        betAmount += 250;
-        betImgView.setImage(bet);
-        betLbl.setText(Integer.toString(betAmount));
+        if (hit == 0) {
+            hitBtn.setDisable(false);
+            betAmount += 250;
+            betImgView.setImage(bet);
+            betLbl.setText(Integer.toString(betAmount));
+        }
+        if (insurance) {
+            hitBtn.setDisable(false);
+            betting += 250;
+            betImgView.setImage(bet);
+            betLbl.setText(Integer.toString(betting));
+        }
     }
-    
+
     @FXML
     private void handleFivehundred(MouseEvent event) {
-        hitBtn.setDisable(false);
-        betAmount += 500;
-        betImgView.setImage(bet);
-        betLbl.setText(Integer.toString(betAmount));
+        if (hit == 0) {
+            hitBtn.setDisable(false);
+            betAmount += 500;
+            betImgView.setImage(bet);
+            betLbl.setText(Integer.toString(betAmount));
+        }
+        if (insurance) {
+            hitBtn.setDisable(false);
+            betting += 500;
+            betImgView.setImage(bet);
+            betLbl.setText(Integer.toString(betting));
+        }
     }
-    
+
 }

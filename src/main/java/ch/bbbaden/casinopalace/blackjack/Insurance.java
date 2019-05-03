@@ -33,7 +33,7 @@ public class Insurance implements BJState{
 
     @Override
     public void handleInsurance(BlackJack bj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("LAWL");
     }
 
     @Override

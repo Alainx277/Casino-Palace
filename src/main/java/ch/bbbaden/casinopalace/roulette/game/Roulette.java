@@ -62,11 +62,6 @@ public class Roulette {
                 table.add(new Field("" + i, "black"));
             }
         }
-        //Die Felder werden herausgegeben
-        /*
-        for (int i = 0; i < table.size(); i++) {
-            System.out.println(table.get(i).getText() + " " + table.get(i).getColour());
-        }*/
     }
 
     public ArrayList<Field> getTable() {
@@ -133,7 +128,6 @@ public class Roulette {
                 color = "red";
             }
         }
-        //System.out.println(color);
         return color;
     }
 
@@ -145,10 +139,7 @@ public class Roulette {
                 if (field.getText().equals(drawnum.getText())) {
                     numbers.add(fieldinput.get(field) * 36);
                     won.add(fieldinput.get(field) * 35);
-                }/* else {
-                    loss.add(fieldinput.get(field));
-                    fieldinput.remove(field);
-                }*/
+                }
             }
             for (int i = 0; i < numbers.size(); i++) {
                 result += numbers.get(i);
@@ -176,11 +167,6 @@ public class Roulette {
                         numbers.add(hashmap.getValue() * 9);
                         won.add(hashmap.getValue() * 8);
                     }
-                    /*else {
-                       loss.add(hashmap.getValue());
-                  }*/
-                } else {
-
                 }
             }
         }
@@ -212,10 +198,6 @@ public class Roulette {
                         numbers.add(hashmap.getValue() * 12);
                         won.add(hashmap.getValue() * 11);
                     }
-                    /*else {
-                        loss.add(hashmap.getValue());
-                    }*/
-                } else {
                 }
             }
         }
@@ -246,11 +228,6 @@ public class Roulette {
                         numbers.add(hashmap.getValue() * 9);
                         won.add(hashmap.getValue() * 8);
                     }
-                    /*else {
-                        loss.add(hashmap.getValue());
-                    }*/
-                } else {
-
                 }
             }
         }
@@ -281,11 +258,6 @@ public class Roulette {
                         numbers.add(hashmap.getValue() * 7);
                         won.add(hashmap.getValue() * 6);
                     }
-                    /*else {
-                        loss.add(hashmap.getValue());
-                    }*/
-                } else {
-
                 }
             }
         }
@@ -298,8 +270,6 @@ public class Roulette {
 
     public int winRedOrBlack(HashMap<Field, Integer> fieldinput, Field drawnum) {
         int result = 0;
-        /*boolean win = false;
-        boolean colorfound = false;*/
         ArrayList<Integer> numbers = new ArrayList<>();
         for (Field field : fieldinput.keySet()) {
             if (field.getText().equals("SCHWARZ")) {
@@ -307,31 +277,22 @@ public class Roulette {
                     numbers.add(fieldinput.get(field) * 2);
                     won.add(fieldinput.get(field));
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
             if (field.getText().equals("ROT")) {
                 if (field.getColour().equals(drawnum.getColour())) {
                     numbers.add(fieldinput.get(field) * 2);
                     won.add(fieldinput.get(field));
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
         }
         for (int i = 0; i < numbers.size(); i++) {
             result += numbers.get(i);
         }
-        //System.out.println(result);
         return result;
     }
 
     public int winOddOrEven(HashMap<Field, Integer> fieldinput, Field drawnum) {
         int result = 0;
-        /*boolean win = false;
-        boolean colorfound = false;*/
         ArrayList<Integer> numbers = new ArrayList<>();
         for (Field field : fieldinput.keySet()) {
             if (field.getText().equals("Gerade")) {
@@ -339,31 +300,22 @@ public class Roulette {
                     numbers.add(fieldinput.get(field) * 2);
                     won.add(fieldinput.get(field));
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
             if (field.getText().equals("Ungerade")) {
                 if (drawnum.getNumber() % 2 == 1) {
                     numbers.add(fieldinput.get(field) * 2);
                     won.add(fieldinput.get(field));
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
         }
         for (int i = 0; i < numbers.size(); i++) {
             result += numbers.get(i);
         }
-        //System.out.println(result);
         return result;
     }
 
     public int winNiedrigOrHoch(HashMap<Field, Integer> fieldinput, Field drawnum) {
         int result = 0;
-        /*boolean win = false;
-        boolean colorfound = false;*/
         ArrayList<Integer> numbers = new ArrayList<>();
         for (Field field : fieldinput.keySet()) {
             if (field.getText().equals("1-18 Niedrig")) {
@@ -371,24 +323,17 @@ public class Roulette {
                     numbers.add(fieldinput.get(field) * 2);
                     won.add(fieldinput.get(field));
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
             if (field.getText().equals("19-36 Hoch")) {
                 if (drawnum.getNumber() > 18 && drawnum.getNumber() < 36) {
                     numbers.add(fieldinput.get(field) * 2);
                     won.add(fieldinput.get(field));
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
         }
         for (int i = 0; i < numbers.size(); i++) {
             result += numbers.get(i);
         }
-        //System.out.println(result);
         return result;
     }
 
@@ -406,9 +351,6 @@ public class Roulette {
                     }
                     number += 3;
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
             if (field.getText().equals("2to1 2nd")) {
                 number = 2;
@@ -419,9 +361,6 @@ public class Roulette {
                     }
                     number += 3;
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
             if (field.getText().equals("2to1 3rd")) {
                 number = 3;
@@ -432,9 +371,6 @@ public class Roulette {
                     }
                     number += 3;
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
         }
         for (int i = 0; i < numbers.size(); i++) {
@@ -454,9 +390,6 @@ public class Roulette {
                         won.add(fieldinput.get(field) * 2);
                     }
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
             if (field.getText().equals("2nd12")) {
                 for (int i = 13; i < 25; i++) {
@@ -465,9 +398,6 @@ public class Roulette {
                         won.add(fieldinput.get(field) * 2);
                     }
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
             if (field.getText().equals("3rd12")) {
                 for (int i = 25; i < 37; i++) {
@@ -475,11 +405,7 @@ public class Roulette {
                         numbers.add(fieldinput.get(field) * 3);
                         won.add(fieldinput.get(field) * 2);
                     }
-                    //System.out.println("" + i);
                 }
-                /*else {
-                    loss.add(fieldinput.get(field));
-                }*/
             }
         }
         for (int i = 0; i < numbers.size(); i++) {
@@ -517,6 +443,16 @@ public class Roulette {
         won.clear();
         return result;
     }
+
+    public int getAllWonMoney() {
+        int result = 0;
+        for (int i = 0; i < allwon.size(); i++) {
+            result += allwon.get(i);
+        }
+        return result;
+    }
+    // <editor-fold defaultstate="collapsed" desc=" Unnnötigs Lösch Stuff ">
+
 //
 //    public int getLostMoney() {
 //        int result = 0;
@@ -526,14 +462,6 @@ public class Roulette {
 //        allloss.add(result);
 //        return result;
 //    }
-
-    public int getAllWonMoney() {
-        int result = 0;
-        for (int i = 0; i < allwon.size(); i++) {
-            result += allwon.get(i);
-        }
-        return result;
-    }
 //
 //    public int getRotation(String text) {
 //        int result = 0;
@@ -748,4 +676,5 @@ public class Roulette {
 //
 //        return result;
 //    }
+// </editor-fold>
 }

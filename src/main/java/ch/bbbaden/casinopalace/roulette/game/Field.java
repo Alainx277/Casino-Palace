@@ -14,7 +14,6 @@ public class Field {
     private String text;
     private String colour;
     private int number;
-    private boolean side;
 
     public Field(String text, String colour) {
         this.text = text;
@@ -36,13 +35,5 @@ public class Field {
 
     public String getColour() {
         return colour;
-    }
-
-    public boolean getSide(int number) {
-        if (number % 2 == 0) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

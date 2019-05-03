@@ -86,6 +86,7 @@ public class BlackJack {
     public Karte play() {
         Karte retVal = null;
         Random r = new Random();
+        System.out.println(completeStack.size());
         int i = r.nextInt(completeStack.size());
         retVal = completeStack.get(i);
         completeStack.remove(i);
@@ -456,13 +457,42 @@ public class BlackJack {
                         k = new Karte(11, 14, Symbol.Spade, imagecards[j]);
                         break;
                     default:
-                        System.out.println("Not implemented");
                         throw new AssertionError();
                 }
                 completeStack.add(k);
-
             }
 
         }
+    }
+
+    public Karte takeCard() {
+        Image image = null;
+        Karte k = null;
+        do {
+            k = play();
+            image = k.getImage();
+        } while (checkImage(image) == false);
+
+        return k;
+    }
+
+    public void handleNewCard(boolean croupier, Karte k) {
+        if (croupier) {
+            worthCroupier += k.getCount();
+            setCardAmountCroupier(getCardAmountCroupier() + 1);
+            setcoC(k);
+        } else {
+            worthpointeur += k.getCount();
+            setCardAmountPointeur(getCardAmountpointeur() + 1);
+            setcoP(k);
+        }
+    }
+
+    private boolean checkImage(Image image) {
+        boolean b = false;
+        if (image != null) {
+            b = true;
+        }
+        return b;
     }
 }

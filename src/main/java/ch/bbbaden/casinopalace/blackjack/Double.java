@@ -26,23 +26,9 @@ public class Double implements BJState {
 
             HBox hand1 = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("hand1")).findAny().get();
 
-            Image image = null;
-            Karte k;
-            do {
-                k = bj.play();
-                image = k.getImage();
-            } while (checkImage(image) == false);
-
-            bj.setcoP(k);
-
-            if (k.getCount() == 11) {
-                if (bj.getCardAmountpointeur() > 10) {
-                    k.setCount(1);
-                }
-            }
-            bj.setCardAmountPointeur(bj.getCardAmountpointeur() + 1);
-            bj.setWorthpointeur(bj.getWorthpointeur() + k.getCount());
-            nextcard.setImage(image);
+            Karte k = bj.takeCard();
+            bj.handleNewCard(false, k);
+            nextcard.setImage(k.getImage());
 
             nextcard.setFitWidth(80);
             nextcard.setFitHeight(120);
@@ -53,16 +39,6 @@ public class Double implements BJState {
         } else {
             System.out.println("Shit ain't going to work");
         }
-    }
-
-    private boolean checkImage(Image image) {
-        boolean b = false;
-        if (image != null) {
-            b = true;
-        } else {
-            System.out.println("EXCEPTIONAL IMAGE");
-        }
-        return b;
     }
 
     @Override

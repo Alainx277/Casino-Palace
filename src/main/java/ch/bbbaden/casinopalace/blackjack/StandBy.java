@@ -33,38 +33,26 @@ public class StandBy implements BJState {
             ImageView croupierTwo = new ImageView();
 
             for (int i = 0; i < 3; i++) {
-                Image image = null;
-                Karte k = null;
-                do {
-                    k = bj.play();
-                    image = k.getImage();
-
-                } while (checkImage(image) == false);
+                Karte k = bj.takeCard();
+                
                 switch (i) {
                     case 0:
-                        bj.setCardAmountPointeur(bj.getCardAmountpointeur() + 1);
-                        bj.setcoP(k);
-                        bj.setWorthpointeur(bj.getWorthpointeur() + k.getCount());
-                        poineturView.setImage(image);
+                        bj.handleNewCard(false, k);
+                        poineturView.setImage(k.getImage());
                         break;
                     case 1:
-                        bj.setCardAmountPointeur(bj.getCardAmountpointeur() + 1);
-                        bj.setcoP(k);
-                        bj.setWorthpointeur(bj.getWorthpointeur() + k.getCount());
-                        pointeurTwo.setImage(image);
+                        bj.handleNewCard(false, k);
+                        pointeurTwo.setImage(k.getImage());
                         break;
                     case 2:
-                        bj.setCardAmountCroupier(bj.getCardAmountCroupier() + 1);
-                        bj.setWorthCroupier(k.getCount());
-                        bj.setcoC(k);
-                        croupierView.setImage(image);
+                        bj.handleNewCard(true, k);
+                        croupierView.setImage(k.getImage());
                         break;
                     default:
                         throw new AssertionError();
                 }
             }
             Image hiddenCard = new Image("/images/cards/background.png");
-            System.out.println("WorthPointeur: " + bj.getWorthpointeur());
             croupierTwo.setImage(hiddenCard);
 
             poineturView.setFitWidth(80);
@@ -85,13 +73,7 @@ public class StandBy implements BJState {
         }
     }
 
-    private boolean checkImage(Image image) {
-        boolean b = false;
-        if (image != null) {
-            b = true;
-        }
-        return b;
-    }
+    
 
     @Override
     public void handleStand(BlackJack bj) {

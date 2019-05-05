@@ -9,10 +9,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -152,7 +150,7 @@ public class CardView extends ImageView {
     }
 
     private Image fetchImage() {
-        String loc = "/images/cards/" + card.get().getType().toShortString() + card.get().getColor().toShortString() + ".png";
+        String loc = "/images/cards/" + card.get().getRank().toShortString() + card.get().getSuit().toShortString() + ".png";
         return new Image(getClass().getResource(loc).toString());
     }
 

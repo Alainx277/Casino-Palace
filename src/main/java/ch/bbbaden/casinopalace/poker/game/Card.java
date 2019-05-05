@@ -4,28 +4,28 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Card {
-    private CardType type;
-    private CardColor color;
+    private CardRank rank;
+    private CardSuit suit;
 
-    public Card(CardType type, CardColor color) {
-        this.type = type;
-        this.color = color;
+    public Card(CardRank rank, CardSuit suit) {
+        this.rank = rank;
+        this.suit = suit;
     }
 
-    public CardType getType() {
-        return type;
+    public CardRank getRank() {
+        return rank;
     }
 
-    public CardColor getColor() {
-        return color;
+    public CardSuit getSuit() {
+        return suit;
     }
 
     public static Card random(){
         Random random = new Random();
-        CardType[] cardTypes = CardType.values();
-        CardType type = cardTypes[random.nextInt(cardTypes.length)];
-        CardColor[] cardColors = CardColor.values();
-        CardColor color = cardColors[random.nextInt(cardColors.length)];
+        CardRank[] cardRanks = CardRank.values();
+        CardRank type = cardRanks[random.nextInt(cardRanks.length)];
+        CardSuit[] cardSuits = CardSuit.values();
+        CardSuit color = cardSuits[random.nextInt(cardSuits.length)];
 
         return new Card(type, color);
     }
@@ -35,13 +35,31 @@ public class Card {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
-        return type == card.type &&
-                color == card.color;
+        return rank == card.rank &&
+                suit == card.suit;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(type, color);
+        return Objects.hash(rank, suit);
+    }
+
+    @Override
+    public String toString() {
+        return getRank() + " of " + getSuit();
+    }
+
+    /**
+     * Returns a card in it's short string representation
+     * <ul>
+     *     <li>Ace of Spades -> <b>AS<b/></li>
+     *     <li>Ten of Heartss -> <b>10H</b></li>
+     *     <li>Five of Clubs -> <b>5C</b></li>
+     * </ul>
+     * @return The string in short form
+     */
+    public String toShortString(){
+        return getRank().toShortString() + getSuit().toShortString();
     }
 }

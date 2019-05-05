@@ -10,7 +10,7 @@ public class CardStack {
         fillStack();
     }
 
-    public Card drawCard(){
+    public Card pop(){
         if (cards.size() == 0){
             fillStack();
         }
@@ -23,9 +23,9 @@ public class CardStack {
     public void fillStack(){
         cards.clear();
 
-        for (CardColor color : CardColor.values()) {
-            for (CardType cardType : CardType.values()) {
-                cards.add(new Card(cardType, color));
+        for (CardSuit color : CardSuit.values()) {
+            for (CardRank cardRank : CardRank.values()) {
+                cards.add(new Card(cardRank, color));
             }
         }
 

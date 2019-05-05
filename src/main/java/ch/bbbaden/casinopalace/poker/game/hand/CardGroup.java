@@ -1,6 +1,5 @@
 package ch.bbbaden.casinopalace.poker.game.hand;
 
-import ch.bbbaden.casinopalace.poker.Permutation;
 import ch.bbbaden.casinopalace.poker.game.Card;
 import ch.bbbaden.casinopalace.poker.game.CardRank;
 import ch.bbbaden.casinopalace.poker.game.CardSuit;

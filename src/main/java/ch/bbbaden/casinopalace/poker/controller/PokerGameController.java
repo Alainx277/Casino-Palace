@@ -74,6 +74,16 @@ public class PokerGameController extends Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // Return to casino menu on close
+        getStateManager().getSceneCreator().getCurrentStage().setOnCloseRequest(event -> {
+            try {
+                getStateManager().getState().handleCasino(getStateManager());
+                event.consume();
+            } catch (Exception e) {
+                e.printStackTrace(); // rip
+            }
+        });
+
         PokerCasinoAdapter adapter = new PokerCasinoAdapter(poker, getStateManager().getCasino(), param -> bet);
         balanceLabel.setText(getStateManager().getCasino().getCurrentUser().getChips().toPlainString());
 

@@ -5,7 +5,7 @@
     -color-text-success: green;
     -color-text-error: red;
     -color-text-highlight: gold;
-    -color-button-default: #1aff1a;
+    -color-button-default: #15bb15;
 }
 
 /* Common definitions */
@@ -13,9 +13,9 @@
     -fx-font-family: "Arial";
 }
 
-.button, .combo-box{
+.button, .combo-box, .combo-box .cell{
     -fx-background-color: -color-button-default;
-    -fx-text-fill: -color-text-dark;
+    -fx-text-fill: -color-text-default;
     -fx-font-weight: bold;
 }
 

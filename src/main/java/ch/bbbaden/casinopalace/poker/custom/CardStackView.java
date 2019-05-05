@@ -20,6 +20,9 @@ public class CardStackView extends StackPane {
     private ObjectProperty<CardStack> stack = new SimpleObjectProperty<>(new CardStack());
     private List<CardView> cards = new ArrayList<CardView>();
 
+    private Media shuffleSound;
+    private MediaPlayer shufflePlayer;
+
     public CardStackView() {
         for (int i = 0; i < 5; i++) {
             CardView card = new CardView();
@@ -27,11 +30,19 @@ public class CardStackView extends StackPane {
             cards.add(card);
             this.getChildren().add(card);
         }
+
+        if (shuffleSound == null){
+            shuffleSound = new Media(getClass().getResource("/poker/card_shuffle.wav").toString());
+        }
+        if (shufflePlayer == null){
+            shufflePlayer = new MediaPlayer(shuffleSound);
+        }
     }
 
     public TransitionFuture shuffle(){
-        MediaPlayer player = new MediaPlayer(new Media(getClass().getResource("/poker/card_shuffle.wav").toString()));
-        player.play();
+        shufflePlayer.pause();
+        shufflePlayer.seek(shufflePlayer.getStartTime());
+        shufflePlayer.play();
 
         Random rand = new Random();
         ParallelTransition transition = new ParallelTransition();

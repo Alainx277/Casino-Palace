@@ -101,11 +101,11 @@ public class Poker {
     }
 
     public boolean isWon(){
-        return won;
+        return won != null && won;
     }
 
     public boolean isLost(){
-        return !won;
+        return won != null && !won;
     }
 
     public boolean isEnd(){

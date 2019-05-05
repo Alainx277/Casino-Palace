@@ -1,0 +1,44 @@
+/* Color definitions */
+* {
+    -color-text-default: white;
+    -color-text-dark: black;
+    -color-text-success: green;
+    -color-text-error: red;
+    -color-text-highlight: gold;
+    -color-button-default: #1aff1a;
+}
+
+/* Common definitions */
+.root{
+    -fx-font-family: "Arial";
+}
+
+.button, .combo-box{
+    -fx-background-color: -color-button-default;
+    -fx-text-fill: -color-text-dark;
+    -fx-font-weight: bold;
+}
+
+.label{
+    -fx-text-fill: -color-text-default;
+}
+
+
+/* Custom style classes */
+.main-pane{
+    -fx-background-image: url("/images/green-felt.jpg");
+    -fx-background-size: 100;
+}
+
+.error{
+    -fx-text-fill: -color-text-error;
+}
+
+.success{
+    -fx-text-fill: -color-text-success;
+}
+
+.highlight{
+    -fx-text-fill: -color-text-highlight;
+}
+

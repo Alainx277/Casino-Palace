@@ -21,6 +21,7 @@ public class SceneCreator {
 
     public Controller createScene(URL url, Consumer<FXMLLoader> fxmlLoaderConsumer) throws IOException {
         Stage stage = new Stage();
+        currentStage = stage;
         stage.setTitle("Casino-Palace");
         FXMLLoader loader = new FXMLLoader(url);
 
@@ -33,7 +34,6 @@ public class SceneCreator {
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
-        currentStage = stage;
         return (Controller) loader.getController();
     }
 

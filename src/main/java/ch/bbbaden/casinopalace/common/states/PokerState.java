@@ -7,6 +7,6 @@ import java.net.URL;
 public class PokerState extends GameState {
     @Override
     public URL getURL() {
-        return PokerController.class.getResource("Poker.fxml");
+        return PokerController.class.getResource("view/PokerGame.fxml");
     }
 }

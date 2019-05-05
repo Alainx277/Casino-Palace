@@ -4,7 +4,7 @@ import ch.bbbaden.casinopalace.poker.game.DrawnState;
 
 import java.util.ArrayList;
 
-public class StateMachine<T, R> {
+public class StateMachine<T, R extends AbstractState<T>> {
     private final T owner;
     private R state;
     private ArrayList<EventHandler<TransitionEvent<T, R>>> transitionEventHandlers = new ArrayList<>();
@@ -17,6 +17,7 @@ public class StateMachine<T, R> {
         R oldState = this.state;
         this.state = state;
         transitionEventHandlers.forEach(x -> x.handle(new TransitionEvent<>(this, oldState, state)));
+        state.handleEnter((StateMachine<T, AbstractState<T>>) this);
     }
 
     public R getState() {

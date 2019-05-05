@@ -1,6 +1,6 @@
 package ch.bbbaden.casinopalace.poker;
 
-public class TransitionEvent<T, R> {
+public class TransitionEvent<T, R extends AbstractState<T>> {
     private StateMachine<T, R> machine;
     private R oldState;
     private R newState;

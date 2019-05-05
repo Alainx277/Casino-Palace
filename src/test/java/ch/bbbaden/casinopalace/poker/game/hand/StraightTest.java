@@ -54,17 +54,6 @@ public class StraightTest {
     }
 
     @Test
-    public void parseLowAceIncorrect() {
-        assertFalse(new Straight().parse(
-                new Card(CardRank.Two, CardSuit.Hearts),
-                new Card(CardRank.Seven, CardSuit.Clubs),
-                new Card(CardRank.Five, CardSuit.Spades),
-                new Card(CardRank.Six, CardSuit.Diamonds),
-                new Card(CardRank.Ace, CardSuit.Hearts)
-        ).isPresent());
-    }
-
-    @Test
     public void parseHighAce() {
         assertTrue(new Straight().parse(
                 new Card(CardRank.Ace, CardSuit.Hearts),
@@ -72,6 +61,17 @@ public class StraightTest {
                 new Card(CardRank.Queen, CardSuit.Clubs),
                 new Card(CardRank.Jack, CardSuit.Spades),
                 new Card(CardRank.Ten, CardSuit.Diamonds)
+        ).isPresent());
+    }
+
+    @Test
+    public void parseHighAceTwoWildcards() {
+        assertTrue(new Straight().parse(
+                new Card(CardRank.Two, CardSuit.Spades),
+                new Card(CardRank.Queen, CardSuit.Clubs),
+                new Card(CardRank.Two, CardSuit.Diamonds),
+                new Card(CardRank.Ace, CardSuit.Clubs),
+                new Card(CardRank.Ten, CardSuit.Hearts)
         ).isPresent());
     }
 

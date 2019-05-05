@@ -63,4 +63,15 @@ public class FullHouseTest {
                 new Card(CardRank.Three, CardSuit.Hearts)
         ).isPresent());
     }
+
+    @Test
+    public void parseIncorrect2() {
+        assertFalse(new FullHouse().parse(
+                new Card(CardRank.Five, CardSuit.Spades),
+                new Card(CardRank.Queen, CardSuit.Hearts),
+                new Card(CardRank.Five, CardSuit.Diamonds),
+                new Card(CardRank.Five, CardSuit.Clubs),
+                new Card(CardRank.Six, CardSuit.Diamonds)
+        ).isPresent());
+    }
 }

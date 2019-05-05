@@ -208,17 +208,8 @@ public class CardGroup {
                     }
                 }
 
-                // All andGroups matched
-
-                return Optional.of(cardResult);
-
-            }
-
-            // Try orGroups
-            for (CardGroup orGroup : orGroups) {
-                Optional<List<Card>> orCards = orGroup.find(cards);
-                if (orCards.isPresent()){
-                    return orCards;
+                if (passes){
+                    return Optional.of(cardResult);
                 }
             }
 
@@ -243,6 +234,14 @@ public class CardGroup {
                 if (currentIndex == -1) {
                     break outerProcess;
                 }
+            }
+        }
+
+        // Try orGroups
+        for (CardGroup orGroup : orGroups) {
+            Optional<List<Card>> orCards = orGroup.find(cards);
+            if (orCards.isPresent()){
+                return orCards;
             }
         }
 

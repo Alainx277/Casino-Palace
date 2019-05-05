@@ -16,8 +16,8 @@ public class StateMachine<T, R extends AbstractState<T>> {
     public void transition(R state){
         R oldState = this.state;
         this.state = state;
-        transitionEventHandlers.forEach(x -> x.handle(new TransitionEvent<>(this, oldState, state)));
         state.handleEnter((StateMachine<T, AbstractState<T>>) this);
+        transitionEventHandlers.forEach(x -> x.handle(new TransitionEvent<>(this, oldState, state)));
     }
 
     public R getState() {

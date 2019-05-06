@@ -17,17 +17,12 @@ public class BetMoney {
     private ArrayList<Integer> commitmoney = new ArrayList<>();
     private int result;
 
-    public ArrayList<Integer> getBetmoney() {
-        return betmoney;
-    }
-
     public void addChip(int money) {
         betmoney.add(money);
         commitmoney.add(money);
     }
 
     public int getMoney() {
-        //Here I'm here!!!!!
         result = 0;
         for (int i = 0; i < betmoney.size(); i++) {
             result += betmoney.get(i);

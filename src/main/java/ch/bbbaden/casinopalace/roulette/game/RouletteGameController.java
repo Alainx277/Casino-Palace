@@ -52,7 +52,7 @@ import javax.swing.JOptionPane;
  */
 public class RouletteGameController implements Initializable {
 
-    //My Attributes
+    //Meine Attribute
     Roulette roulette = new Roulette();
     Datenbank db = new Datenbank();
     BetMoney bm = new BetMoney();
@@ -67,26 +67,18 @@ public class RouletteGameController implements Initializable {
     @FXML
     private ImageView dollarimage;
     @FXML
-    private ImageView nodollarimage;
-    @FXML
     private ImageView kontoimage;
     @FXML
     private ImageView totaldollarimage;
-    @FXML
-    private ImageView totalnodollarimage;
 
     @FXML
     private Label einsatz;
     @FXML
     private Label gewinn;
     @FXML
-    private Label verlust;
-    @FXML
     private Label kontobestand;
     @FXML
     private Label totalgewinn;
-    @FXML
-    private Label totalverlust;
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc=" Table Buttons ">
     @FXML
@@ -403,84 +395,59 @@ public class RouletteGameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Images
-
-        //Icons
-        //Hand
         Image hand = new Image("/images/icons/hand.png");
         handimage.setImage(hand);
-        //Dollar
         Image dollar = new Image("/images/icons/dollar.png");
         dollarimage.setImage(dollar);
-        //NoDollar
-        Image nodollar = new Image("/images/icons/nodollar.png");
-        nodollarimage.setImage(nodollar);
-        //Konto
         Image konto = new Image("/images/icons/konto.png");
         kontoimage.setImage(konto);
-        //Total Dollar
         Image totaldollar = new Image("/images/icons/totaldollar.png");
         totaldollarimage.setImage(totaldollar);
-        //Total NoDollar
-        Image totalnodollar = new Image("/images/icons/totalnodollar.png");
-        totalnodollarimage.setImage(totalnodollar);
 
         //Roulette
         Image roulettei = new Image("/images/roulette_2.png");
         rouletteimage.setImage(roulettei);
 
-        //Chips
+        //Die Felderliste wird kreiert
         roulette.createTable();
         //Konto angeben
         kontobestand.setText("" + db.getKonto());
-        //Disable btnspin true
+        //Den Drehen-Knopf deaktivieren
         btnspin.setDisable(true);
     }
 
     @FXML
     private void clickSpin(ActionEvent event) throws InterruptedException {
-        //Disable btnspin true
+        //Den Drehen-Knopf aktivieren
         btnspin.setDisable(true);
-        //get the random number
+        //Die Zufallszahl ziehen
         roulette.drawNumber();
         shownum.setVisible(false);
         shownum.setText(roulette.getNumberDrawnAsText());
         shownum.setStyle("-fx-background-color: " + roulette.getNumberDrawnAsColour() + ";");
-        //Rotate Roulette
-        Thread thread;
+        shownum.setVisible(true);
+        //Roulette drehen
         RotateTransition imageRotate = new RotateTransition(seconds(1), rouletteimage);
-        imageRotate.setByAngle(1440);
-        imageRotate.setDuration(Duration.millis(4000));
+        imageRotate.setByAngle(360);
         imageRotate.play();
-        thread = new Thread() {
-            public void run() {
-                try {
-                    Thread.sleep(4000);
-                    shownum.setVisible(true);
-                } catch (Exception e) {
-                }
-            }
-        };
-        thread.setDaemon(true);
-        thread.start();
-        //Get Win or Loss
+        //Die Roulette wird gespielt und alle "Bets" werden gerechnet
         roulette.setReceivedMoney(fieldinput, rowcolumninput, new Field(shownum.getText(), roulette.getColorFromField(shownum.getText())));
-        //Update Stats
+        //Statistik aktualisieren
         gewinn.setText("" + roulette.getWonMoney());
         totalgewinn.setText("" + roulette.getAllWonMoney());
-        //Konto erhöhen
+        //Konto aktualisieren
         db.setKonto(db.getKonto() + roulette.getReceivedMoney());
         kontobestand.setText("" + db.getKonto());
-        //Clear all lists
+        //Der Roulette-Tisch räumen
         fieldinput.clear();
         rowcolumninput.clear();
-        //Clear All Chips
         for (int i = 0; i < chips.size(); i++) {
             anchorpane.getChildren().remove(chips.get(i));
         }
-        //Clear CommitMoney
+        //Der aktuelle Einsatz räumen
         bm.clearCommitMoney();
         einsatz.setText("" + bm.getCommitMoney());
-        //Clear BetMoney
+        //Die Hand räumen
         bm.clearBetMoney();
         hand.setText("" + bm.getMoney());
     }
@@ -488,10 +455,10 @@ public class RouletteGameController implements Initializable {
     // <editor-fold defaultstate="collapsed" desc=" Click Chips ">
     @FXML
     private void clickChip1(ActionEvent event) {
-        //BetMoney
+        //Den Wert auf die Hand nehmen
         bm.addChip(1);
         hand.setText("" + bm.getMoney());
-        //Chip value
+        //Den Wert des Chips
         chip.setValue(chip.getValue() + 1);
         chip.setText("" + chip.getValue());
         chip.setUrl("/images/chips/chip1.png");
@@ -545,19 +512,19 @@ public class RouletteGameController implements Initializable {
 
     @FXML
     private void clickFieldMouse(MouseEvent event) {
-        boolean illegal = false;
+        boolean isForbidden = false;
         if (bm.getMoney() > db.getKonto()) {
             JOptionPane d = new JOptionPane();
             d.showMessageDialog(null, "Du kannst nicht mehr als dein Kontostand setzen",
                     "HALT STOP", JOptionPane.ERROR_MESSAGE);
-            illegal = true;
+            isForbidden = true;
         } else if (chip.getValue() == 0) {
             JOptionPane d = new JOptionPane();
             d.showMessageDialog(null, "Du kannst nicht 0 setzen",
                     "HALT STOP", JOptionPane.ERROR_MESSAGE);
-            illegal = true;
+            isForbidden = true;
         } else {
-            //Disable btnspin false
+            //Den Drehen-Knopf deaktivieren
             btnspin.setDisable(false);
             //Chips einsetzen mit Bild und Text
             chiplb = new Label();
@@ -574,16 +541,14 @@ public class RouletteGameController implements Initializable {
             anchorpane.getChildren().add(chiplb);
             //Feld speichert Geld
             if (event.getSource() instanceof Button) {
-                Button theButton = (Button) event.getSource();
-                theButton.localToScreen(theButton.getBoundsInLocal());
-                //System.out.println(theButton.getText());
-                fieldinput.put(new Field(theButton.getText(), roulette.getColorFromField(theButton.getText())), bm.getMoney());
-                //System.out.println(bm.getMoney());
+                Button selectedbutton = (Button) event.getSource();
+                selectedbutton.localToScreen(selectedbutton.getBoundsInLocal());
+                fieldinput.put(new Field(selectedbutton.getText(), roulette.getColorFromField(selectedbutton.getText())), bm.getMoney());
             } else if (event.getSource() instanceof Label) {
-                Label theLabel = (Label) event.getSource();
-                theLabel.localToScreen(theLabel.getBoundsInLocal());
-                if (theLabel.getId().equals("cornerlabel")) {
-                    switch (GridPane.getRowIndex(theLabel)) {
+                Label selectedlabel = (Label) event.getSource();
+                selectedlabel.localToScreen(selectedlabel.getBoundsInLocal());
+                if (selectedlabel.getId().equals("cornerlabel")) {
+                    switch (GridPane.getRowIndex(selectedlabel)) {
                         case 1:
                             rowcolumninput.put(new int[]{0, 3}, bm.getMoney());
                             System.out.println("1");
@@ -613,29 +578,29 @@ public class RouletteGameController implements Initializable {
                     }
                 } else {
 
-                    if (GridPane.getRowIndex(theLabel) % 2 == 0 && GridPane.getColumnIndex(theLabel) % 2 == 1) {
-                        Button linkebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel), GridPane.getColumnIndex(theLabel) - 1, roultable);
-                        Button rechtebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel), GridPane.getColumnIndex(theLabel) + 1, roultable);
+                    if (GridPane.getRowIndex(selectedlabel) % 2 == 0 && GridPane.getColumnIndex(selectedlabel) % 2 == 1) {
+                        Button linkebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(selectedlabel), GridPane.getColumnIndex(selectedlabel) - 1, roultable);
+                        Button rechtebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(selectedlabel), GridPane.getColumnIndex(selectedlabel) + 1, roultable);
 
                         int[] buttons = new int[2];
                         buttons[0] = Integer.parseInt(linkebtn.getText());
                         buttons[1] = Integer.parseInt(rechtebtn.getText());
                         rowcolumninput.put(buttons, bm.getMoney());
                     }
-                    if (GridPane.getColumnIndex(theLabel) % 2 == 0 && GridPane.getRowIndex(theLabel) % 2 == 1) {
-                        Button obenbtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) - 1, GridPane.getColumnIndex(theLabel), roultable);
-                        Button untenbtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) + 1, GridPane.getColumnIndex(theLabel), roultable);
+                    if (GridPane.getColumnIndex(selectedlabel) % 2 == 0 && GridPane.getRowIndex(selectedlabel) % 2 == 1) {
+                        Button obenbtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(selectedlabel) - 1, GridPane.getColumnIndex(selectedlabel), roultable);
+                        Button untenbtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(selectedlabel) + 1, GridPane.getColumnIndex(selectedlabel), roultable);
 
                         int[] buttons = new int[2];
                         buttons[0] = Integer.parseInt(obenbtn.getText());
                         buttons[1] = Integer.parseInt(untenbtn.getText());
                         rowcolumninput.put(buttons, bm.getMoney());
-                    } else if (GridPane.getRowIndex(theLabel) % 2 == 1 && GridPane.getColumnIndex(theLabel) % 2 == 1) {
+                    } else if (GridPane.getRowIndex(selectedlabel) % 2 == 1 && GridPane.getColumnIndex(selectedlabel) % 2 == 1) {
 
-                        Button obenlinkebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) - 1, GridPane.getColumnIndex(theLabel) - 1, roultable);
-                        Button obenrechtebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) - 1, GridPane.getColumnIndex(theLabel) + 1, roultable);
-                        Button untenlinkebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) + 1, GridPane.getColumnIndex(theLabel) - 1, roultable);
-                        Button untenrechtebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(theLabel) + 1, GridPane.getColumnIndex(theLabel) + 1, roultable);
+                        Button obenlinkebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(selectedlabel) - 1, GridPane.getColumnIndex(selectedlabel) - 1, roultable);
+                        Button obenrechtebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(selectedlabel) - 1, GridPane.getColumnIndex(selectedlabel) + 1, roultable);
+                        Button untenlinkebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(selectedlabel) + 1, GridPane.getColumnIndex(selectedlabel) - 1, roultable);
+                        Button untenrechtebtn = (Button) this.getNodeByRowColumnIndex(GridPane.getRowIndex(selectedlabel) + 1, GridPane.getColumnIndex(selectedlabel) + 1, roultable);
 
                         int[] buttons = new int[4];
                         buttons[0] = Integer.parseInt(obenlinkebtn.getText());
@@ -648,7 +613,7 @@ public class RouletteGameController implements Initializable {
             }
 
         }
-        if (illegal == false) {
+        if (isForbidden == false) {
             //Kontostand aktualisieren
             db.setKonto(db.getKonto() - bm.getMoney());
             kontobestand.setText("" + db.getKonto());
@@ -656,10 +621,10 @@ public class RouletteGameController implements Initializable {
             //Aktueller Einsatz aktualisieren
             einsatz.setText("" + bm.getCommitMoney());
 
-            //Clear Chip value
+            //Den Wert des Chips aktualisieren
             chip.clearValue();
 
-            //Reset BetMoney
+            //Die Hand aktualisieren
             bm.clearBetMoney();
             hand.setText("" + bm.getMoney());
         }
@@ -674,7 +639,7 @@ public class RouletteGameController implements Initializable {
         hand.setText("" + bm.getMoney());
     }
 
-    // Code from https://stackoverflow.com/questions/20655024/javafx-gridpane-retrieve-specific-cell-content/20656861 [29.04.2019]
+    // Code von https://stackoverflow.com/questions/20655024/javafx-gridpane-retrieve-specific-cell-content/20656861 [29.04.2019]
     public Node getNodeByRowColumnIndex(int row, int column, GridPane gridPane) {
         Node result = new Button();
         ObservableList<Node> childrens = gridPane.getChildren();
@@ -695,217 +660,12 @@ public class RouletteGameController implements Initializable {
 
     @FXML
     private void clickInfoButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Information.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ProgramInfo.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
-        stage.setTitle("Info");
+        stage.setTitle("Benutzeranleitung");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
-// <editor-fold defaultstate="collapsed" desc=" Unnötigs Lösch Stuff ">
-
-    @FXML
-    private void clickField3(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField6(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField9(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField12(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField15(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField18(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField21(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField24(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField27(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField30(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField33(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField36(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField3to36(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField2(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField5(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField8(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField11(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField14(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField17(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField20(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField23(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField26(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField29(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField32(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField35(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField2to35(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField1(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField4(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField7(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField10(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField13(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField16(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField19(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField22(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField25(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField28(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField31(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField1to34(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField34(ActionEvent event) {
-    }
-
-    @FXML
-    private void clicklabel2514(MouseEvent event) {
-    }
-
-    @FXML
-    private void clickField0(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickField00(ActionEvent event) {
-    }
-
-    @FXML
-    private void click1to12(ActionEvent event) {
-    }
-
-    @FXML
-    private void click13to24(ActionEvent event) {
-    }
-
-    @FXML
-    private void click25to36(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickUngerade(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickGerade(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickSchwarz(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickRot(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickNiedrig(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickHoch(ActionEvent event) {
-    }
-// </editor-fold>
 }

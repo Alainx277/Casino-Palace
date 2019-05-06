@@ -48,57 +48,31 @@ public class ProgramInfoController implements Initializable {
     @FXML
     private Label titel1;
     @FXML
-    private Label titel2;
+    private Pane pane3;
+    @FXML
+    private Pane pane4;
+    @FXML
+    private Pane pane5;
+    @FXML
+    private Pane pane6;
+    @FXML
+    private Pane pane7;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        //Set image
         Image hand = new Image("/images/roulette_bedienungsanleitung.PNG");
         imageanleitung.setImage(hand);
-//        //Set Spinner
-//        SpinnerValueFactory<Integer> spinnervalue = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 7, 1);
-//        spinner.setValueFactory(spinnervalue);
-//        Thread thread = new Thread() {
-//            public void run() {
-//                do {
-//                    for (int i = 0; i < 8; i++) {
-//                        if (i == spinner.getValue()) {
-//                            switch (spinner.getValue()) {
-//                                case 1:
-////                                    titel11.setVisible(true);
-////                                    line11.setVisible(true);
-////                                    line12.setVisible(true);
-////                                    line13.setVisible(true);
-////                                    line14.setVisible(true);
-////                                    line21.setVisible(false);
-//                                    break;
-//                                case 2:
-////                                    titel11.setVisible(false);
-////                                    line11.setVisible(false);
-////                                    line12.setVisible(false);
-////                                    line13.setVisible(false);
-////                                    line14.setVisible(false);
-////                                    line21.setVisible(true);
-//                                    for (int j = 0; j < pane1.getChildren().size(); j++) {
-//                                        pane1.getChildren().get(j).setVisible(true);
-//                                        System.out.println(""+pane1.getChildren().get(j).isVisible());
-//                                    }
-//                                    break;
-//                                default:
-//                                    throw new AssertionError();
-//                            }
-//                        }
-//                    }
-//                } while (true);
-//
-//            }
-//        };
-//        thread.setDaemon(true);
-//        thread.start();
+    }
+
+    @FXML
+    private void exitLabel1(MouseEvent event) {
+        pane1.setVisible(false);
+        for (int i = 0; i < pane1.getChildren().size(); i++) {
+            pane1.getChildren().get(i).setVisible(false);
+        }
     }
 
     @FXML
@@ -107,16 +81,101 @@ public class ProgramInfoController implements Initializable {
         for (int i = 0; i < pane1.getChildren().size(); i++) {
             pane1.getChildren().get(i).setVisible(true);
         }
-        System.out.println("hallo1");
     }
 
     @FXML
-    private void exitLabel1(MouseEvent event) {
-        pane1.setVisible(false);
-        for (int i = 0; i < pane1.getChildren().size(); i++) {
-            System.out.println(""+ pane1.getChildren().get(i));
-            pane1.getChildren().get(i).setVisible(false);
+    private void exitLabel2(MouseEvent event) {
+        pane2.setVisible(false);
+        for (int i = 0; i < pane2.getChildren().size(); i++) {
+            pane2.getChildren().get(i).setVisible(false);
         }
-        System.out.println("hallo2");
+    }
+
+    @FXML
+    private void enterLabel2(MouseEvent event) {
+        pane2.setVisible(true);
+        for (int i = 0; i < pane2.getChildren().size(); i++) {
+            pane2.getChildren().get(i).setVisible(true);
+        }
+    }
+
+    @FXML
+    private void exitLabel5(MouseEvent event) {
+        pane5.setVisible(false);
+        for (int i = 0; i < pane5.getChildren().size(); i++) {
+            pane5.getChildren().get(i).setVisible(false);
+        }
+    }
+
+    @FXML
+    private void enterLabel5(MouseEvent event) {
+        pane5.setVisible(true);
+        for (int i = 0; i < pane5.getChildren().size(); i++) {
+            pane5.getChildren().get(i).setVisible(true);
+        }
+    }
+
+    @FXML
+    private void exitLabel6(MouseEvent event) {
+        pane6.setVisible(false);
+        for (int i = 0; i < pane6.getChildren().size(); i++) {
+            pane6.getChildren().get(i).setVisible(false);
+        }
+    }
+
+    @FXML
+    private void enterLabel6(MouseEvent event) {
+        pane6.setVisible(true);
+        for (int i = 0; i < pane6.getChildren().size(); i++) {
+            pane6.getChildren().get(i).setVisible(true);
+        }
+    }
+
+    @FXML
+    private void exitLabel4(MouseEvent event) {
+        pane4.setVisible(false);
+        for (int i = 0; i < pane4.getChildren().size(); i++) {
+            pane4.getChildren().get(i).setVisible(false);
+        }
+    }
+
+    @FXML
+    private void enterLabel4(MouseEvent event) {
+        pane4.setVisible(true);
+        for (int i = 0; i < pane4.getChildren().size(); i++) {
+            pane4.getChildren().get(i).setVisible(true);
+        }
+    }
+
+    @FXML
+    private void exitLabel3(MouseEvent event) {
+        pane3.setVisible(false);
+        for (int i = 0; i < pane3.getChildren().size(); i++) {
+            pane3.getChildren().get(i).setVisible(false);
+        }
+    }
+
+    @FXML
+    private void enterLabel3(MouseEvent event) {
+        pane3.setVisible(true);
+        for (int i = 0; i < pane3.getChildren().size(); i++) {
+            pane3.getChildren().get(i).setVisible(true);
+        }
+    }
+
+    @FXML
+    private void exitLabel7(MouseEvent event) {
+        pane7.setVisible(false);
+        for (int i = 0; i < pane7.getChildren().size(); i++) {
+            pane7.getChildren().get(i).setVisible(false);
+        }
+    }
+
+    @FXML
+    private void enterLabel7(MouseEvent event) {
+        pane7.setVisible(true);
+        for (int i = 0; i < pane7.getChildren().size(); i++) {
+            pane7.getChildren().get(i).setVisible(true);
+        }
     }
 }

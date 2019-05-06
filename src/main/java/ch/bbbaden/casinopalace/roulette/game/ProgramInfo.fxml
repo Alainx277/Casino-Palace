@@ -45,23 +45,128 @@
                   </Label>
                </children>
             </Pane>
+            <Pane id="panean" fx:id="pane2" layoutX="59.0" layoutY="351.0" prefHeight="103.0" prefWidth="480.0" visible="false">
+               <children>
+                  <Label id="paneanleitung" layoutX="14.0" layoutY="14.0" text="2) Chips wählen:" visible="false">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" layoutX="25.0" layoutY="39.0" text="Chips können bei einen Klick in die Hand gesetzt werden." visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" layoutX="25.0" layoutY="58.0" prefHeight="18.0" prefWidth="446.0" text="Man kann alle beliebige Chips zusammenaddieren, der Total Wert wird unten " visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" layoutX="25.0" layoutY="72.0" text="links angezeigt." visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane id="panean" fx:id="pane3" layoutX="323.0" layoutY="461.0" prefHeight="103.0" prefWidth="480.0" visible="false">
+               <children>
+                  <Label id="paneanleitung" layoutX="14.0" layoutY="14.0" text="3) Deine Hand:" visible="false">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" layoutX="25.0" layoutY="39.0" text="Das Total der gewählten Chips wird hier angegeben." visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane id="panean" fx:id="pane4" layoutX="323.0" layoutY="461.0" prefHeight="103.0" prefWidth="480.0" visible="false">
+               <children>
+                  <Label id="paneanleitung" layoutX="14.0" layoutY="14.0" text="4) Die Hand zurücksetzen:" visible="false">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" layoutX="25.0" layoutY="39.0" text="Beim Knopfdruck wird die Hand zurückgesetzt." visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" layoutX="25.0" layoutY="58.0" prefHeight="19.0" prefWidth="493.0" text="Es ist nötig, wenn man mehr auf der Hand besitzt als beim aktuellen" visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" layoutX="25.0" layoutY="72.0" prefHeight="19.0" prefWidth="288.0" text="Kontostand." visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane id="panean" fx:id="pane5" layoutX="110.0" layoutY="76.0" prefHeight="103.0" prefWidth="480.0" visible="false">
+               <children>
+                  <Label id="paneanleitung" layoutX="14.0" layoutY="14.0" text="5) Die Felder wählen:" visible="false">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" layoutX="25.0" layoutY="39.0" prefHeight="19.0" prefWidth="446.0" text="Beim Klicken eines Bereichs wird die Hand auf das Feld gefügt." visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane id="panean" fx:id="pane6" layoutX="323.0" layoutY="461.0" prefHeight="103.0" prefWidth="480.0" visible="false">
+               <children>
+                  <Label id="paneanleitung" layoutX="14.0" layoutY="14.0" text="6) Die Roulette drehen:" visible="false">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" layoutX="25.0" layoutY="39.0" prefHeight="19.0" prefWidth="446.0" text="Wenn mindestens 1 Chip auf einem Bereich liegt, kann die Roulette gedreht" visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" layoutX="25.0" layoutY="58.0" prefHeight="19.0" prefWidth="459.0" text="werden." visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane id="panean" fx:id="pane7" layoutX="41.0" layoutY="31.0" prefHeight="73.0" prefWidth="480.0" visible="false">
+               <children>
+                  <Label id="paneanleitung" layoutX="14.0" layoutY="14.0" text="7) Die gezogene Zahl:" visible="false">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="paneanleitung" layoutX="25.0" layoutY="39.0" prefHeight="19.0" prefWidth="446.0" text="Dies ist die gezogene Zahl, die beim Drehen erscheint." visible="false">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </Pane>
-      <Label id="labelanleitung" layoutX="237.0" layoutY="468.0" prefHeight="18.0" prefWidth="14.0" text="2" />
-      <Label id="labelanleitung" layoutX="221.0" layoutY="192.0" prefHeight="18.0" prefWidth="14.0" text="5" />
+      <Label id="labelanleitung" layoutX="237.0" layoutY="468.0" onMouseEntered="#enterLabel2" onMouseExited="#exitLabel2" prefHeight="18.0" prefWidth="14.0" text="2" />
+      <Label id="labelanleitung" layoutX="221.0" layoutY="192.0" onMouseEntered="#enterLabel5" onMouseExited="#exitLabel5" prefHeight="18.0" prefWidth="14.0" text="5" />
       <Label id="labelanleitung" layoutX="708.0" layoutY="26.0" onMouseEntered="#enterLabel1" onMouseExited="#exitLabel1" prefHeight="18.0" prefWidth="14.0" text="1" />
-      <Label id="labelanleitung" layoutX="918.0" layoutY="477.0" prefHeight="18.0" prefWidth="14.0" text="6" />
-      <Label id="labelanleitung" layoutX="918.0" layoutY="510.0" prefHeight="18.0" prefWidth="14.0" text="4" />
-      <Label id="labelanleitung" layoutX="918.0" layoutY="540.0" prefHeight="18.0" prefWidth="14.0" text="3" />
-      <Label id="labelanleitung" layoutX="625.0" layoutY="67.0" prefHeight="18.0" prefWidth="14.0" text="7" />
-      <Pane fx:id="pane2" layoutX="565.0" layoutY="573.0" prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Label id="paneanleitung" fx:id="titel2" layoutX="-3.0" layoutY="37.0" text="2) Chips, die gewählt werden können:">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
+      <Label id="labelanleitung" layoutX="918.0" layoutY="477.0" onMouseEntered="#enterLabel6" onMouseExited="#exitLabel6" prefHeight="18.0" prefWidth="14.0" text="6" />
+      <Label id="labelanleitung" layoutX="918.0" layoutY="510.0" onMouseEntered="#enterLabel4" onMouseExited="#exitLabel4" prefHeight="18.0" prefWidth="14.0" text="4" />
+      <Label id="labelanleitung" layoutX="918.0" layoutY="540.0" onMouseEntered="#enterLabel3" onMouseExited="#exitLabel3" prefHeight="18.0" prefWidth="14.0" text="3" />
+      <Label id="labelanleitung" layoutX="625.0" layoutY="67.0" onMouseEntered="#enterLabel7" onMouseExited="#exitLabel7" prefHeight="18.0" prefWidth="14.0" text="7" />
+      <Label layoutX="209.0" layoutY="638.0" style="-fx-text-fill: #ffffff;" text="Mit dem Mauszeiger über die Zahlen in den weissen Kästchen fahren.">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

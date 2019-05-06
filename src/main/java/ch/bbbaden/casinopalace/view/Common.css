@@ -23,6 +23,10 @@ and open the template in the editor.
     -fx-border-color: #4CAF50;
 }
 
+.light-text{
+    -fx-text-fill: white;
+}
+
 .background-image{
     -fx-background-image: url("/images/Bg2.jpg");
 }

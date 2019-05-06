@@ -5,19 +5,13 @@
  */
 package ch.bbbaden.casinopalace.roulette.game;
 
-import ch.bbbaden.casinopalace.roulette.menu.Roulette_MenuController;
-import java.awt.Color;
-import static java.awt.Color.red;
-import java.awt.MouseInfo;
-import java.awt.Paint;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import ch.bbbaden.casinopalace.common.Controller;
 import javafx.animation.RotateTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,14 +29,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Duration;
+
 import static javafx.util.Duration.seconds;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -50,11 +41,11 @@ import javax.swing.JOptionPane;
  *
  * @author gabri
  */
-public class RouletteGameController implements Initializable {
+public class RouletteGameController extends Controller implements Initializable {
 
     //Meine Attribute
     Roulette roulette = new Roulette();
-    Datenbank db = new Datenbank();
+    Datenbank db;
     BetMoney bm = new BetMoney();
     Chip chip = new Chip();
     HashMap<Field, Integer> fieldinput = new HashMap<>();
@@ -394,6 +385,8 @@ public class RouletteGameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        db = new Datenbank(getStateManager().getCasino());
+
         //Images
         Image hand = new Image("/images/icons/hand.png");
         handimage.setImage(hand);
@@ -438,16 +431,16 @@ public class RouletteGameController implements Initializable {
         //Konto aktualisieren
         db.setKonto(db.getKonto() + roulette.getReceivedMoney());
         kontobestand.setText("" + db.getKonto());
-        //Der Roulette-Tisch räumen
+        //Der Roulette-Tisch rï¿½umen
         fieldinput.clear();
         rowcolumninput.clear();
         for (int i = 0; i < chips.size(); i++) {
             anchorpane.getChildren().remove(chips.get(i));
         }
-        //Der aktuelle Einsatz räumen
+        //Der aktuelle Einsatz rï¿½umen
         bm.clearCommitMoney();
         einsatz.setText("" + bm.getCommitMoney());
-        //Die Hand räumen
+        //Die Hand rï¿½umen
         bm.clearBetMoney();
         hand.setText("" + bm.getMoney());
     }

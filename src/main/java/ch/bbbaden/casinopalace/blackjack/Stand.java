@@ -49,9 +49,9 @@ public class Stand implements BJState {
                     hbox.getChildren().add(croupierView);
                 } else {
                     if (bj.getWorthCroupier() > 16) {
-                        //deceisive
-                        //Possibly switch + outsource (Single Responsibility
+                        bj.getOutComeOfFirstSplit();
                         bj.checkOutcome();
+
                         break;
                     } else {
                         Karte k = bj.takeCard();

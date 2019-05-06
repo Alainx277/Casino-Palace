@@ -18,10 +18,12 @@ public class Split implements BJState {
 
     private HBox hand1;
     private HBox newHand2;
+    private Label lblNewBet;
 
     @Override
     public void handleHit(BlackJack bj) {
         if (bj.getSplitPointeur() >= 21 || bj.getSplitPointeur1() >= 21) {
+            newHand2.setVisible(false);
             bj.setState((BJState) new Stand());
         } else {
             for (int i = 0; i < 2; i++) {
@@ -82,8 +84,10 @@ public class Split implements BJState {
         //split
         hand1 = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("hand1")).findAny().get();
         Label lbl = (Label) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("betLbl")).findAny().get();
+        lblNewBet = (Label) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("lblNewBet")).findAny().get();
         ImageView imgViewChips = (ImageView) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("betImgView")).findAny().get();
-        newHand2 = new HBox();
+        newHand2 = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("newHand2")).findAny().get();
+        ImageView chipsView = (ImageView) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("chipsView")).findAny().get();
         //getting Image of second card
 
         ImageView secondCardView = (ImageView) hand1.getChildren().get(1);
@@ -95,11 +99,11 @@ public class Split implements BJState {
 
         //clear hand1
         hand1.getChildren().clear();
+        newHand2.getChildren().clear();
 
         //add to hand
         hand1.getChildren().add(firstCardView);
         newHand2.getChildren().add(secondCardView);
-        bj.getAp().getChildren().add(newHand2);
 
         //adjust Hboxes
         hand1.setMaxWidth(200);
@@ -110,11 +114,11 @@ public class Split implements BJState {
 
         //new Bet
         lbl.setText(Integer.toString(bj.getBet() / 2));
-        Label lblNewBet = new Label(Integer.toString(bj.getBet() / 2));
-        bj.getAp().getChildren().add(lblNewBet);
+        lblNewBet.setText(Integer.toString(bj.getBet() / 2));
+        lblNewBet.setVisible(true);
+        chipsView.setVisible(true);
 
         //Adjust betLabels
-        ImageView chipsView = new ImageView();
         chipsView.setImage(new Image("/images/chips.png"));
         chipsView.setFitWidth(40);
         chipsView.setFitHeight(40);
@@ -124,13 +128,11 @@ public class Split implements BJState {
         chipsView.setLayoutY(lbl.getLayoutY());
         imgViewChips.setLayoutX(newHand2.getLayoutX());
         imgViewChips.setLayoutY(lbl.getLayoutY());
-        
-        
+
         lbl.setLayoutX(chipsView.getLayoutX() + 70);
         lbl.setLayoutY(lbl.getLayoutY() + 10);
         lblNewBet.setLayoutX(imgViewChips.getLayoutX() + 70);
         lblNewBet.setLayoutY(lbl.getLayoutY());
-        bj.getAp().getChildren().add(chipsView);
 
         //Add to splitWorth
         bj.setSplitPointeur(bj.getcoP().get(0).getCount());

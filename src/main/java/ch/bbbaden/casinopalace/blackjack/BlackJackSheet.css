@@ -25,3 +25,6 @@ and open the template in the editor.
 #Rules{
     -fx-font-size: 13px;
 } 
+.EndLbls{
+    -fx-font-size: 20px;
+}

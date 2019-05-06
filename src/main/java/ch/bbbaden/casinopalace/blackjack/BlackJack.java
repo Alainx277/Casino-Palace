@@ -17,10 +17,12 @@ import javafx.scene.layout.AnchorPane;
  */
 public class BlackJack {
 
-    private BJState state;
-
     private int bet;
     private int insuranceBet;
+    private int result;
+    private int result1;
+    private int change;
+    private int split = 0;
 
     private final int cardStack = 52;
 
@@ -54,8 +56,20 @@ public class BlackJack {
 
     }
 
+    public int getResult() {
+        return result;
+    }
+
     public ArrayList<Karte> getcoP() {
         return coP;
+    }
+
+    public int getChange() {
+        return change;
+    }
+
+    public int getResult1() {
+        return result1;
     }
 
     public void setcoP(Karte cardsOfPointeur) {
@@ -116,6 +130,7 @@ public class BlackJack {
         int i = r.nextInt(completeStack.size());
         retVal = completeStack.get(i);
         completeStack.remove(i);
+        System.out.println(completeStack.size());
         return retVal;
     }
 
@@ -538,44 +553,86 @@ public class BlackJack {
         return b;
     }
 
-    public void checkOutcome() {
-        String retVal = "";
+    public void getOutComeOfFirstSplit() {
+        change = 0;
+        result = 0;
+        result1 = 0;
+        System.out.println("" + getWorthCroupier());
+        System.out.println("" + getSplitPointeur());
+        System.out.println("" + getSplitPointeur1());
+
         if (getSplitPointeur() != 0) {
             if (getSplitPointeur() == 21) {
+                int e = bet / 2;
+                change = e * 3 / 2;
+                result = 2;
                 System.out.println("BlackJack first split");
             } else if (getSplitPointeur() > 21) {
                 System.out.println("Bust first split");
+                result = 0;
+                change -= bet / 2;
             } else if (getSplitPointeur() < 21) {
                 if (getWorthCroupier() > 21) {
                     System.out.println("Croupier Busted");
+                    result = 2;
+                    change = bet;
                 } else {
                     if (getSplitPointeur() > getWorthCroupier()) {
                         System.out.println("Victory first split");
+                        result = 2;
+                        change = bet;
                     } else if (getSplitPointeur() < getWorthCroupier()) {
                         System.out.println("Loss first split");
+                        result = 0;
+                        change -= bet / 2;
                     } else {
                         System.out.println("Undeceided first split");
+                        result = 1;
+                        change = 0;
                     }
                 }
             }
             if (getSplitPointeur1() == 21) {
                 System.out.println("BlackJack second split");
+                int e = bet / 2;
+                change += e * 3 / 2;
+                result1 = 2;
             } else if (getSplitPointeur1() > 21) {
                 System.out.println("Bust second split");
+                result1 = 0;
+                change -= bet / 2;
             } else if (getSplitPointeur1() < 21) {
-                if (getSplitPointeur1() > getWorthCroupier()) {
+                if (getWorthCroupier() > 21) {
+                    System.out.println("Croupier busted");
+                    result1 = 2;
+                    change += bet;
+                } else if (getSplitPointeur1() > getWorthCroupier()) {
                     System.out.println("Victory second split");
-                } else {
+                    result1 = 2;
+                    change += bet;
+                } else if (getSplitPointeur1() < getWorthCroupier()) {
                     System.out.println("Loss second split");
+                    result1 = 0;
+                    change -= bet / 2;
+                } else {
+                    System.out.println("Undeceided second split");
+                    result1 = 1;
+                    change += 0;
                 }
             }
+        }
+    }
 
-        } else {
-
+    public void checkOutcome() {
+        if (change == 0) {
             if (getWorthpointeur() == 21) {
                 //BlackJack
                 System.out.println("BlackJack");
+                bet += bet * 3 / 2;
+                result = 2;
+                change = bet;
                 if (getCardAmountpointeur() > 3) {
+                    System.out.println("regular BlackJack");
                 } else if (getCardAmountpointeur() == 3) {
                     //Possibly Triple Seven
                     for (Karte k : getcoP()) {
@@ -609,32 +666,41 @@ public class BlackJack {
                 }
             } else if (getWorthpointeur() > 21) {
                 //Bust
+                result = 0;
+                change = bet;
                 System.out.println("Bust");
                 System.out.println("Ihr Verlust: " + getBet());
             } else if (getCardAmountpointeur() < 21) {
                 //check if greater than croupier
                 if (getWorthCroupier() > 21) {
                     //Croupier busted
+                    result = 2;
+                    change = bet * 2;
                     System.out.println("Victory");
                     System.out.println("Ihr Gewinn: " + getBet() * 2);
                 } else {
                     if (getWorthCroupier() > getWorthpointeur()) {
                         //croupier winner
+                        result = 0;
+                        change = bet;
                         System.out.println("Loss");
                         System.out.println("Ihr Verlust: " + getBet());
                     } else if (getWorthCroupier() == getWorthpointeur()) {
                         //undeceided
+                        result = 1;
+                        change = bet;
                         System.out.println("Undeceided");
                         System.out.println("Ihr Gewinn: " + 0);
                     } else {
                         //pointeur winner
+                        result = 2;
+                        change = bet * 2;
                         System.out.println("Victory");
                         System.out.println("Ihr Gewinn: " + getBet() * 2);
                     }
                 }
             }
         }
-
     }
 
 }

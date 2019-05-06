@@ -17,16 +17,12 @@ public class DatabaseStorage implements Storage {
     public DatabaseStorage(String endpoint, String dbname, String user, String password) throws SQLException {
         connection = DriverManager.getConnection("jdbc:mysql://" + endpoint + "/" + dbname + "?createDatabaseIfNotExist=true", user, password);
 
-        // Check for missing tables
-        DatabaseMetaData metaData = connection.getMetaData();
-        if (!metaData.getTables(null, null, "Player", null).next()) {
-            Statement statement = connection.createStatement();
-            statement.execute("CREATE TABLE `" + dbname +"`.`Player` ( `Player_ID` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(50) NOT NULL , `hash` BINARY(60) NOT NULL , `money` DECIMAL(12,4) NOT NULL , `admin` BOOLEAN NOT NULL , PRIMARY KEY (`Player_ID`)) ENGINE = InnoDB;");
-        }
-        if (!metaData.getTables(null, null, "Statistic", null).next()) {
-            Statement statement = connection.createStatement();
-            statement.execute("CREATE TABLE `" + dbname +"`.`Statistic` ( `Statistic_ID` INT NOT NULL AUTO_INCREMENT , `Player_ID` INT NOT NULL , `game` ENUM('poker','blackjack','yatzy','roulette') NOT NULL , `name` VARCHAR(50) NOT NULL , `value` DECIMAL(12,4) NOT NULL , PRIMARY KEY (`Statistic_ID`), FOREIGN KEY (`Player_ID`) REFERENCES Player(Player_ID)) ENGINE = InnoDB;");
-        }
+        // Ensure tables exist
+        Statement statement = connection.createStatement();
+        statement.execute("CREATE TABLE IF NOT EXISTS `" + dbname + "`.`Player` ( `Player_ID` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(50) NOT NULL , `hash` BINARY(60) NOT NULL , `money` DECIMAL(12,4) NOT NULL , `admin` BOOLEAN NOT NULL , PRIMARY KEY (`Player_ID`)) ENGINE = InnoDB;");
+        statement = connection.createStatement();
+        statement.execute("CREATE TABLE IF NOT EXISTS `" + dbname + "`.`Statistic` ( `Statistic_ID` INT NOT NULL AUTO_INCREMENT , `Player_ID` INT NOT NULL , `game` ENUM('poker','blackjack','yatzy','roulette') NOT NULL , `name` VARCHAR(50) NOT NULL , `value` DECIMAL(12,4) NOT NULL , PRIMARY KEY (`Statistic_ID`), FOREIGN KEY (`Player_ID`) REFERENCES Player(Player_ID)) ENGINE = InnoDB;");
+
     }
 
     @Override
@@ -54,7 +50,7 @@ public class DatabaseStorage implements Storage {
             while (resultSet.next()) {
                 Game game = Game.valueOf(resultSet.getString(1));
                 Stats stat = stats.stream().filter(x -> x.getGame() == game).findFirst().orElse(new Stats(game));
-                if (!stats.contains(stat)){
+                if (!stats.contains(stat)) {
                     stats.add(stat);
                 }
 
@@ -78,7 +74,7 @@ public class DatabaseStorage implements Storage {
                     check.setString(3, entry.getKey());
                     boolean exists = check.executeQuery().next();
 
-                    if (exists){
+                    if (exists) {
                         PreparedStatement statement = connection.prepareStatement("UPDATE statistic SET value = ? FROM statistic INNER JOIN player ON statistic.Player_ID = player.Player_ID WHERE player.name = ? AND statistic.game = ? AND statistic.name = ?");
                         statement.setBigDecimal(1, entry.getValue());
                         statement.setString(2, user.getUsername());
@@ -147,7 +143,7 @@ public class DatabaseStorage implements Storage {
             statement.setBigDecimal(1, user.getChips());
             statement.setString(2, user.getUsername());
             statement.execute();
-            if (statement.getUpdateCount() == 0){
+            if (statement.getUpdateCount() == 0) {
                 throw new UserDoesNotExistException();
             }
 

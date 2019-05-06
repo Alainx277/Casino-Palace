@@ -1,5 +1,6 @@
 package ch.bbbaden.casinopalace.common;
 
+import ch.bbbaden.casinopalace.common.exception.UserDoesNotExistException;
 import ch.bbbaden.casinopalace.common.exception.UserExistsException;
 
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class Casino {
         return storage.getUsers();
     }
 
-    public Stats getStatsForUser(User user) {
+    public List<Stats> getStatsForUser(User user) throws IOException {
         return storage.getStatsForUser(user);
     }
 
@@ -40,5 +41,9 @@ public class Casino {
         User user = userFactory.createUser(username, password);
         storage.addUser(user);
         return user;
+    }
+
+    public void updateUser(User user) throws IOException, UserDoesNotExistException {
+        storage.updateUser(user);
     }
 }

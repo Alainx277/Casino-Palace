@@ -23,7 +23,13 @@ public interface Storage {
      * @param user The user to get the stats for
      * @return The users stats or null if the stats for the user don't exist
      */
-    Stats getStatsForUser(User user);
+    List<Stats> getStatsForUser(User user) throws IOException;
+
+    /**
+     * @param user The user to update the stats for
+     * @param stats The values to update
+     */
+    void updateStatsForUser(User user, List<Stats> stats) throws IOException;
 
     /**
      * @param username The user's username

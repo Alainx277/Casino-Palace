@@ -51,9 +51,15 @@ public class LoginController extends Controller {
                 return;
             }
 
-            getStateManager().getCasino().setCurrentUser(userFromAuthentication.get());
+            User user = userFromAuthentication.get();
+            getStateManager().getCasino().setCurrentUser(user);
 
-            getStateManager().getState().handleCasino(getStateManager());
+            if (user.isAdmin()){
+                getStateManager().getState().handleAdmin(getStateManager());
+            } else {
+                getStateManager().getState().handleCasino(getStateManager());
+            }
+
         } catch (Exception ex) {
             // TODO: Notify user
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

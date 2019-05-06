@@ -40,8 +40,6 @@ public class Insurance implements BJState {
 
         ImageView imgView = new ImageView();
 
-        System.out.println(bj.getcoC().size());
-
         Karte k = bj.takeCard();
         if (bj.getWorthCroupier() > 10 && k.getNumber() == 14) {
             k.setCount(1);
@@ -58,8 +56,12 @@ public class Insurance implements BJState {
         if (bj.getWorthCroupier() == 21) {
 
             System.out.println("BLACK JACK BUT INSURED");
+            System.out.println("Ihr Gewinn: " + bj.getInsuranceBet() + bj.getInsuranceBet() * 3 / 2);
             //pay off
 
+        }else{
+            System.out.println("USELESS INSURANCE");
+            System.out.println("Your Loss : " + bj.getInsuranceBet());
         }
         bj.setState((BJState) new Stand());
 

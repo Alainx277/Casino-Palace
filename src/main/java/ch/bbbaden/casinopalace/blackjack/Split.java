@@ -5,7 +5,6 @@
  */
 package ch.bbbaden.casinopalace.blackjack;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,11 +21,9 @@ public class Split implements BJState {
 
     @Override
     public void handleHit(BlackJack bj) {
-        if (bj.getSplitPointeur() > 21 || bj.getSplitPointeur1() > 21) {
-            //disable buttons
+        if (bj.getSplitPointeur() >= 21 || bj.getSplitPointeur1() >= 21) {
             bj.setState((BJState) new Stand());
         } else {
-            System.out.println("HELLLO");
             for (int i = 0; i < 2; i++) {
                 ImageView imgView = new ImageView();
                 Image img = null;
@@ -121,6 +118,8 @@ public class Split implements BJState {
         chipsView.setImage(new Image("/images/chips.png"));
         chipsView.setFitWidth(40);
         chipsView.setFitHeight(40);
+        imgViewChips.setFitHeight(40);
+        imgViewChips.setFitWidth(40);
         chipsView.setLayoutX(hand1.getLayoutX());
         chipsView.setLayoutY(lbl.getLayoutY());
         imgViewChips.setLayoutX(newHand2.getLayoutX());

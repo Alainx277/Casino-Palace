@@ -27,10 +27,10 @@ public class Stand implements BJState {
         //make croupier pick
         HBox hbox = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("croupier")).findAny().get();
         if (counter == 0) {
-            if(bj.getCardAmountCroupier() < 2){
+            if (bj.getCardAmountCroupier() < 2) {
                 hbox.getChildren().remove(1);
             }
-            
+
             for (int i = 0; i < 21; i++) {
 
                 counter++;
@@ -39,7 +39,6 @@ public class Stand implements BJState {
                     if (bj.getWorthCroupier() > 10 && k.getNumber() == 14) {
                         k.setCount(1);
                     }
-                    System.out.println(k.getCount());
 
                     bj.handleNewCard(0, k);
 
@@ -50,6 +49,9 @@ public class Stand implements BJState {
                     hbox.getChildren().add(croupierView);
                 } else {
                     if (bj.getWorthCroupier() > 16) {
+                        //deceisive
+                        //Possibly switch + outsource (Single Responsibility
+                        bj.checkOutcome();
                         break;
                     } else {
                         Karte k = bj.takeCard();

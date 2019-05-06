@@ -20,6 +20,7 @@ public class BlackJack {
     private BJState state;
 
     private int bet;
+    private int insuranceBet;
 
     private final int cardStack = 52;
 
@@ -83,6 +84,14 @@ public class BlackJack {
 
     public void setcoC(Karte cardsOfCroupier) {
         coC.add(cardsOfCroupier);
+    }
+
+    public void setInsuranceBet(int insuranceBet) {
+        this.insuranceBet = insuranceBet;
+    }
+
+    public int getInsuranceBet() {
+        return insuranceBet;
     }
 
     public AnchorPane getAp() {
@@ -527,6 +536,105 @@ public class BlackJack {
             b = true;
         }
         return b;
+    }
+
+    public void checkOutcome() {
+        String retVal = "";
+        if (getSplitPointeur() != 0) {
+            if (getSplitPointeur() == 21) {
+                System.out.println("BlackJack first split");
+            } else if (getSplitPointeur() > 21) {
+                System.out.println("Bust first split");
+            } else if (getSplitPointeur() < 21) {
+                if (getWorthCroupier() > 21) {
+                    System.out.println("Croupier Busted");
+                } else {
+                    if (getSplitPointeur() > getWorthCroupier()) {
+                        System.out.println("Victory first split");
+                    } else if (getSplitPointeur() < getWorthCroupier()) {
+                        System.out.println("Loss first split");
+                    } else {
+                        System.out.println("Undeceided first split");
+                    }
+                }
+            }
+            if (getSplitPointeur1() == 21) {
+                System.out.println("BlackJack second split");
+            } else if (getSplitPointeur1() > 21) {
+                System.out.println("Bust second split");
+            } else if (getSplitPointeur1() < 21) {
+                if (getSplitPointeur1() > getWorthCroupier()) {
+                    System.out.println("Victory second split");
+                } else {
+                    System.out.println("Loss second split");
+                }
+            }
+
+        } else {
+
+            if (getWorthpointeur() == 21) {
+                //BlackJack
+                System.out.println("BlackJack");
+                if (getCardAmountpointeur() > 3) {
+                } else if (getCardAmountpointeur() == 3) {
+                    //Possibly Triple Seven
+                    for (Karte k : getcoP()) {
+                        if (k.getCount() != 7) {
+                            //Not Triple seven ? Regular BlackJack
+                            System.out.println("Regular BlackJack");
+                        } else {
+                            System.out.println("Ihr Gewinn: " + getBet() + getBet() * 3 / 2);
+                            System.out.println("Triple Seven");
+                        }
+                    }
+                } else if (getCardAmountpointeur() == 2) {
+                    //Possibly BlackJack
+                    if (getcoP().get(0).getCount() == 11) {
+                        //possibly a blackjack
+                        if (getcoP().get(1).getNumber() == 11) {
+                            //BLACKJACK
+                            System.out.println("Actual BlackJack");
+                            System.out.println("Ihr Gewinn: " + getBet() + getBet() * 3 / 2);
+                        } else {
+                            //regular blackJack
+                            System.out.println("Regular BlackJack");
+                            System.out.println("Ihr Gewinn: " + getBet() + getBet() * 3 / 2);
+                        }
+                    } else {
+                        //Regular BlackJack
+                        System.out.println("Regular BlackJack");
+                        System.out.println("Ihr Gewinn: " + getBet() + getBet() * 3 / 2);
+                    }
+
+                }
+            } else if (getWorthpointeur() > 21) {
+                //Bust
+                System.out.println("Bust");
+                System.out.println("Ihr Verlust: " + getBet());
+            } else if (getCardAmountpointeur() < 21) {
+                //check if greater than croupier
+                if (getWorthCroupier() > 21) {
+                    //Croupier busted
+                    System.out.println("Victory");
+                    System.out.println("Ihr Gewinn: " + getBet() * 2);
+                } else {
+                    if (getWorthCroupier() > getWorthpointeur()) {
+                        //croupier winner
+                        System.out.println("Loss");
+                        System.out.println("Ihr Verlust: " + getBet());
+                    } else if (getWorthCroupier() == getWorthpointeur()) {
+                        //undeceided
+                        System.out.println("Undeceided");
+                        System.out.println("Ihr Gewinn: " + 0);
+                    } else {
+                        //pointeur winner
+                        System.out.println("Victory");
+                        System.out.println("Ihr Gewinn: " + getBet() * 2);
+                    }
+                }
+            }
+        }
+
     }
 
 }

@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 #AnchorPane{
-    -fx-font: Arial;
+    -fx-font-family: Arial;
 }
 .button{
     -fx-background-color: #4CAF50; /* Green */
@@ -21,4 +21,8 @@ and open the template in the editor.
 }
 .text-field{
     -fx-border-color: #4CAF50;
+}
+
+.background-image{
+    -fx-background-image: url("/images/Bg2.jpg");
 }

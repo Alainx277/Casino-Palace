@@ -15,7 +15,18 @@ public class DatabaseStorage implements Storage {
     private Connection connection;
 
     public DatabaseStorage(String endpoint, String dbname, String user, String password) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://" + endpoint + "/" + dbname, user, password);
+        connection = DriverManager.getConnection("jdbc:mysql://" + endpoint + "/" + dbname + "?createDatabaseIfNotExist=true", user, password);
+
+        // Check for missing tables
+        DatabaseMetaData metaData = connection.getMetaData();
+        if (!metaData.getTables(null, null, "Player", null).next()) {
+            Statement statement = connection.createStatement();
+            statement.execute("CREATE TABLE `" + dbname +"`.`Player` ( `Player_ID` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(50) NOT NULL , `hash` BINARY(60) NOT NULL , `money` DECIMAL(12,4) NOT NULL , `admin` BOOLEAN NOT NULL , PRIMARY KEY (`Player_ID`)) ENGINE = InnoDB;");
+        }
+        if (!metaData.getTables(null, null, "Statistic", null).next()) {
+            Statement statement = connection.createStatement();
+            statement.execute("CREATE TABLE `" + dbname +"`.`Statistic` ( `Statistic_ID` INT NOT NULL AUTO_INCREMENT , `Player_ID` INT NOT NULL , `game` ENUM('poker','blackjack','yatzy','roulette') NOT NULL , `name` VARCHAR(50) NOT NULL , `value` DECIMAL(12,4) NOT NULL , PRIMARY KEY (`Statistic_ID`), FOREIGN KEY (`Player_ID`) REFERENCES Player(Player_ID)) ENGINE = InnoDB;");
+        }
     }
 
     @Override

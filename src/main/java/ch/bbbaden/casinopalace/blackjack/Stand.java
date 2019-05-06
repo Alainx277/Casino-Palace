@@ -35,6 +35,10 @@ public class Stand implements BJState {
 
                 counter++;
                 if (bj.getCardAmountCroupier() == 1) {
+                    if (bj.getCompleteStack().isEmpty()) {
+                        //Shuffling
+                        bj.addCards();
+                    }
                     Karte k = bj.takeCard();
                     if (bj.getWorthCroupier() > 10 && k.getNumber() == 14) {
                         k.setCount(1);
@@ -54,6 +58,10 @@ public class Stand implements BJState {
 
                         break;
                     } else {
+                        if (bj.getCompleteStack().isEmpty()) {
+                            //Shuffling
+                            bj.addCards();
+                        }
                         Karte k = bj.takeCard();
                         if (bj.getWorthCroupier() > 10 && k.getNumber() == 14) {
                             k.setCount(1);

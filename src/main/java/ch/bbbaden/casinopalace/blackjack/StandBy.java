@@ -33,8 +33,11 @@ public class StandBy implements BJState {
             ImageView croupierTwo = new ImageView();
 
             for (int i = 0; i < 3; i++) {
-//                Karte k = bj.takeCard();
-                Karte k = new Karte(2, 2, Symbol.Club, new Image("/images/cards/2C.png"));
+                if(bj.getCompleteStack().isEmpty()){
+                    //Shuffling
+                    bj.addCards();
+                }
+                Karte k = bj.takeCard();
                 switch (i) {
                     case 0:
                         bj.handleNewCard(1, k);

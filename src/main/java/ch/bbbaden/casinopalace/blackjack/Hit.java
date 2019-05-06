@@ -32,6 +32,10 @@ public class Hit implements BJState {
 
                 HBox hand1 = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("hand1")).findAny().get();
                 //Draw card 
+                if (bj.getCompleteStack().isEmpty()) {
+                    //Shuffling
+                    bj.addCards();
+                }
                 Karte k = bj.takeCard();
                 // Make count of card
                 if (bj.getWorthpointeur() > 10 && k.getNumber() == 14) {

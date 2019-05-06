@@ -29,6 +29,10 @@ public class Split implements BJState {
             for (int i = 0; i < 2; i++) {
                 ImageView imgView = new ImageView();
                 Image img = null;
+                if (bj.getCompleteStack().isEmpty()) {
+                    //Shuffling
+                    bj.addCards();
+                }
                 Karte k = bj.takeCard();
                 img = k.getImage();
                 switch (i) {

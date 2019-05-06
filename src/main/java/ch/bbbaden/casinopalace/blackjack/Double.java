@@ -5,8 +5,6 @@
  */
 package ch.bbbaden.casinopalace.blackjack;
 
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
@@ -20,14 +18,16 @@ public class Double implements BJState {
 
     @Override
     public void handleHit(BlackJack bj) {
-        System.out.println("HIT IN DOUBLE");
         if (hits == 0) {
             ImageView nextcard = new ImageView();
 
             HBox hand1 = (HBox) bj.getAp().getChildren().stream().filter(x -> x.getId().equals("hand1")).findAny().get();
-
+            if (bj.getCompleteStack().isEmpty()) {
+                //Shuffling
+                bj.addCards();
+            }
             Karte k = bj.takeCard();
-            if (bj.getWorthpointeur()> 10 && k.getNumber() == 14) {
+            if (bj.getWorthpointeur() > 10 && k.getNumber() == 14) {
                 k.setCount(1);
             }
             bj.handleNewCard(1, k);
@@ -40,7 +40,6 @@ public class Double implements BJState {
             hits++;
             bj.setState((BJState) new Stand());
         } else {
-            System.out.println("Shit ain't going to work");
         }
     }
 

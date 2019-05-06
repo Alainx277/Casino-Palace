@@ -53,16 +53,7 @@ public class Insurance implements BJState {
         imgView.setFitWidth(80);
         imgView.setFitHeight(120);
         hbox.getChildren().add(imgView);
-        if (bj.getWorthCroupier() == 21) {
-
-            System.out.println("BLACK JACK BUT INSURED");
-            System.out.println("Ihr Gewinn: " + bj.getInsuranceBet() + bj.getInsuranceBet() * 3 / 2);
-            //pay off
-
-        }else{
-            System.out.println("USELESS INSURANCE");
-            System.out.println("Your Loss : " + bj.getInsuranceBet());
-        }
+        bj.outcomeInsurance();
         bj.setState((BJState) new Stand());
 
     }

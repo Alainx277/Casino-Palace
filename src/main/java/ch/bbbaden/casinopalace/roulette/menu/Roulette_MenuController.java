@@ -5,6 +5,7 @@
  */
 package ch.bbbaden.casinopalace.roulette.menu;
 
+import ch.bbbaden.casinopalace.roulette.game.Datenbank;
 import ch.bbbaden.casinopalace.roulette.game.RouletteGameController;
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -38,6 +40,9 @@ public class Roulette_MenuController implements Initializable {
     private Button button;
     @FXML
     private ImageView titleimage;
+    @FXML
+    private Label kontostand;
+    private final Datenbank db = new Datenbank();
 
     /**
      * Initializes the controller class.
@@ -68,6 +73,7 @@ public class Roulette_MenuController implements Initializable {
         };
         thread.setDaemon(true);
         thread.start();
+        kontostand.setText(""+db.getKonto());
     }
 
     @FXML

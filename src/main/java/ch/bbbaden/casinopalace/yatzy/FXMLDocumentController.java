@@ -122,7 +122,7 @@ public class FXMLDocumentController extends Controller implements Initializable 
     }
     
     @FXML
-    private void handleWürfeln(ActionEvent event) throws IOException {
+    private void handleWÃ¼rfeln(ActionEvent event) throws IOException {
         
         setUnusedFigures();
         ianzahlWuerfe--;
@@ -190,7 +190,7 @@ public class FXMLDocumentController extends Controller implements Initializable 
             unusedFigures.add("Vierer");
         }
         if (labelfuenfer.getText().equals("")) {
-            unusedFigures.add("Fünfer");
+            unusedFigures.add("FÃ¼nfer");
         }
         if (labelsechser.getText().equals("")) {
             unusedFigures.add("Sechser");
@@ -243,7 +243,7 @@ public class FXMLDocumentController extends Controller implements Initializable 
                 labelvierer.setText("" + value);
                 ca.setT1(value);
                 break;
-            case "Fünfer":
+            case "FÃ¼nfer":
                 labelfuenfer.setText("" + value);
                 ca.setT1(value);
                 break;

@@ -211,13 +211,13 @@ public class WuerfelnFXMLController implements Initializable {
 
         }
         throwDices.clear();
-        //5 Würfel machen - behaltene Würfel
+        //5 WÃ¼rfel machen - behaltene WÃ¼rfel
 
         for (int i = 0; i < 5 - keepDices.size(); i++) {
 
             throwDices.add(new Dice());
         }
-        //Ordnen nach Grösse
+        //Ordnen nach GrÃ¶sse
         throwDices = organizeDices(throwDices);
         for (int d = 0; d < keepDices.size(); d++) {
             sortDices.add(keepDices.get(d));
@@ -232,9 +232,9 @@ public class WuerfelnFXMLController implements Initializable {
         keepDices.clear();
         sortDices.clear();
 
-        //damit nicht mehr als 3 Mal gewürfelt wird
+        //damit nicht mehr als 3 Mal gewÃ¼rfelt wird
         gewuerfelt++;
-        //Bilder setzen und wuerfeln disablen wenn 3 mal gewürfelt
+        //Bilder setzen und wuerfeln disablen wenn 3 mal gewÃ¼rfelt
         for (int c = 0; c < 5; c++) {
             setImages(c);
 
@@ -250,7 +250,7 @@ public class WuerfelnFXMLController implements Initializable {
         }else {
             throw3.setOpacity(0.0);
         }
-        //Setzen ob schon einmal gewürfelt wurde wegen paneBorder
+        //Setzen ob schon einmal gewÃ¼rfelt wurde wegen paneBorder
         thrown = true;
 
     }

@@ -60,7 +60,7 @@ public class TryandError {
                         }
                     }
                     break;
-                case "Fünfer":
+                case "FÃ¼nfer":
                     for(int i = 0; i < 5;i++){
                         if(al.get(i).getWert() == 5){
                             value+=5;
@@ -122,7 +122,7 @@ public class TryandError {
 
 
 
-    //Schauen welche Felder mit den Würfeln genutzt werden können
+    //Schauen welche Felder mit den WÃ¼rfeln genutzt werden kÃ¶nnen
     public ArrayList<String> getuseFields(ArrayList<Dice> ald) {
         usableFields.clear();
         int einser = 0;
@@ -170,7 +170,7 @@ public class TryandError {
             usableFields.remove("Vierer");
         }
         if (fuenfer == 0) {
-            usableFields.remove("Fünfer");
+            usableFields.remove("FÃ¼nfer");
         }
         if (sechser == 0) {
             usableFields.remove("Sechser");

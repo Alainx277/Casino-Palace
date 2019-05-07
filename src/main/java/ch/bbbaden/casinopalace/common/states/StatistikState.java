@@ -12,7 +12,7 @@ public class StatistikState extends State {
     }
 
     @Override
-    public void handleLogin(StateManager stateManager) throws Exception {
-        stateManager.transition(new LoginState());
+    public void handleCasino(StateManager stateManager) throws Exception {
+        stateManager.transition(new CasinoState());
     }
 }

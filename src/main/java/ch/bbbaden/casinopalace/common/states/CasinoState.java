@@ -30,4 +30,9 @@ public class CasinoState extends State {
     public void handleRoulette(StateManager stateManager) throws Exception {
         stateManager.transition(new RouletteState());
     }
+
+    @Override
+    public void handleStatistik(StateManager stateManager) throws Exception {
+        stateManager.transition(new StatistikState());
+    }
 }

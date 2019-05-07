@@ -1,59 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" onKeyPressed="#onKeyPressed" prefHeight="588.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.view.CasinoController">
-    
+<AnchorPane id="AnchorPane" onKeyPressed="#onKeyPressed" prefHeight="588.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.view.CasinoController">
+
     <stylesheets>
         <URL value="@Common.css" />
         <URL value="@Casino.css" />
     </stylesheets>
-    <children>
-      <HBox layoutX="161.0" layoutY="329.0" onKeyPressed="#handleLeftKey" prefHeight="100.0" prefWidth="70.0">
-         <children>
-            <ImageView id="LeftArrow" fx:id="imgViewLeft" fitHeight="98.0" fitWidth="88.0" onMouseClicked="#handleLeftGame" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </HBox>
-      <HBox layoutX="219.0" layoutY="287.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="356.0">
-         <children>
-            <ImageView fx:id="imgViewGames" fitHeight="185.0" fitWidth="361.0" onMouseClicked="#handleGamesSelection" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </HBox>
-      <GridPane layoutX="47.0" layoutY="47.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.19998168945312" minWidth="10.0" prefWidth="41.6" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="160.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label prefHeight="35.0" prefWidth="86.0" text="Chips" textFill="#fffefe" GridPane.columnIndex="1">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="imgAdd" fitHeight="35.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </GridPane>
-      <ImageView fx:id="imgGurl" fitHeight="446.0" fitWidth="453.0" layoutX="418.0" layoutY="155.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../../../../resources/images/girl.png" />
-         </image>
-      </ImageView>
-      <HBox layoutX="556.0" layoutY="328.0" prefHeight="100.0" prefWidth="70.0">
-         <children>
-            <ImageView fx:id="imgView3" fitHeight="98.0" fitWidth="88.0" onMouseClicked="#handleRightGame" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </HBox>
-   </children>
+
+    <VBox spacing="10" layoutX="47.0" layoutY="45.0">
+        <HBox>
+            <Label styleClass="light-text" text="Chips: " />
+            <Label styleClass="light-text" fx:id="chipsLabel" />
+        </HBox>
+        <ImageView fx:id="imgAdd" fitHeight="35.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@/images/add.png"/>
+        </ImageView>
+    </VBox>
+    <ImageView fx:id="imgGurl" fitHeight="446.0" fitWidth="453.0" layoutX="418.0" layoutY="155.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0">
+        <image>
+            <Image url="@/images/girl.png" />
+        </image>
+    </ImageView>
+    <Button layoutX="371.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleStatistic" text="Statistik" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" />
+    <BorderPane layoutX="76.0" layoutY="263.0" AnchorPane.bottomAnchor="161.0" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="296.0" AnchorPane.topAnchor="263.0">
+        <left>
+            <ImageView id="LeftArrow" fx:id="imgViewLeft" fitWidth="100" onMouseClicked="#handleLeftGame" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+                <Image url="@/images/left.png" />
+            </ImageView>
+        </left>
+        <center>
+            <ImageView fx:id="imgViewGames" fitHeight="200" fitWidth="300.0" onMouseClicked="#handleGamesSelection" pickOnBounds="true" preserveRatio="true">
+                <Image url="@/images/poker.png" />
+            </ImageView>
+        </center>
+        <right>
+            <ImageView fx:id="imgView3" fitWidth="100" onMouseClicked="#handleRightGame" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_RIGHT">
+                <Image url="@/images/right.png" />
+            </ImageView>
+        </right>
+    </BorderPane>
 </AnchorPane>

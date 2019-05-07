@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="513.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.view.StatistikController">
+<AnchorPane prefHeight="513.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.view.StatistikController">
     <stylesheets>
         <URL value="@Common.css" />
         <URL value="@statistik.css" />
@@ -44,6 +44,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Button id="backbutton" layoutX="215.0" layoutY="440.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="256.0" stylesheets="@statistik.css" text="Abbrechen" />
+      <Button id="backbutton" layoutX="215.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="26.0" prefWidth="256.0" stylesheets="@statistik.css" text="Zurück" />
    </children>
 </AnchorPane>

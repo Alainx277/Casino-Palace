@@ -53,7 +53,7 @@ public class Insurance implements BJState {
         imgView.setFitWidth(80);
         imgView.setFitHeight(120);
         hbox.getChildren().add(imgView);
-        bj.outcomeInsurance();
+        bj.onMoneyChanged(bj.outcomeInsurance());
         bj.setState((BJState) new Stand());
 
     }

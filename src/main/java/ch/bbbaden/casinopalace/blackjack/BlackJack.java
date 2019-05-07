@@ -5,8 +5,14 @@
  */
 package ch.bbbaden.casinopalace.blackjack;
 
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Random;
+
+import ch.bbbaden.casinopalace.common.Casino;
+import ch.bbbaden.casinopalace.common.User;
+import ch.bbbaden.casinopalace.common.exception.UserDoesNotExistException;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -47,10 +53,12 @@ public class BlackJack {
 
     @FXML
     private AnchorPane ap;
+    private final Casino casino;
 
-    public BlackJack(AnchorPane ap) {
+    public BlackJack(AnchorPane ap, Casino casino) {
         //add cards
         this.ap = ap;
+        this.casino = casino;
         addImages();
         addCards();
 
@@ -174,7 +182,13 @@ public class BlackJack {
     }
 
     public void onMoneyChanged(int worth) {
-
+        User user = casino.getCurrentUser();
+        user.setChips(user.getChips().add(new BigDecimal(worth)));
+        try {
+            casino.updateUser(user);
+        } catch (IOException | UserDoesNotExistException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addImages() {
@@ -658,7 +672,7 @@ public class BlackJack {
                     if (getWorthCroupier() > getWorthpointeur()) {
                         //croupier winner
                         result = 0;
-                        change = bet;
+                        change = -bet;
                     } else if (getWorthCroupier() == getWorthpointeur()) {
                         //undeceided
                         result = 1;

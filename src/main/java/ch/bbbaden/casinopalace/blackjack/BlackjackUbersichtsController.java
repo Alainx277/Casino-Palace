@@ -39,18 +39,7 @@ public class BlackjackUbersichtsController extends Controller implements Initial
     @FXML
     private void startGame(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Blackjack.fxml"));
-
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-            Stage currentStage = (Stage) rules.getScene().getWindow();
-            currentStage.hide();
-            BlackJackController.fillBack(currentStage);
+            getStateManager().switchStage(getClass().getResource("Blackjack.fxml"));
         } catch (Exception ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }

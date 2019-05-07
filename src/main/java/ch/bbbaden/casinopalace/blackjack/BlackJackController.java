@@ -57,8 +57,6 @@ public class BlackJackController extends Controller implements Initializable {
     private int betAmount;
     private Image bet = new Image("/images/chips.png");
 
-    private static Stage ubersichtsStage;
-
     private int hit = 0;
     private boolean insurance = false;
     private boolean split = false;
@@ -97,11 +95,23 @@ public class BlackJackController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        bj = new BlackJack(ap);
+        getStateManager().getSceneCreator().getCurrentStage().setOnCloseRequest(event -> {
+            goBack();
+        });
+
+        bj = new BlackJack(ap, getStateManager().getCasino());
         ap.getStylesheets().add(CasinoController.class.getResource("Common.css").toExternalForm());
         addImages();
         disableButtons();
         setNodes();
+    }
+
+    private void goBack() {
+        try {
+            getStateManager().getState().handleCasino(getStateManager());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setNodes() {
@@ -221,20 +231,12 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleBack(MouseEvent event) {
-        Stage currentStage = (Stage) chip1.getScene().getWindow();
-        currentStage.close();
-        ubersichtsStage.show();
-
-    }
-
-    public static void fillBack(Stage stage) {
-        ubersichtsStage = stage;
+        goBack();
     }
 
     @FXML
     private void handleOne(MouseEvent event) {
         if (hit == 0) {
-            bj.onMoneyChanged(1);
             betLbl.setVisible(true);
             hitBtn.setDisable(false);
             betAmount++;
@@ -248,7 +250,6 @@ public class BlackJackController extends Controller implements Initializable {
             betLbl.setText(Integer.toString(betAmount));
         }
         if (insurance) {
-            bj.onMoneyChanged(1);
             standBtn.setDisable(false);
             doubleBtn.setDisable(false);
             insuranceBetLbl.setVisible(true);
@@ -265,7 +266,6 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private void handleTen(MouseEvent event) {
         if (hit == 0) {
-            bj.onMoneyChanged(10);
             betLbl.setVisible(true);
             hitBtn.setDisable(false);
             betAmount += 10;
@@ -279,7 +279,6 @@ public class BlackJackController extends Controller implements Initializable {
             betLbl.setText(Integer.toString(betAmount));
         }
         if (insurance) {
-            bj.onMoneyChanged(10);
             standBtn.setDisable(false);
             doubleBtn.setDisable(false);
             insuranceBetLbl.setVisible(true);
@@ -295,7 +294,6 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private void handleFifty(MouseEvent event) {
         if (hit == 0) {
-            bj.onMoneyChanged(50);
             betLbl.setVisible(true);
             hitBtn.setDisable(false);
             betAmount += 50;
@@ -309,7 +307,6 @@ public class BlackJackController extends Controller implements Initializable {
             betLbl.setText(Integer.toString(betAmount));
         }
         if (insurance) {
-            bj.onMoneyChanged(50);
             standBtn.setDisable(false);
             doubleBtn.setDisable(false);
             insuranceBetLbl.setVisible(true);
@@ -325,7 +322,6 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private void handleHundred(MouseEvent event) {
         if (hit == 0) {
-            bj.onMoneyChanged(100);
             betLbl.setVisible(true);
             hitBtn.setDisable(false);
             betAmount += 100;
@@ -339,7 +335,6 @@ public class BlackJackController extends Controller implements Initializable {
             betLbl.setText(Integer.toString(betAmount));
         }
         if (insurance) {
-            bj.onMoneyChanged(100);
             standBtn.setDisable(false);
             doubleBtn.setDisable(false);
             insuranceBetLbl.setVisible(true);
@@ -355,7 +350,6 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private void handleTwoFifty(MouseEvent event) {
         if (hit == 0) {
-            bj.onMoneyChanged(250);
             betLbl.setVisible(true);
             hitBtn.setDisable(false);
             betAmount += 250;
@@ -369,7 +363,6 @@ public class BlackJackController extends Controller implements Initializable {
             betLbl.setText(Integer.toString(betAmount));
         }
         if (insurance) {
-            bj.onMoneyChanged(250);
             standBtn.setDisable(false);
             doubleBtn.setDisable(false);
             insuranceBetLbl.setVisible(true);
@@ -385,7 +378,6 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private void handleFivehundred(MouseEvent event) {
         if (hit == 0) {
-            bj.onMoneyChanged(500);
             betLbl.setVisible(true);
             hitBtn.setDisable(false);
             betAmount += 500;
@@ -399,7 +391,6 @@ public class BlackJackController extends Controller implements Initializable {
             betLbl.setText(Integer.toString(betAmount));
         }
         if (insurance) {
-            bj.onMoneyChanged(500);
             standBtn.setDisable(false);
             doubleBtn.setDisable(false);
             insuranceBetLbl.setVisible(true);
@@ -506,7 +497,9 @@ public class BlackJackController extends Controller implements Initializable {
         message.getStyleClass().add("EndLbls");
         message.setLayoutX(100);
         message.setLayoutY(30);
-        String extendedMsg = Integer.toString(bj.getChange());
+        int change = bj.getChange();
+        String extendedMsg = Integer.toString(change);
+        bj.onMoneyChanged(change);
 
         message.setText(baseMsg + extendedMsg + endingMsg);
 

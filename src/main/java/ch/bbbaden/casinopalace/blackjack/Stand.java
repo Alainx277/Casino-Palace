@@ -54,7 +54,8 @@ public class Stand implements BJState {
                 } else {
                     if (bj.getWorthCroupier() > 16) {
 
-                        bj.onMoneyChanged(bj.getOutComeOfFirstSplit() + bj.checkOutcome());
+                        bj.getOutComeOfFirstSplit();
+                        bj.checkOutcome();
 
                         break;
                     } else {

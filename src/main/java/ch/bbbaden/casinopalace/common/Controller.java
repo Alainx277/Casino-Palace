@@ -1,6 +1,7 @@
 package ch.bbbaden.casinopalace.common;
 
 public abstract class Controller {
+    
     private StateManager stateManager;
 
     public StateManager getStateManager() {

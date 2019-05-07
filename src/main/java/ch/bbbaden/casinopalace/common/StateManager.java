@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class StateManager {
+    
     private State state;
     private Casino casino;
     private SceneCreator sceneCreator;

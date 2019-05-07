@@ -1,6 +1,8 @@
 package ch.bbbaden.casinopalace.view;
 
+import ch.bbbaden.casinopalace.blackjack.BlackjackUbersichtsController;
 import ch.bbbaden.casinopalace.common.Controller;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -9,14 +11,20 @@ import java.util.logging.Logger;
 import ch.bbbaden.casinopalace.common.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-public class CasinoController extends Controller implements Initializable{
+public class CasinoController extends Controller implements Initializable {
 
     @FXML
     private Label chipsLabel;
@@ -36,8 +44,10 @@ public class CasinoController extends Controller implements Initializable{
     private ImageView imgAdd;
     @FXML
     private ImageView imgGurl;
-    
-    public CasinoController(){
+    @FXML
+    private AnchorPane ap;
+
+    public CasinoController() {
     }
 
     @Override
@@ -54,14 +64,14 @@ public class CasinoController extends Controller implements Initializable{
     }
 
     @FXML
-    private void handleGamesSelection(MouseEvent event) {
+    private void handleGamesSelection(MouseEvent event) throws IOException {
         int i;
-        for(i = 0; i < games.length; i++){
-            if(imgViewGames.getImage().equals(games[i])){
-            break;
+        for (i = 0; i < games.length; i++) {
+            if (imgViewGames.getImage().equals(games[i])) {
+                break;
+            }
         }
-        }
-        
+
         switch (i) {
             case 0:
                 //load BlackJack
@@ -107,12 +117,15 @@ public class CasinoController extends Controller implements Initializable{
             new Image("/images/yatzy.png")};
         changeGame();
     }
+     public String getCommonStyleSheet(){
+         return ap.getStylesheets().get(0);
+     }
 
     public void changeGame() {
-        if (index > games.length-1){
+        if (index > games.length - 1) {
             index = 0;
-        } else if (index < 0){
-            index = games.length-1;
+        } else if (index < 0) {
+            index = games.length - 1;
         }
         imgViewGames.setImage(games[index]);
     }
@@ -140,7 +153,7 @@ public class CasinoController extends Controller implements Initializable{
         changeGame();
     }
 
-     @FXML
+    @FXML
     private void onKeyPressed(KeyEvent event) {
         switch (event.getCode()) {
             case RIGHT:

@@ -7,6 +7,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import ch.bbbaden.casinopalace.common.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class CasinoController extends Controller implements Initializable {
+
+    @FXML
+    private Label chipsLabel;
 
     private int index = 0;
 
@@ -45,17 +50,16 @@ public class CasinoController extends Controller implements Initializable {
     public CasinoController() {
     }
 
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         addImages();
+        // Put focus on game selection
         imgViewGames.sceneProperty().addListener((observable) -> {
             imgViewGames.getScene().getRoot().requestFocus();
         });
+
+        updateChips();
+
         // TODO
     }
 
@@ -75,7 +79,7 @@ public class CasinoController extends Controller implements Initializable {
                     getStateManager().getState().handleBlackjack(getStateManager());
                 } catch (Exception ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-                }               
+                }
                 break;
             case 1:
                 //loadPoker
@@ -107,17 +111,11 @@ public class CasinoController extends Controller implements Initializable {
     }
 
     private void addImages() {
-        Image image = new Image(getClass().getResourceAsStream("/images/left.png"));
-        imgViewLeft.setImage(image);
-        Image img = new Image("/images/right.png");
-        imgView3.setImage(img);
-        imgAdd.setImage(new Image("/images/add.png"));
-        imgGurl.setImage(new Image("/images/girl.png"));
         games = new Image[]{new Image("/images/blackJack.png"),
             new Image("/images/poker.png"),
             new Image("/images/roulette.png"),
             new Image("/images/yatzy.png")};
-        changeGame();    
+        changeGame();
     }
      public String getCommonStyleSheet(){
          return ap.getStylesheets().get(0);
@@ -166,6 +164,22 @@ public class CasinoController extends Controller implements Initializable {
                 break;
             default:
                 System.out.println("something else");
+        }
+    }
+
+    private void updateChips(){
+        User currentUser = getStateManager().getCasino().getCurrentUser();
+        if (currentUser != null){
+            chipsLabel.setText(currentUser.getChips().stripTrailingZeros().toPlainString());
+        }
+    }
+
+    public void handleStatistic(ActionEvent actionEvent) {
+        try {
+            getStateManager().getState().handleStatistik(getStateManager());
+        } catch (Exception e) {
+            // TODO: Notify user
+            e.printStackTrace();
         }
     }
 }

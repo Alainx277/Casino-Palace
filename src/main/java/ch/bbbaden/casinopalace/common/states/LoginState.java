@@ -20,6 +20,9 @@ public class LoginState extends State {
     public void handleCasino(StateManager stateManager) throws Exception {
         stateManager.transition(new CasinoState());
     }
-    
-    
+
+    @Override
+    public void handleAdmin(StateManager stateManager) throws Exception {
+        stateManager.transition(new AdminState());
+    }
 }

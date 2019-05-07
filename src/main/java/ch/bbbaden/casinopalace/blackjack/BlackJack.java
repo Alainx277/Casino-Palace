@@ -674,7 +674,7 @@ public class BlackJack {
         return change;
     }
 
-    public void outcomeInsurance() {
+    public int outcomeInsurance() {
         if (getWorthCroupier() == 21) {
             //pay off
             insuranceBet += insuranceBet * 3 / 2;
@@ -682,6 +682,7 @@ public class BlackJack {
         } else {
             insuranceBet = 0;
         }
+        return insuranceBet;
     }
 
 }

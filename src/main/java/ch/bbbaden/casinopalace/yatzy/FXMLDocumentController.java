@@ -357,12 +357,34 @@ public class FXMLDocumentController implements Initializable {
         labelGesamtpunkteTeil1.setText(i);
     }
     
-    private void getKontostand(){
+
+    private void getKontostand() {
+        //Nimm Datenbank
         labelKontostand.setText("100");
     }
-    
-    private void setKontostand(){
+
+    private void setKontostand() {
+        // Nimm datenbank statt int i
         int i = 100 - gesetzterBetrag;
         labelKontostand.setText("" + i);
+    }
+
+    public void gewinn() {
+        if (ianzahlWuerfe == 0) {
+
+            int i = Integer.parseInt(labelEndsumme.getText());
+            if (i > 350) {
+                gesetzterBetrag *= 2;
+            } else if (i < 350) {
+                gesetzterBetrag = 0;
+            }
+        } else {
+           gesetzterBetrag = 0;
+        }
+        setDatabase();
+    }
+    
+    private void setDatabase(){
+        //Nimm gesetzter Betrag oder so
     }
 }

@@ -74,7 +74,6 @@ public class Hit implements BJState {
                             //Activated means one cannon hit
                             miniState = 1;
                         } else {
-                            System.out.println("SHAIT");
                         }
                     });
 
@@ -94,8 +93,6 @@ public class Hit implements BJState {
                         } else {
                             miniState = 0;
                         }
-
-                        System.out.println("Clicked.");
                     });
                 } else if (bj.getCardAmountpointeur() == 14) {
                     //prepare for third deck
@@ -119,7 +116,6 @@ public class Hit implements BJState {
                         } else {
                             miniState = 0;
                         }
-                        System.out.println("Clicked.");
                     });
 
                 } else if (bj.getCardAmountpointeur() == 21) {
@@ -132,7 +128,6 @@ public class Hit implements BJState {
     @Override
     public void handleStand(BlackJack bj) {
         bj.setState((BJState) new Stand());
-        System.out.println("STAND");
         //make pointeur incapable of Hitting or basically anything else
     }
 

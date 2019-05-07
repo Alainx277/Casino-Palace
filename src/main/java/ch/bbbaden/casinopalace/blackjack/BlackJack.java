@@ -173,6 +173,10 @@ public class BlackJack {
         this.worthpointeur = worthpointeur;
     }
 
+    public void onMoneyChanged(int worth) {
+
+    }
+
     private void addImages() {
         for (int i = 0; i < cardStack; i++) {
             switch (i) {
@@ -555,7 +559,7 @@ public class BlackJack {
         return b;
     }
 
-    public void getOutComeOfFirstSplit() {
+    public int getOutComeOfFirstSplit() {
         change = 0;
         result = 0;
         result1 = 0;
@@ -607,9 +611,10 @@ public class BlackJack {
                 }
             }
         }
+        return change;
     }
 
-    public void checkOutcome() {
+    public int checkOutcome() {
         if (change == 0) {
             if (getWorthpointeur() == 21) {
                 //BlackJack
@@ -666,6 +671,7 @@ public class BlackJack {
                 }
             }
         }
+        return change;
     }
 
     public void outcomeInsurance() {

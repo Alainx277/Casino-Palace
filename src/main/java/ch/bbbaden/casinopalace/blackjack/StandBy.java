@@ -67,7 +67,6 @@ public class StandBy implements BJState {
             }
             Image hiddenCard = new Image("/images/cards/background.png");
             croupierTwo.setImage(hiddenCard);
-            System.out.println(bj.getWorthCroupier());
 
             poineturView.setFitWidth(80);
             poineturView.setFitHeight(120);

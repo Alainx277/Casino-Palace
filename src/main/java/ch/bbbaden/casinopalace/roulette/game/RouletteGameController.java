@@ -544,27 +544,21 @@ public class RouletteGameController extends Controller implements Initializable 
                     switch (GridPane.getRowIndex(selectedlabel)) {
                         case 1:
                             rowcolumninput.put(new int[]{0, 3}, bm.getMoney());
-                            System.out.println("1");
                             break;
                         case 2:
                             rowcolumninput.put(new int[]{0, 2, 3}, bm.getMoney());
-                            System.out.println("2");
                             break;
                         case 3:
                             rowcolumninput.put(new int[]{0, 100, 2}, bm.getMoney());
-                            System.out.println("3");
                             break;
                         case 4:
                             rowcolumninput.put(new int[]{100, 2, 1}, bm.getMoney());
-                            System.out.println("4");
                             break;
                         case 5:
                             rowcolumninput.put(new int[]{100, 1}, bm.getMoney());
-                            System.out.println("5");
                             break;
                         case 6:
                             rowcolumninput.put(new int[]{0, 100, 1, 2, 3}, bm.getMoney());
-                            System.out.println("6");
                             break;
                         default:
                             throw new AssertionError();

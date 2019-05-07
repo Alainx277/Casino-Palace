@@ -5,64 +5,41 @@
  */
 package ch.bbbaden.casinopalace.yatzy;
 
+import ch.bbbaden.casinopalace.common.Controller;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 
 /**
  *
  * @author denni
  */
-public class YatzyController extends Application {
-
-    private double xOffset = 0;
-    private double yOffset = 0;
+public class YatzyController extends Controller implements Initializable {
 
     @Override
-    public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
-        Parent root = loader.load();
-        TryandError te = new TryandError();
-        Calculation ca = new Calculation();
-        FXMLDocumentController view = loader.getController();
-        view.setTryandError(te);
-        view.setCalculation(ca);
-        te.setFdc(view);
-        ca.setFdc(view);
-        te.setStage(stage);
-        Scene scene = new Scene(root);
-        stage.initStyle(StageStyle.UNDECORATED);
+    public void initialize(URL location, ResourceBundle resources) {
 
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        stage.setScene(scene);
-        stage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
+    public void handlePlay(ActionEvent actionEvent) {
+        try {
+            getStateManager().switchStage(getClass().getResource("FXMLDocument.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
 }

@@ -6,9 +6,15 @@
 package ch.bbbaden.casinopalace.yatzy;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import ch.bbbaden.casinopalace.common.Casino;
+import ch.bbbaden.casinopalace.common.Controller;
+import ch.bbbaden.casinopalace.common.User;
+import ch.bbbaden.casinopalace.common.exception.UserDoesNotExistException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,7 +37,7 @@ import javax.swing.JOptionPane;
  *
  * @author denni
  */
-public class FXMLDocumentController implements Initializable {
+public class FXMLDocumentController extends Controller implements Initializable {
     
     private Label label;
     @FXML
@@ -75,8 +81,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label labelGesamtpunkteTeil2;
     @FXML
-    private Button closeButton;
-    @FXML
     private Button cancel;
     @FXML
     private Label labelKontostand;
@@ -94,8 +98,8 @@ public class FXMLDocumentController implements Initializable {
     
     private int ianzahlWuerfe = 15;
     
-    private TryandError te;
-    private Calculation ca;
+    private TryandError te = new TryandError();
+    private Calculation ca = new Calculation();
     
     private ArrayList<String> unusedFigures = new ArrayList<>();
     
@@ -103,19 +107,13 @@ public class FXMLDocumentController implements Initializable {
     
     private double xOffset = 0;
     private double yOffset = 0;
-
-    public void setCalculation(Calculation ca) {
-        this.ca = ca;
-    }
-    
-    
-    public void setTryandError(TryandError te) {
-        this.te = te;
-    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        getStateManager().getSceneCreator().getCurrentStage().setOnCloseRequest(event -> handleClose(null));
         // TODO
+        te.setFdc(this);
+        ca.setFdc(this);
         buttonWuerfeln.setDisable(true);
         getKontostand();
         spinnerBetrag.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(25, 100, 25, 25));
@@ -129,32 +127,16 @@ public class FXMLDocumentController implements Initializable {
         setUnusedFigures();
         ianzahlWuerfe--;
         te.setFields(unusedFigures);
-        Stage stage = new Stage(StageStyle.UNDECORATED);
+        Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WuerfelnFXML.fxml"));
         Parent root = loader.load();
         WuerfelnFXMLController view1 = loader.getController();
         view1.setTryandError(te);
         view1.initi();
         Scene scene = new Scene(root);
-        
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
         stage.setScene(scene);
         stage.show();
         setHide(true);
-        
     }
     
     @FXML
@@ -185,10 +167,10 @@ public class FXMLDocumentController implements Initializable {
     
     public void setHide(boolean baum) {
         if (baum) {
-            Stage b = (Stage) closeButton.getScene().getWindow();
+            Stage b = (Stage)labeleinser.getScene().getWindow();
             b.hide();
         } else {
-            Stage b = (Stage) closeButton.getScene().getWindow();
+            Stage b = (Stage) labeleinser.getScene().getWindow();
             b.show();
         }
     }
@@ -330,8 +312,16 @@ public class FXMLDocumentController implements Initializable {
             
             if (nextWindow) {
                 te.showStage();
+            } else {
+                try {
+                    getStateManager().getState().handleCasino(getStateManager());
+                    return;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-            Stage stage = (Stage) closeButton.getScene().getWindow();
+
+            Stage stage = (Stage) labeleinser.getScene().getWindow();
             stage.close();
         }
     }
@@ -359,14 +349,19 @@ public class FXMLDocumentController implements Initializable {
     
 
     private void getKontostand() {
-        //Nimm Datenbank
-        labelKontostand.setText("100");
+        labelKontostand.setText(getStateManager().getCasino().getCurrentUser().getChips().stripTrailingZeros().toPlainString());
     }
 
     private void setKontostand() {
-        // Nimm datenbank statt int i
-        int i = 100 - gesetzterBetrag;
-        labelKontostand.setText("" + i);
+        User user = getStateManager().getCasino().getCurrentUser();
+        BigDecimal decimal = user.getChips().subtract(new BigDecimal(gesetzterBetrag));
+        user.setChips(decimal);
+        try {
+            getStateManager().getCasino().updateUser(user);
+        } catch (IOException | UserDoesNotExistException e) {
+            e.printStackTrace();
+        }
+        labelKontostand.setText(decimal.stripTrailingZeros().toPlainString());
     }
 
     public void gewinn() {
@@ -385,6 +380,15 @@ public class FXMLDocumentController implements Initializable {
     }
     
     private void setDatabase(){
-        //Nimm gesetzter Betrag oder so
+        if (gesetzterBetrag != 0){
+            Casino casino = getStateManager().getCasino();
+            User user = casino.getCurrentUser();
+            user.setChips(user.getChips().add(BigDecimal.valueOf(gesetzterBetrag)));
+            try {
+                casino.updateUser(user);
+            } catch (IOException | UserDoesNotExistException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -387,23 +387,23 @@ public class WuerfelnFXMLController implements Initializable {
             case 1:
                 switch (c) {
                     case 0:
-                        imageview1.setImage(new Image("bilder/Dice1.png"));
+                        imageview1.setImage(new Image("/images/Dice1.png"));
                         setPane1(c);
                         break;
                     case 1:
-                        imageview2.setImage(new Image("bilder/Dice1.png"));
+                        imageview2.setImage(new Image("/images/Dice1.png"));
                         setPane2(c);
                         break;
                     case 2:
-                        imageview3.setImage(new Image("bilder/Dice1.png"));
+                        imageview3.setImage(new Image("/images/Dice1.png"));
                         setPane3(c);
                         break;
                     case 3:
-                        imageview4.setImage(new Image("bilder/Dice1.png"));
+                        imageview4.setImage(new Image("/images/Dice1.png"));
                         setPane4(c);
                         break;
                     case 4:
-                        imageview5.setImage(new Image("bilder/Dice1.png"));
+                        imageview5.setImage(new Image("/images/Dice1.png"));
                         setPane5(c);
                         break;
 
@@ -412,23 +412,23 @@ public class WuerfelnFXMLController implements Initializable {
             case 2:
                 switch (c) {
                     case 0:
-                        imageview1.setImage(new Image("bilder/Dice2.png"));
+                        imageview1.setImage(new Image("/images/Dice2.png"));
                         setPane1(c);
                         break;
                     case 1:
-                        imageview2.setImage(new Image("bilder/Dice2.png"));
+                        imageview2.setImage(new Image("/images/Dice2.png"));
                         setPane2(c);
                         break;
                     case 2:
-                        imageview3.setImage(new Image("bilder/Dice2.png"));
+                        imageview3.setImage(new Image("/images/Dice2.png"));
                         setPane3(c);
                         break;
                     case 3:
-                        imageview4.setImage(new Image("bilder/Dice2.png"));
+                        imageview4.setImage(new Image("/images/Dice2.png"));
                         setPane4(c);
                         break;
                     case 4:
-                        imageview5.setImage(new Image("bilder/Dice2.png"));
+                        imageview5.setImage(new Image("/images/Dice2.png"));
                         setPane5(c);
                         break;
 
@@ -437,23 +437,23 @@ public class WuerfelnFXMLController implements Initializable {
             case 3:
                 switch (c) {
                     case 0:
-                        imageview1.setImage(new Image("bilder/Dice3.png"));
+                        imageview1.setImage(new Image("/images/Dice3.png"));
                         setPane1(c);
                         break;
                     case 1:
-                        imageview2.setImage(new Image("bilder/Dice3.png"));
+                        imageview2.setImage(new Image("/images/Dice3.png"));
                         setPane2(c);
                         break;
                     case 2:
-                        imageview3.setImage(new Image("bilder/Dice3.png"));
+                        imageview3.setImage(new Image("/images/Dice3.png"));
                         setPane3(c);
                         break;
                     case 3:
-                        imageview4.setImage(new Image("bilder/Dice3.png"));
+                        imageview4.setImage(new Image("/images/Dice3.png"));
                         setPane4(c);
                         break;
                     case 4:
-                        imageview5.setImage(new Image("bilder/Dice3.png"));
+                        imageview5.setImage(new Image("/images/Dice3.png"));
                         setPane5(c);
                         break;
 
@@ -462,23 +462,23 @@ public class WuerfelnFXMLController implements Initializable {
             case 4:
                 switch (c) {
                     case 0:
-                        imageview1.setImage(new Image("bilder/Dice4.png"));
+                        imageview1.setImage(new Image("/images/Dice4.png"));
                         setPane1(c);
                         break;
                     case 1:
-                        imageview2.setImage(new Image("bilder/Dice4.png"));
+                        imageview2.setImage(new Image("/images/Dice4.png"));
                         setPane2(c);
                         break;
                     case 2:
-                        imageview3.setImage(new Image("bilder/Dice4.png"));
+                        imageview3.setImage(new Image("/images/Dice4.png"));
                         setPane3(c);
                         break;
                     case 3:
-                        imageview4.setImage(new Image("bilder/Dice4.png"));
+                        imageview4.setImage(new Image("/images/Dice4.png"));
                         setPane4(c);
                         break;
                     case 4:
-                        imageview5.setImage(new Image("bilder/Dice4.png"));
+                        imageview5.setImage(new Image("/images/Dice4.png"));
                         setPane5(c);
                         break;
 
@@ -488,23 +488,23 @@ public class WuerfelnFXMLController implements Initializable {
             case 5:
                 switch (c) {
                     case 0:
-                        imageview1.setImage(new Image("bilder/Dice5.png"));
+                        imageview1.setImage(new Image("/images/Dice5.png"));
                         setPane1(c);
                         break;
                     case 1:
-                        imageview2.setImage(new Image("bilder/Dice5.png"));
+                        imageview2.setImage(new Image("/images/Dice5.png"));
                         setPane2(c);
                         break;
                     case 2:
-                        imageview3.setImage(new Image("bilder/Dice5.png"));
+                        imageview3.setImage(new Image("/images/Dice5.png"));
                         setPane3(c);
                         break;
                     case 3:
-                        imageview4.setImage(new Image("bilder/Dice5.png"));
+                        imageview4.setImage(new Image("/images/Dice5.png"));
                         setPane4(c);
                         break;
                     case 4:
-                        imageview5.setImage(new Image("bilder/Dice5.png"));
+                        imageview5.setImage(new Image("/images/Dice5.png"));
                         setPane5(c);
                         break;
 
@@ -513,23 +513,23 @@ public class WuerfelnFXMLController implements Initializable {
             case 6:
                 switch (c) {
                     case 0:
-                        imageview1.setImage(new Image("bilder/Dice6.png"));
+                        imageview1.setImage(new Image("/images/Dice6.png"));
                         setPane1(c);
                         break;
                     case 1:
-                        imageview2.setImage(new Image("bilder/Dice6.png"));
+                        imageview2.setImage(new Image("/images/Dice6.png"));
                         setPane2(c);
                         break;
                     case 2:
-                        imageview3.setImage(new Image("bilder/Dice6.png"));
+                        imageview3.setImage(new Image("/images/Dice6.png"));
                         setPane3(c);
                         break;
                     case 3:
-                        imageview4.setImage(new Image("bilder/Dice6.png"));
+                        imageview4.setImage(new Image("/images/Dice6.png"));
                         setPane4(c);
                         break;
                     case 4:
-                        imageview5.setImage(new Image("bilder/Dice6.png"));
+                        imageview5.setImage(new Image("/images/Dice6.png"));
                         setPane5(c);
                         break;
 

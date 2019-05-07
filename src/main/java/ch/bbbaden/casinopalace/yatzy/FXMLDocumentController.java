@@ -94,8 +94,8 @@ public class FXMLDocumentController implements Initializable {
     
     private int ianzahlWuerfe = 15;
     
-    TryandError te;
-    Calculation ca;
+    private TryandError te;
+    private Calculation ca;
     
     private ArrayList<String> unusedFigures = new ArrayList<>();
     
@@ -117,7 +117,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         buttonWuerfeln.setDisable(true);
-        labelKontostand.setText("100");
+        getKontostand();
         spinnerBetrag.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(25, 100, 25, 25));
         anzahlWuerfe.setText("" + ianzahlWuerfe);
         
@@ -134,9 +134,7 @@ public class FXMLDocumentController implements Initializable {
         Parent root = loader.load();
         WuerfelnFXMLController view1 = loader.getController();
         view1.setTryandError(te);
-        te.setWfc(view1);
         view1.initi();
-        te.setWfc(view1);
         Scene scene = new Scene(root);
         
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -176,10 +174,10 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void handleSetzen(ActionEvent event) {
-        int i = Integer.parseInt(labelKontostand.getText());
+        int c = Integer.parseInt(labelKontostand.getText());
+        int i = spinnerBetrag.getValue();
         gesetzterBetrag = i;
-        i = i - spinnerBetrag.getValue();
-        labelKontostand.setText("" + i);
+        setKontostand();
         buttonWuerfeln.setDisable(false);
         spinnerBetrag.setVisible(false);
         buttonSetzen.setVisible(false);
@@ -311,6 +309,8 @@ public class FXMLDocumentController implements Initializable {
                 throw new AssertionError();
         }
         anzahlWuerfe.setText("" + ianzahlWuerfe);
+        
+        getKontostand();
     }
     
     private void setSetzen(int wert) {
@@ -357,4 +357,12 @@ public class FXMLDocumentController implements Initializable {
         labelGesamtpunkteTeil1.setText(i);
     }
     
+    private void getKontostand(){
+        labelKontostand.setText("100");
+    }
+    
+    private void setKontostand(){
+        int i = 100 - gesetzterBetrag;
+        labelKontostand.setText("" + i);
+    }
 }

@@ -4,6 +4,8 @@ import ch.bbbaden.casinopalace.common.Controller;
 import ch.bbbaden.casinopalace.common.exception.UserExistsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -20,23 +22,28 @@ public class SignupController extends Controller {
     private TextField passwordConfirmField;
 
     public void handleRegister(ActionEvent actionEvent) throws Exception {
-        Pattern pattern = Pattern.compile("^[^ ]+$");
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9$#@!_\\-]+$");
 
+        boolean passesRequirements = true;
         // Password not empty
         if (!pattern.matcher(passwordField.getText()).matches()){
-            // TODO: Show in ui
-            return;
+            passwordField.getStyleClass().add("error");
+            passesRequirements = false;
         }
 
         // Passwords the same
         if (!passwordField.getText().equals(passwordConfirmField.getText())){
-            // TODO: Show in ui
-            return;
+            passwordConfirmField.getStyleClass().add("error");
+            passesRequirements = false;
         }
 
         // Username not empty
         if (!pattern.matcher(usernameField.getText()).matches()){
-            // TODO: Show in ui
+            usernameField.getStyleClass().add("error");
+            passesRequirements = false;
+        }
+
+        if (!passesRequirements){
             return;
         }
 
@@ -44,10 +51,10 @@ public class SignupController extends Controller {
             getStateManager().getCasino().createUser(usernameField.getText(), passwordField.getText());
             getStateManager().getState().handleLogin(getStateManager());
         } catch (IOException e) {
-            // TODO: Notify user
+            new Alert(Alert.AlertType.ERROR, "Fehler bei der Verarbeitung, versuchen Sie es später nocheinmals.", ButtonType.OK).show();
             Logger.getLogger(getClass().getName()).log(Level.WARNING, null, e);
         } catch (UserExistsException e) {
-            // TODO: Notify user
+            new Alert(Alert.AlertType.ERROR, "Dieser Benutzer existiert bereits.", ButtonType.OK).show();
         }
     }
 

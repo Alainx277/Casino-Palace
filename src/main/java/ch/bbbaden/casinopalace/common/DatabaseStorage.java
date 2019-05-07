@@ -15,7 +15,7 @@ public class DatabaseStorage implements Storage {
     private Connection connection;
 
     public DatabaseStorage(String endpoint, String dbname, String user, String password) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://" + endpoint + "/" + dbname + "?createDatabaseIfNotExist=true", user, password);
+        connection = DriverManager.getConnection("jdbc:mysql://" + endpoint + "/" + dbname + "?createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", user, password);
 
         // Ensure tables exist
         Statement statement = connection.createStatement();

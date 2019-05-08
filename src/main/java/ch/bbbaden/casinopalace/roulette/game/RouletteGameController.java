@@ -344,8 +344,6 @@ public class RouletteGameController extends Controller implements Initializable 
     private Label lbmiddle1;
     @FXML
     private Label lbcornerdown1;
-    @FXML
-    private Label lb0and00;
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc=" Buttons Chips ">
 
@@ -433,16 +431,16 @@ public class RouletteGameController extends Controller implements Initializable 
         //Konto aktualisieren
         db.setKonto(db.getKonto() + roulette.getReceivedMoney());
         kontobestand.setText("" + db.getKonto());
-        //Der Roulette-Tisch raeumen
+        //Der Roulette-Tisch r�umen
         fieldinput.clear();
         rowcolumninput.clear();
         for (int i = 0; i < chips.size(); i++) {
             anchorpane.getChildren().remove(chips.get(i));
         }
-        //Der aktuelle Einsatz raeumen
+        //Der aktuelle Einsatz r�umen
         bm.clearCommitMoney();
         einsatz.setText("" + bm.getCommitMoney());
-        //Die Hand raeumen
+        //Die Hand r�umen
         bm.clearBetMoney();
         hand.setText("" + bm.getMoney());
     }
@@ -542,28 +540,31 @@ public class RouletteGameController extends Controller implements Initializable 
             } else if (event.getSource() instanceof Label) {
                 Label selectedlabel = (Label) event.getSource();
                 selectedlabel.localToScreen(selectedlabel.getBoundsInLocal());
-                if (selectedlabel.getId().equals("label0")) {
-                    rowcolumninput.put(new int[]{0, 100}, bm.getMoney());
-                }
-                else if (selectedlabel.getId().equals("cornerlabel")) {
+                if (selectedlabel.getId().equals("cornerlabel")) {
                     switch (GridPane.getRowIndex(selectedlabel)) {
                         case 1:
                             rowcolumninput.put(new int[]{0, 3}, bm.getMoney());
+                            System.out.println("1");
                             break;
                         case 2:
                             rowcolumninput.put(new int[]{0, 2, 3}, bm.getMoney());
+                            System.out.println("2");
                             break;
                         case 3:
                             rowcolumninput.put(new int[]{0, 100, 2}, bm.getMoney());
+                            System.out.println("3");
                             break;
                         case 4:
                             rowcolumninput.put(new int[]{100, 2, 1}, bm.getMoney());
+                            System.out.println("4");
                             break;
                         case 5:
                             rowcolumninput.put(new int[]{100, 1}, bm.getMoney());
+                            System.out.println("5");
                             break;
                         case 6:
                             rowcolumninput.put(new int[]{0, 100, 1, 2, 3}, bm.getMoney());
+                            System.out.println("6");
                             break;
                         default:
                             throw new AssertionError();

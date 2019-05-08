@@ -6,9 +6,7 @@
 package ch.bbbaden.casinopalace.blackjack;
 
 import ch.bbbaden.casinopalace.common.Controller;
-import ch.bbbaden.casinopalace.common.User;
 import ch.bbbaden.casinopalace.view.CasinoController;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -51,7 +49,9 @@ public class BlackJackController extends Controller implements Initializable {
     private HBox hand1;
     @FXML
     private HBox hand2;
+    @FXML
     private HBox newHand2;
+    @FXML
     private Label lblNewBet;
 
     private int betAmount;
@@ -59,12 +59,14 @@ public class BlackJackController extends Controller implements Initializable {
 
     private int hit = 0;
     private boolean insurance = false;
+    private boolean split = false;
     private int betting = betAmount;
 
     private BlackJack bj;
 
     @FXML
     private ImageView imgStacks;
+    @FXML
     private ImageView chipsView;
     @FXML
     private AnchorPane ap;
@@ -75,6 +77,8 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private Button insuranceBtn;
     @FXML
+    private Button splitBtn;
+    @FXML
     private Button doubleBtn;
     @FXML
     private Button standBtn;
@@ -84,7 +88,6 @@ public class BlackJackController extends Controller implements Initializable {
     private Label insuranceBetLbl;
     @FXML
     private Pane resultPane;
-    private Label chipsLbl;
 
     /**
      * Initializes the controller class.
@@ -112,19 +115,6 @@ public class BlackJackController extends Controller implements Initializable {
     }
 
     private void setNodes() {
-        ImageView chips = new ImageView();
-        chipsLbl = new Label();
-        chipsLbl.setId("chipsLbl");
-        Image chipStack = new Image("/images/chips.png");
-        chips.setImage(chipStack);
-        chips.setFitWidth(70);
-        chips.setFitHeight(70);
-        chips.setLayoutY(50);
-        chips.setLayoutX(700);
-        chipsLbl.setLayoutX(800);
-        chipsLbl.setLayoutY(75);
-        chipsLbl.setText(bj.getCasino().getCurrentUser().getChips().stripTrailingZeros().toPlainString());
-        ap.getChildren().addAll(chipsLbl, chips);
         resultPane.setVisible(false);
         newHand2 = new HBox();
         lblNewBet = new Label();
@@ -147,21 +137,10 @@ public class BlackJackController extends Controller implements Initializable {
 
     private void disableButtons() {
         insuranceBtn.setDisable(true);
+        splitBtn.setDisable(true);
         doubleBtn.setDisable(true);
         standBtn.setDisable(true);
         hitBtn.setDisable(true);
-    }
-
-    private boolean checkChips(int chip) {
-        boolean b = false;
-        if (bj.getCasino().getCurrentUser().getChips().intValue() >= chip) {
-            bj.getCasino().getCurrentUser().setChips(bj.getCasino().getCurrentUser().getChips().subtract(new BigDecimal(chip)));
-            chipsLbl.setText(bj.getCasino().getCurrentUser().getChips().stripTrailingZeros().toPlainString());
-            b = true;
-        } else {
-            System.out.println("NO");
-        }
-        return b;
     }
 
     @FXML
@@ -170,9 +149,11 @@ public class BlackJackController extends Controller implements Initializable {
         insurance = true;
     }
 
+    @FXML
     private void handleSplit(ActionEvent event) {
         bj.setState((BJState) new Split());
         bj.requestState().handleSplit(bj);
+        splitBtn.setDisable(true);
         doubleBtn.setDisable(true);
 
     }
@@ -192,6 +173,7 @@ public class BlackJackController extends Controller implements Initializable {
             bj.requestState().handleInsurance(bj);
         }
         bj.setState((BJState) new Stand());
+        split = false;
         bj.requestState().handleStand(bj);
         disableButtons();
         finishPlayThrough();
@@ -200,25 +182,36 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private void handleHit(ActionEvent event) {
         bj.setBet(betAmount);
-        bj.requestState().handleHit(bj);
-        if (bj.getWorthpointeur() > 21) {
+        if (bj.getSplitPointeur() > 21 || bj.getSplitPointeur1() > 21) {
+            split = true;
+        }
+        if (split) {
+            disableButtons();
             bj.setState((BJState) new Stand());
             handleStand(event);
-            disableButtons();
-            hitBtn.setDisable(true);
         } else {
-            if (hit == 0) {
-                doubleBtn.setDisable(false);
-                standBtn.setDisable(false);
-                if (bj.getcoP().get(0).getNumber() == (bj.getcoP().get(1).getNumber())) {
+            bj.requestState().handleHit(bj);
+            if (bj.getWorthpointeur() > 21) {
+                bj.setState((BJState) new Stand());
+                handleStand(event);
+                disableButtons();
+                hitBtn.setDisable(true);
+            } else {
+                if (hit == 0) {
+                    doubleBtn.setDisable(false);
+                    standBtn.setDisable(false);
+                    if (bj.getcoP().get(0).getNumber() == (bj.getcoP().get(1).getNumber())) {
+                        splitBtn.setDisable(false);
+                    }
+                    if (bj.getcoC().get(0).getNumber() == 14) {
+                        insuranceBtn.setDisable(false);
+                    }
                 }
-                if (bj.getcoC().get(0).getNumber() == 14) {
-                    insuranceBtn.setDisable(false);
-                }
-            }
-            if (hit == 1) {
-                insuranceBtn.setDisable(true);
+                if (hit == 1) {
+                    insuranceBtn.setDisable(true);
+                    splitBtn.setDisable(true);
 
+                }
             }
         }
 
@@ -243,181 +236,170 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private void handleOne(MouseEvent event) {
-        if (checkChips(1)) {
-            if (hit == 0) {
-                betLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betAmount++;
-                betImgView.setImage(bet);
-                betImgView.setLayoutX(400);
-                betImgView.setFitHeight(70);
-                betImgView.setFitWidth(70);
-                betImgView.setVisible(true);
-                betLbl.setLayoutX(betImgView.getLayoutX() + 120);
-                betLbl.setLayoutY(260);
-                betLbl.setText(Integer.toString(betAmount));
-            }
-            if (insurance) {
-                standBtn.setDisable(false);
-                doubleBtn.setDisable(false);
-                insuranceBetLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betting++;
-                betImgView.setImage(bet);
-                bj.setInsuranceBet(betting);
-                insuranceBetLbl.setText(Integer.toString(betting));
-                insuranceBetLbl.setLayoutY(260);
-            }
+        if (hit == 0) {
+            betLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betAmount++;
+            betImgView.setImage(bet);
+            betImgView.setLayoutX(400);
+            betImgView.setFitHeight(70);
+            betImgView.setFitWidth(70);
+            betImgView.setVisible(true);
+            betLbl.setLayoutX(betImgView.getLayoutX() + 120);
+            betLbl.setLayoutY(260);
+            betLbl.setText(Integer.toString(betAmount));
         }
+        if (insurance) {
+            standBtn.setDisable(false);
+            doubleBtn.setDisable(false);
+            insuranceBetLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betting++;
+            betImgView.setImage(bet);
+            bj.setInsuranceBet(betting);
+            insuranceBetLbl.setText(Integer.toString(betting));
+            insuranceBetLbl.setLayoutY(260);
+        }
+
     }
 
     @FXML
     private void handleTen(MouseEvent event) {
-        if (checkChips(10)) {
-            if (hit == 0) {
-                betLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betAmount += 10;
-                betImgView.setImage(bet);
-                betImgView.setLayoutX(400);
-                betImgView.setFitHeight(70);
-                betImgView.setFitWidth(70);
-                betImgView.setVisible(true);
-                betLbl.setLayoutX(betImgView.getLayoutX() + 120);
-                betLbl.setLayoutY(260);
-                betLbl.setText(Integer.toString(betAmount));
-            }
-            if (insurance) {
-                standBtn.setDisable(false);
-                doubleBtn.setDisable(false);
-                insuranceBetLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betting += 10;
-                betImgView.setImage(bet);
-                bj.setInsuranceBet(betting);
-                insuranceBetLbl.setText(Integer.toString(betting));
-                insuranceBetLbl.setLayoutY(260);
-            }
+        if (hit == 0) {
+            betLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betAmount += 10;
+            betImgView.setImage(bet);
+            betImgView.setLayoutX(400);
+            betImgView.setFitHeight(70);
+            betImgView.setFitWidth(70);
+            betImgView.setVisible(true);
+            betLbl.setLayoutX(betImgView.getLayoutX() + 120);
+            betLbl.setLayoutY(260);
+            betLbl.setText(Integer.toString(betAmount));
+        }
+        if (insurance) {
+            standBtn.setDisable(false);
+            doubleBtn.setDisable(false);
+            insuranceBetLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betting += 10;
+            betImgView.setImage(bet);
+            bj.setInsuranceBet(betting);
+            insuranceBetLbl.setText(Integer.toString(betting));
+            insuranceBetLbl.setLayoutY(260);
         }
     }
 
     @FXML
     private void handleFifty(MouseEvent event) {
-        if (checkChips(50)) {
-            if (hit == 0) {
-                betLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betAmount += 50;
-                betImgView.setImage(bet);
-                betImgView.setLayoutX(400);
-                betImgView.setFitHeight(70);
-                betImgView.setFitWidth(70);
-                betImgView.setVisible(true);
-                betLbl.setLayoutX(betImgView.getLayoutX() + 120);
-                betLbl.setLayoutY(260);
-                betLbl.setText(Integer.toString(betAmount));
-            }
-            if (insurance) {
-                standBtn.setDisable(false);
-                doubleBtn.setDisable(false);
-                insuranceBetLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betting += 50;
-                betImgView.setImage(bet);
-                bj.setInsuranceBet(betting);
-                insuranceBetLbl.setText(Integer.toString(betting));
-                insuranceBetLbl.setLayoutY(260);
-            }
+        if (hit == 0) {
+            betLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betAmount += 50;
+            betImgView.setImage(bet);
+            betImgView.setLayoutX(400);
+            betImgView.setFitHeight(70);
+            betImgView.setFitWidth(70);
+            betImgView.setVisible(true);
+            betLbl.setLayoutX(betImgView.getLayoutX() + 120);
+            betLbl.setLayoutY(260);
+            betLbl.setText(Integer.toString(betAmount));
+        }
+        if (insurance) {
+            standBtn.setDisable(false);
+            doubleBtn.setDisable(false);
+            insuranceBetLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betting += 50;
+            betImgView.setImage(bet);
+            bj.setInsuranceBet(betting);
+            insuranceBetLbl.setText(Integer.toString(betting));
+            insuranceBetLbl.setLayoutY(260);
         }
     }
 
     @FXML
     private void handleHundred(MouseEvent event) {
-        if (checkChips(100)) {
-            if (hit == 0) {
-                betLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betAmount += 100;
-                betImgView.setImage(bet);
-                betImgView.setLayoutX(400);
-                betImgView.setFitHeight(70);
-                betImgView.setFitWidth(70);
-                betImgView.setVisible(true);
-                betLbl.setLayoutX(betImgView.getLayoutX() + 120);
-                betLbl.setLayoutY(260);
-                betLbl.setText(Integer.toString(betAmount));
-            }
-            if (insurance) {
-                standBtn.setDisable(false);
-                doubleBtn.setDisable(false);
-                insuranceBetLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betting += 100;
-                betImgView.setImage(bet);
-                bj.setInsuranceBet(betting);
-                insuranceBetLbl.setText(Integer.toString(betting));
-                insuranceBetLbl.setLayoutY(260);
-            }
+        if (hit == 0) {
+            betLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betAmount += 100;
+            betImgView.setImage(bet);
+            betImgView.setLayoutX(400);
+            betImgView.setFitHeight(70);
+            betImgView.setFitWidth(70);
+            betImgView.setVisible(true);
+            betLbl.setLayoutX(betImgView.getLayoutX() + 120);
+            betLbl.setLayoutY(260);
+            betLbl.setText(Integer.toString(betAmount));
+        }
+        if (insurance) {
+            standBtn.setDisable(false);
+            doubleBtn.setDisable(false);
+            insuranceBetLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betting += 100;
+            betImgView.setImage(bet);
+            bj.setInsuranceBet(betting);
+            insuranceBetLbl.setText(Integer.toString(betting));
+            insuranceBetLbl.setLayoutY(260);
         }
     }
 
     @FXML
     private void handleTwoFifty(MouseEvent event) {
-        if (checkChips(250)) {
-            if (hit == 0) {
-                betLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betAmount += 250;
-                betImgView.setImage(bet);
-                betImgView.setLayoutX(400);
-                betImgView.setFitHeight(70);
-                betImgView.setFitWidth(70);
-                betImgView.setVisible(true);
-                betLbl.setLayoutX(betImgView.getLayoutX() + 120);
-                betLbl.setLayoutY(260);
-                betLbl.setText(Integer.toString(betAmount));
-            }
-            if (insurance) {
-                standBtn.setDisable(false);
-                doubleBtn.setDisable(false);
-                insuranceBetLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betting += 250;
-                betImgView.setImage(bet);
-                bj.setInsuranceBet(betting);
-                insuranceBetLbl.setText(Integer.toString(betting));
-                insuranceBetLbl.setLayoutY(260);
-            }
+        if (hit == 0) {
+            betLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betAmount += 250;
+            betImgView.setImage(bet);
+            betImgView.setLayoutX(400);
+            betImgView.setFitHeight(70);
+            betImgView.setFitWidth(70);
+            betImgView.setVisible(true);
+            betLbl.setLayoutX(betImgView.getLayoutX() + 120);
+            betLbl.setLayoutY(260);
+            betLbl.setText(Integer.toString(betAmount));
+        }
+        if (insurance) {
+            standBtn.setDisable(false);
+            doubleBtn.setDisable(false);
+            insuranceBetLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betting += 250;
+            betImgView.setImage(bet);
+            bj.setInsuranceBet(betting);
+            insuranceBetLbl.setText(Integer.toString(betting));
+            insuranceBetLbl.setLayoutY(260);
         }
     }
 
     @FXML
     private void handleFivehundred(MouseEvent event) {
-        if (checkChips(500)) {
-            if (hit == 0) {
-                betLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betAmount += 500;
-                betImgView.setImage(bet);
-                betImgView.setLayoutX(400);
-                betImgView.setFitHeight(70);
-                betImgView.setFitWidth(70);
-                betImgView.setVisible(true);
-                betLbl.setLayoutX(betImgView.getLayoutX() + 120);
-                betLbl.setLayoutY(260);
-                betLbl.setText(Integer.toString(betAmount));
-            }
-            if (insurance) {
-                standBtn.setDisable(false);
-                doubleBtn.setDisable(false);
-                insuranceBetLbl.setVisible(true);
-                hitBtn.setDisable(false);
-                betting += 500;
-                betImgView.setImage(bet);
-                bj.setInsuranceBet(betting);
-                insuranceBetLbl.setText(Integer.toString(betting));
-                insuranceBetLbl.setLayoutY(260);
-            }
+        if (hit == 0) {
+            betLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betAmount += 500;
+            betImgView.setImage(bet);
+            betImgView.setLayoutX(400);
+            betImgView.setFitHeight(70);
+            betImgView.setFitWidth(70);
+            betImgView.setVisible(true);
+            betLbl.setLayoutX(betImgView.getLayoutX() + 120);
+            betLbl.setLayoutY(260);
+            betLbl.setText(Integer.toString(betAmount));
+        }
+        if (insurance) {
+            standBtn.setDisable(false);
+            doubleBtn.setDisable(false);
+            insuranceBetLbl.setVisible(true);
+            hitBtn.setDisable(false);
+            betting += 500;
+            betImgView.setImage(bet);
+            bj.setInsuranceBet(betting);
+            insuranceBetLbl.setText(Integer.toString(betting));
+            insuranceBetLbl.setLayoutY(260);
         }
     }
 
@@ -447,19 +429,62 @@ public class BlackJackController extends Controller implements Initializable {
         insuranceLbl.setText(insuranceMsg);
         switch (bj.getResult()) {
             case 2:
-                //Won
-                endString = "!!Gewonnen!!";
-                endingMsg = " Chips gewonnen!";
+                switch (bj.getResult1()) {
+                    case 2:
+                        //Also won
+                        endString = "!!Gewonnen!!";
+                        endingMsg = " Chips gewonnen!";
+                        break;
+                    case 1:
+                        //undeceided
+                        endString = "!!Gewonnen!!";
+                        endingMsg = " Chips gewonnen!";
+                        break;
+                    default:
+                        //lost
+                        endString = "!!Gewonnen!!";
+                        endingMsg = " Chips gewonnen!";
+                        break;
+                }
+
                 break;
             case 1:
-                //Undeceided
-                endString = "!!Unentschieden!!";
-                endingMsg = " Chips gewonnen!";
+                switch (bj.getResult1()) {
+                    case 2:
+                        //Also won
+                        endString = "!!Gewonnen!!";
+                        endingMsg = " Chips gewonnen!";
+                        break;
+                    case 1:
+                        //undeceided
+                        endString = "!!Unentschieden!!";
+                        endingMsg = " Chips gewonnen!";
+                        break;
+                    default:
+                        //lost
+                        endString = "!!Verloren!!";
+                        endingMsg = " Chips verloren!";
+                        break;
+                }
                 break;
             default:
-                //lost
-                endString = "!!Verloren!!";
-                endingMsg = " Chips verloren!";
+                switch (bj.getResult1()) {
+                    case 2:
+                        //Also won
+                        endString = "!!Gewonnen!!";
+                        endingMsg = " Chips gewonnen!";
+                        break;
+                    case 1:
+                        //undeceided
+                        endString = "!!Verloren!!";
+                        endingMsg = " Chips verloren!";
+                        break;
+                    default:
+                        //lost
+                        endString = "!!Verloren!!";
+                        endingMsg = " Chips verloren!";
+                        break;
+                }
                 break;
         }
 
@@ -473,12 +498,8 @@ public class BlackJackController extends Controller implements Initializable {
         message.setLayoutX(100);
         message.setLayoutY(30);
         int change = bj.getChange();
-        System.out.println("Change: " + change);
-        bj.onMoneyChanged(change);
-        if (change > 0) {
-            chipsLbl.setText(bj.getCasino().getCurrentUser().getChips().stripTrailingZeros().toPlainString());
-        }
         String extendedMsg = Integer.toString(change);
+        bj.onMoneyChanged(change);
 
         message.setText(baseMsg + extendedMsg + endingMsg);
 
@@ -507,7 +528,7 @@ public class BlackJackController extends Controller implements Initializable {
             bj.getcoC().clear();
             bj.getcoP().clear();
             hit = 0;
-            insurance = false;
+
             resultPane.setVisible(false);
             resultPane.getChildren().clear();
             lblNewBet.setVisible(false);

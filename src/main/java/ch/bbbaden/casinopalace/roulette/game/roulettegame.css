@@ -113,11 +113,6 @@
     -fx-border-width:5;
     -fx-border-lenght:5;
 }
-#label0:hover{
-    -fx-border-color: blue ;
-    -fx-border-width: 1 ; 
-    -fx-border-lenght: 1;
-}
 #label1:hover{
     -fx-border-color: blue ;
     -fx-border-width: 1 ; 

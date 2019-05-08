@@ -316,9 +316,9 @@ public class PokerGameController extends Controller implements Initializable {
         if (blockingAnimations.get() > 0) {
             cardButton.setDisable(true);
         } else if (poker.canDrawCards()) {
-            cardButton.setText("Draw");
+            cardButton.setText("Deal");
         } else if (poker.canHoldCards()) {
-            cardButton.setText("Hold");
+            cardButton.setText("Draw");
         } else if (poker.isEnd()) {
             cardButton.setText("Neue Runde");
         }

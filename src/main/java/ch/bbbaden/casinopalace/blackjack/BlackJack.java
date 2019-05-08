@@ -14,6 +14,7 @@ import ch.bbbaden.casinopalace.common.Casino;
 import ch.bbbaden.casinopalace.common.User;
 import ch.bbbaden.casinopalace.common.exception.UserDoesNotExistException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
@@ -181,9 +182,20 @@ public class BlackJack {
         this.worthpointeur = worthpointeur;
     }
 
+    public Casino getCasino() {
+        return casino;
+    }
+
     public void onMoneyChanged(int worth) {
         User user = casino.getCurrentUser();
-        user.setChips(user.getChips().add(new BigDecimal(worth)));
+        
+        Label chipsLbl = (Label) getAp().getChildren().stream().filter(x -> x.getId().equals("chipsLbl")).findAny().get();
+        if(worth < 0){
+            //negative Worth doesnt have to be taken away
+        }else{
+            user.setChips(user.getChips().add(new BigDecimal(worth)));
+        }
+        chipsLbl.setText(user.getChips().stripTrailingZeros().toPlainString());
         try {
             casino.updateUser(user);
         } catch (IOException | UserDoesNotExistException e) {
@@ -661,8 +673,8 @@ public class BlackJack {
             } else if (getWorthpointeur() > 21) {
                 //Bust
                 result = 0;
-                change = bet;
-            } else if (getCardAmountpointeur() < 21) {
+                change -= bet;
+            } else if (getWorthpointeur() < 21) {
                 //check if greater than croupier
                 if (getWorthCroupier() > 21) {
                     //Croupier busted

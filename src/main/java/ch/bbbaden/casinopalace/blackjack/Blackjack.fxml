@@ -24,14 +24,13 @@
                 <ImageView fx:id="chip500" fitHeight="90.0" fitWidth="90.0" onMouseClicked="#handleFivehundred" pickOnBounds="true" preserveRatio="true" />
                 <VBox prefHeight="90.0" prefWidth="90.0" spacing="10.0">
                     <children>
-                        <Button fx:id="insuranceBtn" mnemonicParsing="false" onAction="#handleInsurrance" prefHeight="40.0" prefWidth="90.0" text="Insurrance" />
-                        <Button fx:id="splitBtn" mnemonicParsing="false" onAction="#handleSplit" prefHeight="40.0" prefWidth="90.0" text="Split" />
+                        <Button fx:id="insuranceBtn" mnemonicParsing="false" onAction="#handleInsurrance" prefHeight="40.0" prefWidth="101.0" text="Insurance" />
+                        <Button fx:id="standBtn" mnemonicParsing="false" onAction="#handleStand" prefHeight="40.0" prefWidth="90.0" text="Stand" />
                     </children>
                 </VBox>
                 <VBox prefHeight="90.0" prefWidth="90.0" spacing="10.0">
                     <children>
-                        <Button fx:id="doubleBtn" mnemonicParsing="false" onAction="#handleDouble" prefHeight="40.0" prefWidth="90.0" text="Double" />
-                        <Button fx:id="standBtn" mnemonicParsing="false" onAction="#handleStand" prefHeight="40.0" prefWidth="90.0" text="Stand" />
+                        <Button fx:id="doubleBtn" mnemonicParsing="false" onAction="#handleDouble" prefHeight="92.0" prefWidth="89.0" text="Double" />
                     </children>
                 </VBox>
                 <Button fx:id="hitBtn" mnemonicParsing="false" onAction="#handleHit" prefHeight="90.0" prefWidth="90.0" text="Hit" />

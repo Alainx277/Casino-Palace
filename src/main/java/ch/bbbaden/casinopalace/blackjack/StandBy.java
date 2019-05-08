@@ -33,7 +33,7 @@ public class StandBy implements BJState {
             ImageView croupierTwo = new ImageView();
 
             for (int i = 0; i < 3; i++) {
-                if(bj.getCompleteStack().isEmpty()){
+                if (bj.getCompleteStack().isEmpty()) {
                     //Shuffling
                     bj.addCards();
                 }
@@ -44,7 +44,6 @@ public class StandBy implements BJState {
                         poineturView.setImage(k.getImage());
                         break;
                     case 1:
-
                         if (bj.getWorthpointeur() > 10 && k.getNumber() == 14) {
                             k.setCount(1);
                         }

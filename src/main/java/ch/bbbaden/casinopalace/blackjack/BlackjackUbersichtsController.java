@@ -1,6 +1,7 @@
 package ch.bbbaden.casinopalace.blackjack;
 
 import ch.bbbaden.casinopalace.common.Controller;
+import ch.bbbaden.casinopalace.common.User;
 import ch.bbbaden.casinopalace.view.CasinoController;
 import ch.bbbaden.casinopalace.view.LoginController;
 import java.net.URL;
@@ -35,6 +36,8 @@ public class BlackjackUbersichtsController extends Controller implements Initial
     private AnchorPane ap;
     @FXML
     private ImageView imgViewBack;
+    
+    private User currentUser;
 
     @FXML
     private void startGame(ActionEvent event) {
@@ -51,8 +54,9 @@ public class BlackjackUbersichtsController extends Controller implements Initial
         imgViewBack.setImage(new Image("/images/back.png"));
         startGame.setText("Spiel beginnen");
         imgChips.setImage(new Image("/images/chips.png"));
+        currentUser = getStateManager().getCasino().getCurrentUser();
+        chips.setText(currentUser.getChips().stripTrailingZeros().toPlainString());
         setRulesLabel();
-        
 
     }
 
@@ -80,7 +84,7 @@ public class BlackjackUbersichtsController extends Controller implements Initial
                 + "gleichen Wert in 2 Karten hält, kann er splitten und somit mit zweit Händen" + "\n"
                 + "spielen. Mit zwei Karten, darf er auch verdoppeln und seinen Einsatz somit" + "\n"
                 + "erhöhen" + "\n" + "\n"
-                + "Viel Spass");
+                + "Viel Spass" + "   " + currentUser.getUsername());
     }
 
     public void setScene(Scene scene) {

@@ -344,6 +344,8 @@ public class RouletteGameController extends Controller implements Initializable 
     private Label lbmiddle1;
     @FXML
     private Label lbcornerdown1;
+    @FXML
+    private Label lb0and00;
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc=" Buttons Chips ">
 
@@ -431,16 +433,16 @@ public class RouletteGameController extends Controller implements Initializable 
         //Konto aktualisieren
         db.setKonto(db.getKonto() + roulette.getReceivedMoney());
         kontobestand.setText("" + db.getKonto());
-        //Der Roulette-Tisch r�umen
+        //Der Roulette-Tisch raeumen
         fieldinput.clear();
         rowcolumninput.clear();
         for (int i = 0; i < chips.size(); i++) {
             anchorpane.getChildren().remove(chips.get(i));
         }
-        //Der aktuelle Einsatz r�umen
+        //Der aktuelle Einsatz raeumen
         bm.clearCommitMoney();
         einsatz.setText("" + bm.getCommitMoney());
-        //Die Hand r�umen
+        //Die Hand raeumen
         bm.clearBetMoney();
         hand.setText("" + bm.getMoney());
     }
@@ -540,7 +542,10 @@ public class RouletteGameController extends Controller implements Initializable 
             } else if (event.getSource() instanceof Label) {
                 Label selectedlabel = (Label) event.getSource();
                 selectedlabel.localToScreen(selectedlabel.getBoundsInLocal());
-                if (selectedlabel.getId().equals("cornerlabel")) {
+                if (selectedlabel.getId().equals("label0")) {
+                    rowcolumninput.put(new int[]{0, 100}, bm.getMoney());
+                }
+                else if (selectedlabel.getId().equals("cornerlabel")) {
                     switch (GridPane.getRowIndex(selectedlabel)) {
                         case 1:
                             rowcolumninput.put(new int[]{0, 3}, bm.getMoney());

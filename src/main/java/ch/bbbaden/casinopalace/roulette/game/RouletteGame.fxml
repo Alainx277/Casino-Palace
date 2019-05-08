@@ -933,6 +933,11 @@
                         <Button id="greenbtn" fx:id="btn19to36" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="56.0" prefWidth="161.0" text="19-36 Hoch" GridPane.columnIndex="10" />
                      </children>
                   </GridPane>
+                  <Label id="label0" fx:id="lb0and00" layoutX="20.0" layoutY="134.0" maxHeight="60.0" maxWidth="70.0" minHeight="10.0" minWidth="5.0" mnemonicParsing="false" onMouseClicked="#clickFieldMouse" prefHeight="26.0" prefWidth="66.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children></Pane>

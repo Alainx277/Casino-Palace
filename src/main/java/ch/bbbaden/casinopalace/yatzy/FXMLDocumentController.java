@@ -123,7 +123,6 @@ public class FXMLDocumentController extends Controller implements Initializable 
     
     @FXML
     private void handleWuerfeln(ActionEvent event) throws IOException {
-        
         setUnusedFigures();
         ianzahlWuerfe--;
         te.setFields(unusedFigures);

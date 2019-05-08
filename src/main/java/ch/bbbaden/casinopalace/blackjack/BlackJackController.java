@@ -50,9 +50,7 @@ public class BlackJackController extends Controller implements Initializable {
     private HBox hand1;
     @FXML
     private HBox hand2;
-    @FXML
     private HBox newHand2;
-    @FXML
     private Label lblNewBet;
 
     private int betAmount;
@@ -67,7 +65,6 @@ public class BlackJackController extends Controller implements Initializable {
 
     @FXML
     private ImageView imgStacks;
-    @FXML
     private ImageView chipsView;
     @FXML
     private AnchorPane ap;
@@ -77,8 +74,6 @@ public class BlackJackController extends Controller implements Initializable {
     private Label betLbl;
     @FXML
     private Button insuranceBtn;
-    @FXML
-    private Button splitBtn;
     @FXML
     private Button doubleBtn;
     @FXML
@@ -152,7 +147,6 @@ public class BlackJackController extends Controller implements Initializable {
 
     private void disableButtons() {
         insuranceBtn.setDisable(true);
-        splitBtn.setDisable(true);
         doubleBtn.setDisable(true);
         standBtn.setDisable(true);
         hitBtn.setDisable(true);
@@ -176,11 +170,9 @@ public class BlackJackController extends Controller implements Initializable {
         insurance = true;
     }
 
-    @FXML
     private void handleSplit(ActionEvent event) {
         bj.setState((BJState) new Split());
         bj.requestState().handleSplit(bj);
-        splitBtn.setDisable(true);
         doubleBtn.setDisable(true);
 
     }
@@ -209,37 +201,28 @@ public class BlackJackController extends Controller implements Initializable {
     @FXML
     private void handleHit(ActionEvent event) {
         bj.setBet(betAmount);
-        if (bj.getSplitPointeur() > 21 || bj.getSplitPointeur1() > 21) {
-            split = true;
-        }
-        if (split) {
-            disableButtons();
+        bj.requestState().handleHit(bj);
+        if (bj.getWorthpointeur() > 21) {
             bj.setState((BJState) new Stand());
             handleStand(event);
+            disableButtons();
+            hitBtn.setDisable(true);
         } else {
-            bj.requestState().handleHit(bj);
-            if (bj.getWorthpointeur() > 21) {
-                bj.setState((BJState) new Stand());
-                handleStand(event);
-                disableButtons();
-                hitBtn.setDisable(true);
-            } else {
-                if (hit == 0) {
-                    doubleBtn.setDisable(false);
-                    standBtn.setDisable(false);
-                    if (bj.getcoP().get(0).getNumber() == (bj.getcoP().get(1).getNumber())) {
-                        splitBtn.setDisable(false);
-                    }
-                    if (bj.getcoC().get(0).getNumber() == 14) {
-                        insuranceBtn.setDisable(false);
-                    }
+            if (hit == 0) {
+                doubleBtn.setDisable(false);
+                standBtn.setDisable(false);
+                if (bj.getcoP().get(0).getNumber() == (bj.getcoP().get(1).getNumber())) {
+                    //Split
                 }
-                if (hit == 1) {
-                    insuranceBtn.setDisable(true);
-                    splitBtn.setDisable(true);
-
+                if (bj.getcoC().get(0).getNumber() == 14) {
+                    insuranceBtn.setDisable(false);
                 }
             }
+            if (hit == 1) {
+                insuranceBtn.setDisable(true);
+
+            }
+
         }
 
         hit++;
@@ -328,7 +311,7 @@ public class BlackJackController extends Controller implements Initializable {
             if (hit == 0) {
                 betLbl.setVisible(true);
                 hitBtn.setDisable(false);
-                betAmount += 10;
+                betAmount += 50;
                 betImgView.setImage(bet);
                 betImgView.setLayoutX(400);
                 betImgView.setFitHeight(70);
@@ -358,7 +341,7 @@ public class BlackJackController extends Controller implements Initializable {
             if (hit == 0) {
                 betLbl.setVisible(true);
                 hitBtn.setDisable(false);
-                betAmount += 10;
+                betAmount += 100;
                 betImgView.setImage(bet);
                 betImgView.setLayoutX(400);
                 betImgView.setFitHeight(70);
@@ -388,7 +371,7 @@ public class BlackJackController extends Controller implements Initializable {
             if (hit == 0) {
                 betLbl.setVisible(true);
                 hitBtn.setDisable(false);
-                betAmount += 10;
+                betAmount += 250;
                 betImgView.setImage(bet);
                 betImgView.setLayoutX(400);
                 betImgView.setFitHeight(70);
@@ -418,7 +401,7 @@ public class BlackJackController extends Controller implements Initializable {
             if (hit == 0) {
                 betLbl.setVisible(true);
                 hitBtn.setDisable(false);
-                betAmount += 10;
+                betAmount += 500;
                 betImgView.setImage(bet);
                 betImgView.setLayoutX(400);
                 betImgView.setFitHeight(70);

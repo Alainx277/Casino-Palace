@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class CasinoApplication extends Application {
     public void start(Stage primaryStage) throws Exception {
         try {
-            StateManager manager = new StateManager(new Casino(new UserFactory(), new DatabaseStorage("localhost:3306", "casino", "root", "")), new SceneCreator());
+            StateManager manager = new StateManager(new Casino(new UserFactory(), new DatabaseStorage("remotemysql.com:3306", "gAbRqMsvI0", "gAbRqMsvI0", "vCy9DcZ3AY")), new SceneCreator());
             manager.transition(new LoginState());
         } catch (Exception e) {
             // Notify user (critical error)

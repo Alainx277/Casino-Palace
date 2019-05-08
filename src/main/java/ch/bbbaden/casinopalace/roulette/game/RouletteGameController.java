@@ -540,7 +540,9 @@ public class RouletteGameController extends Controller implements Initializable 
             } else if (event.getSource() instanceof Label) {
                 Label selectedlabel = (Label) event.getSource();
                 selectedlabel.localToScreen(selectedlabel.getBoundsInLocal());
-                if (selectedlabel.getId().equals("cornerlabel")) {
+                if (selectedlabel.getId().equals("label0")) {
+                    rowcolumninput.put(new int[]{0, 100}, bm.getMoney());
+                } else if (selectedlabel.getId().equals("cornerlabel")) {
                     switch (GridPane.getRowIndex(selectedlabel)) {
                         case 1:
                             rowcolumninput.put(new int[]{0, 3}, bm.getMoney());

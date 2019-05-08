@@ -5,6 +5,7 @@ import ch.bbbaden.casinopalace.poker.StateMachine;
 import ch.bbbaden.casinopalace.poker.game.hand.*;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -17,6 +18,7 @@ public class Poker {
     private CardStack stack = new CardStack();
     private ArrayList<HandParser> handParsers = new ArrayList<>();
     private Boolean won = null;
+    private BigDecimal amountWon = new BigDecimal(0);
 
     public Poker() {
         this(5);
@@ -65,6 +67,30 @@ public class Poker {
         stateMachine.getState().handleHold(stateMachine, heldCards);
     }
 
+    public boolean canGamble(){
+        return stateMachine.getState().canGamble(stateMachine);
+    }
+
+    public Card gamble(){
+        return stateMachine.getState().handleGamble(stateMachine);
+    }
+
+    public boolean canGamblePick(){
+        return stateMachine.getState().canGamblePick(stateMachine);
+    }
+
+    public void gamblePick(Card pick){
+        stateMachine.getState().handleGamblePick(stateMachine, pick);
+    }
+
+    public boolean canEnd(){
+        return stateMachine.getState().canEnd(stateMachine);
+    }
+
+    public void end() {
+        stateMachine.getState().handleEnd(stateMachine);
+    }
+
     public CardStack getStack() {
         return stack;
     }
@@ -105,11 +131,11 @@ public class Poker {
     }
 
     public boolean isLost(){
-        return won != null && !won;
+        return !isWon();
     }
 
     public boolean isEnd(){
-        return won != null;
+        return stateMachine.getState().isEnd(stateMachine);
     }
 
     public void setWon(Boolean won) {
@@ -118,5 +144,13 @@ public class Poker {
 
     public void reset(){
         getStateMachine().transition(new InitialState());
+    }
+
+    public BigDecimal getAmountWon() {
+        return amountWon;
+    }
+
+    public void setAmountWon(BigDecimal amountWon) {
+        this.amountWon = amountWon;
     }
 }

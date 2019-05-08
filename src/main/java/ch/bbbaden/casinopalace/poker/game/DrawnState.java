@@ -3,6 +3,7 @@ package ch.bbbaden.casinopalace.poker.game;
 import ch.bbbaden.casinopalace.poker.StateMachine;
 import ch.bbbaden.casinopalace.poker.game.hand.Hand;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -37,7 +38,9 @@ public class DrawnState extends PokerState {
         Optional<Hand> hand = poker.getCurrentHand();
         // Set status
         poker.setWon(hand.isPresent());
+        // Set amount won
+        poker.setAmountWon(BigDecimal.valueOf(hand.orElseGet(() -> new Hand("", 0)).getValue()));
 
-        machine.transition(new EndState());
+        machine.transition(new HeldState());
     }
 }

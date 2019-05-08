@@ -1,5 +1,10 @@
 package ch.bbbaden.casinopalace.poker.game;
 
-public class EndState extends PokerState {
+import ch.bbbaden.casinopalace.poker.StateMachine;
 
+public class EndState extends PokerState {
+    @Override
+    public boolean isEnd(StateMachine<Poker, PokerState> machine) {
+        return true;
+    }
 }

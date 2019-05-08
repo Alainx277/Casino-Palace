@@ -17,7 +17,7 @@ public class PokerController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        balanceLabel.setText(getStateManager().getCasino().getCurrentUser().getChips().toPlainString());
+        balanceLabel.setText(getStateManager().getCasino().getCurrentUser().getChips().stripTrailingZeros().toPlainString());
         getStateManager().getSceneCreator().getCurrentStage().setOnCloseRequest(event -> {
             try {
                 getStateManager().getState().handleCasino(getStateManager());

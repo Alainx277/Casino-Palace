@@ -66,10 +66,13 @@ public class PokerGameController extends Controller implements Initializable {
     private Button maxBetButton;
 
     private List<CardView> cardViews = new ArrayList<>();
+    private Card flippedCard = null;
 
     private PokerBet bet = new PokerBet(0, 1);
     private Poker poker = new Poker();
     private SimpleIntegerProperty blockingAnimations = new SimpleIntegerProperty(this, "blockingAnimations", 0);
+    @FXML
+    private Button gambleButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,12 +88,12 @@ public class PokerGameController extends Controller implements Initializable {
         });
 
         PokerCasinoAdapter adapter = new PokerCasinoAdapter(poker, getStateManager().getCasino(), param -> bet);
-        balanceLabel.setText(getStateManager().getCasino().getCurrentUser().getChips().toPlainString());
+        balanceLabel.setText(getStateManager().getCasino().getCurrentUser().getChips().stripTrailingZeros().toPlainString());
 
         // Monitor balance changes
         adapter.onBalanceChanged().addHandler(arg -> {
             boolean positive = arg.getDifference().compareTo(BigDecimal.ZERO) > 0;
-            balanceChangeLabel.setText((positive ? "+" : "") + arg.getDifference().toPlainString());
+            balanceChangeLabel.setText((positive ? "+" : "") + arg.getDifference().stripTrailingZeros().toPlainString());
             balanceChangeLabel.getStyleClass().removeAll("success", "error");
             balanceChangeLabel.getStyleClass().add(positive ? "success" : "error");
             balanceChangeLabel.setOpacity(1);
@@ -104,7 +107,7 @@ public class PokerGameController extends Controller implements Initializable {
             pause.play();
 
 
-            balanceLabel.setText(arg.getNewValue().toPlainString());
+            balanceLabel.setText(arg.getNewValue().stripTrailingZeros().toPlainString());
         });
 
         cardStack.setStack(poker.getStack());
@@ -188,21 +191,26 @@ public class PokerGameController extends Controller implements Initializable {
             valueLabel.setPadding(new Insets(0, 5, 0, 0));
             possibleHandsPane.add(valueLabel, 1, rowIndex);
         }
+
+        // Add listener for gamble
+        cardViews.forEach(x -> x.facingUpProperty().addListener((observable1, oldValue1, newValue1) -> {
+            if (newValue1 && !x.getCard().equals(flippedCard) && poker.canGamblePick()) {
+                poker.gamblePick(x.getCard());
+            }
+        }));
+
+        refreshUi();
     }
 
 
-    private void drawCards(int... indices) {
+    private void drawCards(boolean flip, int... indices) {
         if (indices.length == 0) {
             return;
         }
-        drawCard(poker.getCards().get(indices[0]), indices[0]).addOnFinished(event -> drawCards(Arrays.copyOfRange(indices, 1, indices.length)));
+        drawCard(poker.getCards().get(indices[0]), indices[0], flip).addOnFinished(event -> drawCards(flip, Arrays.copyOfRange(indices, 1, indices.length)));
     }
 
-    private TransitionFuture drawCard(Card card) {
-        return drawCard(card, -1);
-    }
-
-    private TransitionFuture drawCard(Card card, int index) {
+    private TransitionFuture drawCard(Card card, int index, boolean flip) {
         blockingAnimations.set(blockingAnimations.get() + 1);
 
         // Get empty card
@@ -239,7 +247,12 @@ public class PokerGameController extends Controller implements Initializable {
         transition.setOnFinished(event -> {
             finalCardTarget.setVisible(true);
             finalCardTarget.setCard(card);
-            finalCardTarget.flip().addOnFinished(x -> blockingAnimations.set(blockingAnimations.get() - 1));
+            if (flip){
+                finalCardTarget.flip().addOnFinished(x -> blockingAnimations.set(blockingAnimations.get() - 1));
+            } else{
+                blockingAnimations.set(blockingAnimations.get() - 1);
+            }
+
             playField.getChildren().remove(temp);
         });
         transition.play();
@@ -302,6 +315,8 @@ public class PokerGameController extends Controller implements Initializable {
         refreshBet();
         refreshCardButton();
         refreshCards();
+
+        gambleButton.setVisible(poker.canGamble());
     }
 
     private void refreshCards() {
@@ -319,8 +334,10 @@ public class PokerGameController extends Controller implements Initializable {
             cardButton.setText("Deal");
         } else if (poker.canHoldCards()) {
             cardButton.setText("Draw");
-        } else if (poker.isEnd()) {
+        } else if (poker.canEnd()) {
             cardButton.setText("Neue Runde");
+        } else {
+            cardButton.setDisable(true);
         }
     }
 
@@ -368,7 +385,7 @@ public class PokerGameController extends Controller implements Initializable {
             poker.drawCards();
             blockingAnimations.set(blockingAnimations.get() + 1);
             cardStack.shuffle().addOnFinished(event1 -> {
-                drawCards(IntStream.range(0, poker.getCards().size()).toArray());
+                drawCards(true, IntStream.range(0, poker.getCards().size()).toArray());
                 blockingAnimations.set(blockingAnimations.get() - 1);
             });
         } else if (poker.canHoldCards()) {
@@ -382,7 +399,7 @@ public class PokerGameController extends Controller implements Initializable {
                     if (!called) {
                         called = true;
                         blockingAnimations.set(blockingAnimations.get() + 1);
-                        drawCards(IntStream.range(0, cardViews.size()).filter(x -> !cardViews.get(x).isVisible()).toArray());
+                        drawCards(true, IntStream.range(0, cardViews.size()).filter(x -> !cardViews.get(x).isVisible()).toArray());
                         blockingAnimations.addListener(new ChangeListener<Number>() {
                             @Override
                             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -401,10 +418,41 @@ public class PokerGameController extends Controller implements Initializable {
             } else {
                 handler.handle(null);
             }
-        } else if (poker.isEnd()) {
+        } else if (poker.canEnd()) {
+            poker.end();
             poker.reset();
             refreshResult();
             cardViews.forEach(this::dumpCard);
         }
+    }
+
+    @FXML
+    private void handleGamble(ActionEvent actionEvent) {
+        if (!poker.canGamble()){
+            refreshUi();
+            return;
+        }
+
+        flippedCard = poker.gamble();
+        cardViews.forEach(this::dumpCard);
+        blockingAnimations.addListener(new ChangeListener<Number>() {
+            boolean drawn = false;
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() != 0){
+                    return;
+                }
+
+                if (!drawn){
+                    for (int i = 0; i < poker.getCards().size(); i++) {
+                        Card card = poker.getCards().get(i);
+                        drawCard(card, i, card.equals(flippedCard));
+                    }
+                    drawn = true;
+                    return;
+                }
+            }
+        });
     }
 }

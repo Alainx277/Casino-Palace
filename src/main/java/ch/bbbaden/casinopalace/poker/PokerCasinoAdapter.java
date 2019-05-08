@@ -36,10 +36,9 @@ public class PokerCasinoAdapter {
     }
 
     private void onTransition(TransitionEvent<Poker, PokerState> event) {
-        Optional<Hand> currentHand = poker.getCurrentHand();
-        if (poker.isWon() && currentHand.isPresent()) {
+        if (poker.isEnd() && poker.getAmountWon().compareTo(BigDecimal.ZERO) != 0) {
             // Add bet amount to user account
-            int multiplier = currentHand.get().getValue();
+            int multiplier = poker.getAmountWon().intValue();
             double value = betCallback.call(null).getValue() * multiplier;
             changeBalance(new BigDecimal(value));
         } else if (event.getOldState().canBet(event.getMachine()) && !event.getNewState().canBet(event.getMachine())) {

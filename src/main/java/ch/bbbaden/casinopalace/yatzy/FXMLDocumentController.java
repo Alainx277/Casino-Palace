@@ -122,7 +122,7 @@ public class FXMLDocumentController extends Controller implements Initializable 
     }
     
     @FXML
-    private void handleWürfeln(ActionEvent event) throws IOException {
+    private void handleWuerfeln(ActionEvent event) throws IOException {
         
         setUnusedFigures();
         ianzahlWuerfe--;

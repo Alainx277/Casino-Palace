@@ -138,7 +138,7 @@
             </Label>
          </children>
       </GridPane>
-      <Button fx:id="buttonWuerfeln" layoutX="587.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleWürfeln" text="Würfeln" />
+      <Button fx:id="buttonWuerfeln" layoutX="587.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleWuerfeln" text="Würfeln" />
       <ImageView fitHeight="205.0" fitWidth="323.0" layoutX="339.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/yatzy.png" />

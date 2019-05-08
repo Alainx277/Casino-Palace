@@ -8,13 +8,6 @@ and open the template in the editor.
     Author     : gabri
 */
 
-* {
-    -color-text-light: white;
-    -color-text-dark: black;
-    -color-text-success: green;
-    -color-text-error: red;
-}
-
 #AnchorPane{
     -fx-font-family: Arial;
 }
@@ -26,16 +19,8 @@ and open the template in the editor.
     -fx-text-decoration: none;
     -fx-display: inline-block;
 }
-
 .text-field{
     -fx-border-color: #4CAF50;
-}
-
-.text-field.error{
-    -fx-border-color: -color-text-error;
-    -fx-text-box-border: -color-text-error;
-    -fx-focus-color: -color-text-error;
-    -fx-border-width: 1px;
 }
 
 .light-text{

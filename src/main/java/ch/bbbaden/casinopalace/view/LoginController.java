@@ -2,9 +2,7 @@ package ch.bbbaden.casinopalace.view;
 
 import ch.bbbaden.casinopalace.common.Controller;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -12,14 +10,11 @@ import java.util.regex.Pattern;
 import ch.bbbaden.casinopalace.common.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
 
-public class LoginController extends Controller implements Initializable {
+public class LoginController extends Controller {
 
     @FXML
     private TextField passwordField;
@@ -30,31 +25,21 @@ public class LoginController extends Controller implements Initializable {
     @FXML
     private Button buttonsignin;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        userfield.textProperty().addListener(observable -> userfield.getStyleClass().removeAll("error"));
-        passwordField.textProperty().addListener(observable -> passwordField.getStyleClass().removeAll("error"));
-    }
-
     @FXML
     private void clickLogin(ActionEvent event) {
         try {
-            Pattern pattern = Pattern.compile("^[a-zA-Z0-9$#@!_\\-]+$");
+            Pattern pattern = Pattern.compile("^[^ ]+$");
 
-            boolean passesRequirements = true;
+
             // Password not empty
             if (!pattern.matcher(passwordField.getText()).matches()){
-                passwordField.getStyleClass().add("error");
-                passesRequirements = false;
+                // TODO: Show in ui
+                return;
             }
 
             // Username not empty
             if (!pattern.matcher(userfield.getText()).matches()){
-                userfield.getStyleClass().add("error");
-                passesRequirements = false;
-            }
-
-            if (!passesRequirements){
+                // TODO: Show in ui
                 return;
             }
 
@@ -62,9 +47,7 @@ public class LoginController extends Controller implements Initializable {
             Optional<User> userFromAuthentication = getStateManager().getCasino().getUserFromAuthentication(userfield.getText(), passwordField.getText());
             if (!userFromAuthentication.isPresent()){
                 // Username or password incorrect
-                passwordField.clear();
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Benutzer existiert nicht oder Passwort inkorrekt.", ButtonType.OK);
-                alert.show();
+                // TODO: Show in ui
                 return;
             }
 
@@ -92,6 +75,6 @@ public class LoginController extends Controller implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-
+    
+    
 }

@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 /**
  *
  * @author denni
@@ -32,7 +31,9 @@ public class YatzyController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        getStateManager().getSceneCreator().getCurrentStage().setOnCloseRequest(event -> {
+            handleclose();
+        });
     }
 
     public void handlePlay(ActionEvent actionEvent) {
@@ -41,5 +42,15 @@ public class YatzyController extends Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+    }
+    
+    private void handleclose(){
+         try {
+                    getStateManager().getState().handleCasino(getStateManager());
+                    return;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
     }
 }

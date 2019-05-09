@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -22,13 +23,14 @@ public class DatabaseStorageTest {
     private Connection connection;
     private DatabaseStorage storage;
     private User[] users;
+    private ArrayList<Stats> playerStats;
 
     @Before
     public void setUp() throws Exception {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "");
             Assume.assumeTrue("Database connection is unstable", connection.isValid(200));
-        } catch (SQLException e) {
+        } catch (Exception e) {
             Assume.assumeNoException("Database isn't reachable", e);
         }
         storage = new DatabaseStorage("localhost", testDB, "root", "");
@@ -39,6 +41,12 @@ public class DatabaseStorageTest {
         for (User user : users) {
             storage.addUser(user);
         }
+
+        playerStats = new ArrayList<>();
+        Stats e = new Stats(Game.Poker);
+        e.put("Gewonnen", BigDecimal.valueOf(50));
+        playerStats.add(e);
+        storage.updateStatsForUser(users[0], playerStats);
     }
 
     @After
@@ -56,11 +64,22 @@ public class DatabaseStorageTest {
     }
 
     @Test
-    public void getStatsForUser() {
+    public void getStatsForUser() throws IOException {
+        List<Stats> newStats = storage.getStatsForUser(users[0]);
+        for (Stats playerStat : playerStats) {
+            assertTrue(newStats.contains(playerStat));
+        }
     }
 
     @Test
-    public void updateStatsForUser() {
+    public void updateStatsForUser() throws IOException {
+        Stats e = new Stats(Game.Blackjack);
+        e.put("Verloren", BigDecimal.valueOf(21));
+        playerStats.add(e);
+        storage.updateStatsForUser(users[0], playerStats);
+
+        List<Stats> newStats = storage.getStatsForUser(users[0]);
+        assertTrue(newStats.contains(e));
     }
 
     @Test

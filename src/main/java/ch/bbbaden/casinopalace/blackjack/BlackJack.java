@@ -85,10 +85,6 @@ public class BlackJack {
         return change;
     }
 
-    public int getResult1() {
-        return result1;
-    }
-
     public void setcoP(Karte cardsOfPointeur) {
         coP.add(cardsOfPointeur);
     }

@@ -47,9 +47,6 @@ public class CasinoController extends Controller implements Initializable {
     @FXML
     private AnchorPane ap;
 
-    public CasinoController() {
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         addImages();
@@ -121,7 +118,7 @@ public class CasinoController extends Controller implements Initializable {
          return ap.getStylesheets().get(0);
      }
 
-    public void changeGame() {
+    private void changeGame() {
         if (index > games.length - 1) {
             index = 0;
         } else if (index < 0) {
@@ -174,7 +171,8 @@ public class CasinoController extends Controller implements Initializable {
         }
     }
 
-    public void handleStatistic(ActionEvent actionEvent) {
+    @FXML
+    private void handleStatistic(ActionEvent actionEvent) {
         try {
             getStateManager().getState().handleStatistik(getStateManager());
         } catch (Exception e) {
@@ -183,11 +181,22 @@ public class CasinoController extends Controller implements Initializable {
         }
     }
 
-    public void handleBuy(MouseEvent mouseEvent) {
+    @FXML
+    private void handleBuy(MouseEvent mouseEvent) {
         try {
             getStateManager().switchStage(getClass().getResource("Buy.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void handleLogout(ActionEvent actionEvent) {
+        try {
+            getStateManager().getState().handleLogin(getStateManager());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        getStateManager().getCasino().setCurrentUser(null);
     }
 }

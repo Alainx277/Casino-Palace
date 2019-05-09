@@ -14,83 +14,99 @@ import javafx.stage.Stage;
  */
 public class TryandError {
 
-    private Stage stage;
     private FXMLDocumentController fdc;
-    private WuerfelnFXMLController wfc;
     private String label2change;
     private ArrayList<Dice> al = new ArrayList<>();
     private ArrayList<String> fields = new ArrayList<>();
     private ArrayList<String> usableFields = new ArrayList<String>();
- 
+    private boolean win = false;
+
+    private static TryandError instance;
+    // Verhindere die Erzeugung des Objektes ueber andere Methoden
+
+    private TryandError() {
+    }
+    // Eine Zugriffsmethode auf Klassenebene, welches dir '''einmal''' ein konkretes 
+    // Objekt erzeugt und dieses zurueckliefert.
+
+    public static TryandError getInstance() {
+        if (TryandError.instance == null) {
+            TryandError.instance = new TryandError();
+        }
+        return TryandError.instance;
+    }
 
     public void setFigur(boolean useFigur, String figur) {
         fdc.setFigur(figur, getDiceValue(useFigur, figur));
-        
+        if (win) {
+            fdc.gewinn();
+        }
+
     }
-    
-    private  int getDiceValue(boolean use, String figur){
-        if(use){
-            int value= 0;
+
+    private int getDiceValue(boolean use, String figur) {
+        int value = 0;
+        if (use) {
             switch (figur) {
                 case "Einser":
-                    for(int i = 0; i < 5;i++){
-                        if(al.get(i).getWert() == 1){
-                            value+=1;
+                    for (int i = 0; i < 5; i++) {
+                        if (al.get(i).getWert() == 1) {
+                            value += 1;
                         }
                     }
                     break;
                 case "Zweier":
-                    for(int i = 0; i < 5;i++){
-                        if(al.get(i).getWert() == 2){
-                            value+=2;
+                    for (int i = 0; i < 5; i++) {
+                        if (al.get(i).getWert() == 2) {
+                            value += 2;
                         }
                     }
                     break;
                 case "Dreier":
-                    for(int i = 0; i < 5;i++){
-                        if(al.get(i).getWert() == 3){
-                            value+=3;
+                    for (int i = 0; i < 5; i++) {
+                        if (al.get(i).getWert() == 3) {
+                            value += 3;
                         }
                     }
                     break;
                 case "Vierer":
-                    for(int i = 0; i < 5;i++){
-                        if(al.get(i).getWert() == 4){
-                            value+=4;
+                    for (int i = 0; i < 5; i++) {
+                        if (al.get(i).getWert() == 4) {
+                            value += 4;
                         }
                     }
                     break;
-                case "Fünfer":
-                    for(int i = 0; i < 5;i++){
-                        if(al.get(i).getWert() == 5){
-                            value+=5;
+                case "Fuenfer":
+                    for (int i = 0; i < 5; i++) {
+                        if (al.get(i).getWert() == 5) {
+                            value += 5;
                         }
                     }
                     break;
                 case "Sechser":
-                    for(int i = 0; i < 5;i++){
-                        if(al.get(i).getWert() == 6){
-                            value+=6;
+                    for (int i = 0; i < 5; i++) {
+                        if (al.get(i).getWert() == 6) {
+                            value += 6;
                         }
                     }
                     break;
                 case "Ein Paar":
-                    for(int i = 0; i < 5;i++){
+                    for (int i = 0; i < 5; i++) {
                         value += al.get(i).getWert();
                     }
                     break;
                 case "Zwei Paar":
-                    for(int i = 0; i < 5;i++){
+                    for (int i = 0; i < 5; i++) {
                         value += al.get(i).getWert();
                     }
                     break;
                 case "Dreierpasch":
-                    for(int i = 0; i < 5;i++){
+                    for (int i = 0; i < 5; i++) {
                         value += al.get(i).getWert();
                     }
                     break;
                 case "Viererpasch":
-                    for(int i = 0; i < 5;i++){
+                    for (int i = 0; i < 5; i++) {
                         value += al.get(i).getWert();
                     }
                     break;
@@ -104,25 +120,21 @@ public class TryandError {
                     value = 45;
                     break;
                 case "Yatzy":
-                   value = 75;
+                    value = 75;
                     break;
                 case "Chance":
-                    for(int i = 0; i < 5;i++){
+                    for (int i = 0; i < 5; i++) {
                         value += al.get(i).getWert();
                     }
                     break;
                 default:
                     throw new AssertionError();
             }
-            return value;
-        }else {
-            return 0;
         }
+        return value;
     }
 
-
-
-    //Schauen welche Felder mit den Würfeln genutzt werden können
+    //Schauen welche Felder mit den Wuerfeln genutzt werden k�nnen
     public ArrayList<String> getuseFields(ArrayList<Dice> ald) {
         usableFields.clear();
         int einser = 0;
@@ -170,7 +182,7 @@ public class TryandError {
             usableFields.remove("Vierer");
         }
         if (fuenfer == 0) {
-            usableFields.remove("Fünfer");
+            usableFields.remove("Fuenfer");
         }
         if (sechser == 0) {
             usableFields.remove("Sechser");
@@ -226,7 +238,7 @@ public class TryandError {
         }
         if (einser < 5 && zweier < 5 && dreier < 5 && vierer < 5 && fuenfer < 5 && sechser < 5) {
             usableFields.remove("Yatzy");
-        }else {
+        } else {
             usableFields.remove("Full House");
         }
         boolean dreierpasch = false;
@@ -240,10 +252,10 @@ public class TryandError {
         if (zweierpasch == false || dreierpasch == false) {
             usableFields.remove("Full House");
         }
-        if (einser == 0 && zweier == 0 && dreier == 0|| sechser == 0 && fuenfer == 0 && vierer == 0|| dreier == 0 || vierer == 0) {
+        if (einser == 0 && zweier == 0 && dreier == 0 || sechser == 0 && fuenfer == 0 && vierer == 0 || dreier == 0 || vierer == 0) {
             usableFields.remove("Kleine Strasse");
         }
-        if(einser >1 || zweier >1 || dreier >1 || vierer > 1 || fuenfer >1 || sechser >1){
+        if (einser > 1 || zweier > 1 || dreier > 1 || vierer > 1 || fuenfer > 1 || sechser > 1) {
             usableFields.remove("Grosse Strasse");
         }
 
@@ -278,10 +290,6 @@ public class TryandError {
         this.fdc = fdc;
     }
 
-    public void setWfc(WuerfelnFXMLController wfc) {
-        this.wfc = wfc;
-    }
-
     public String getLabel2change() {
         return label2change;
     }
@@ -295,8 +303,28 @@ public class TryandError {
         fdc.setHide(false);
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    public void setWin(boolean win) {
+        this.win = win;
     }
 
+    public void cancelWue() {
+        fdc.close("Sie haben verloren: " + fdc.getGesetzterBetrag(), "Ergebnis");
+    }
+
+    public ArrayList organizeDices(ArrayList<Dice> array) {
+
+        for (int i = 0; i < 20; i++) {
+            Dice di;
+            for (int d = 1; d < array.size(); d++) {
+                di = array.get(d - 1);
+                if (array.get(d - 1).getWert() < array.get(d).getWert()) {
+                    array.set(d - 1, array.get(d));
+
+                    array.set(d, di);
+                }
+
+            }
+        }
+        return array;
+    }
 }

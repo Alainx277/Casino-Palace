@@ -27,19 +27,14 @@ import javax.swing.JOptionPane;
  * @author denni
  */
 public class WuerfelnFXMLController implements Initializable {
-
+    
     @FXML
     private Button finish;
-    @FXML
-    private RadioButton radiobutton1;
-    @FXML
-    private RadioButton radiobutton2;
+
     @FXML
     private ComboBox<String> combobox1;
     @FXML
     private ComboBox<String> combobox2;
-    @FXML
-    private Button closeButton;
 
     TryandError te;
 
@@ -89,11 +84,7 @@ public class WuerfelnFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        combobox1.setDisable(true);
-        combobox2.setDisable(true);
-        radiobutton1.setDisable(true);
-        radiobutton2.setDisable(true);
-        finish.setDisable(true);
+
         thrown = false;
 
     }
@@ -185,16 +176,9 @@ public class WuerfelnFXMLController implements Initializable {
 
     @FXML
     private void handleWuerfeln(ActionEvent event) {
-        radiobutton1.setSelected(false);
-        radiobutton2.setSelected(false);
-        combobox1.disableProperty().set(true);
-        combobox2.disableProperty().set(true);
-        combobox1.setValue("");
-        combobox2.setValue("");
-        radiobutton1.setDisable(false);
-        radiobutton2.setDisable(false);
-        finish.setDisable(true);
 
+        combobox1.setValue(null);
+        combobox2.setValue(null);
         if (thrown == false) {
             for (int i = 0; i < 5; i++) {
                 throwDices.add(new Dice());
@@ -211,19 +195,19 @@ public class WuerfelnFXMLController implements Initializable {
 
         }
         throwDices.clear();
-        //5 Würfel machen - behaltene Würfel
+        //5 Wuerfel machen - behaltene Wuerfel
 
         for (int i = 0; i < 5 - keepDices.size(); i++) {
 
             throwDices.add(new Dice());
         }
-        //Ordnen nach Grösse
-        throwDices = organizeDices(throwDices);
+        //Ordnen nach Gr�sse
+        throwDices = te.organizeDices(throwDices);
         for (int d = 0; d < keepDices.size(); d++) {
             sortDices.add(keepDices.get(d));
 
         }
-        sortDices = organizeDices(sortDices);
+        sortDices = te.organizeDices(sortDices);
         for (int i = 0; i < 5 - keepDices.size(); i++) {
             sortDices.add(throwDices.get(i));
         }
@@ -232,48 +216,61 @@ public class WuerfelnFXMLController implements Initializable {
         keepDices.clear();
         sortDices.clear();
 
-        //damit nicht mehr als 3 Mal gewürfelt wird
+        //damit nicht mehr als 3 Mal gewuerfelt wird
         gewuerfelt++;
-        //Bilder setzen und wuerfeln disablen wenn 3 mal gewürfelt
+        //Bilder setzen und wuerfeln disablen wenn 3 mal gewuerfelt
         for (int c = 0; c < 5; c++) {
             setImages(c);
 
             if (gewuerfelt == 3) {
-                   wuerfelButton.setDisable(true);
+                wuerfelButton.setDisable(true);
             }
         }
         //3 Wuerfe anzeigen
-        if(gewuerfelt == 1){
+        if (gewuerfelt == 1) {
             throw1.setOpacity(0.0);
-        }else if (gewuerfelt == 2){
+        } else if (gewuerfelt == 2) {
             throw2.setOpacity(0.0);
-        }else {
+        } else {
             throw3.setOpacity(0.0);
         }
-        //Setzen ob schon einmal gewürfelt wurde wegen paneBorder
+        //Setzen ob schon einmal gewuerfelt wurde wegen paneBorder
         thrown = true;
 
     }
 
     @FXML
     private void handlefinish(ActionEvent event) {
-        if (combobox1.getValue() == "" && combobox2.getValue() == "") {
+        if (combobox1.getValue() == null && combobox2.getValue() == null) {
 
         } else {
-            te.setAlDice(throwDices);
-            te.showStage();
-            if (radiobutton1.selectedProperty().get()) {
-                te.setFigur(true, combobox1.getValue());
-            } else {
+
+            if (combobox1.getValue() == null) {
+
+                Stage stage = (Stage) finish.getScene().getWindow();
+                stage.close();
+                te.showStage();
+                te.setAlDice(throwDices);
                 te.setFigur(false, combobox2.getValue());
+
+                for (int i = 0; i < 5; i++) {
+                    throwDices.get(i).setKeep(false);
+                }
+
+            } else if (combobox2.getValue() == null) {
+
+                Stage stage = (Stage) finish.getScene().getWindow();
+                stage.close();
+                te.showStage();
+                te.setAlDice(throwDices);
+                te.setFigur(true, combobox1.getValue());
+
+                for (int i = 0; i < 5; i++) {
+                    throwDices.get(i).setKeep(false);
+                }
+
             }
 
-            for (int i = 0; i < 5; i++) {
-                throwDices.get(i).setKeep(false);
-            }
-
-            Stage stage = (Stage) closeButton.getScene().getWindow();
-            stage.close();
         }
     }
 
@@ -281,42 +278,10 @@ public class WuerfelnFXMLController implements Initializable {
         useFigur = (ArrayList<String>) al.clone();
     }
 
-    @FXML
-    private void handleuseFgur(ActionEvent event) {
-        radiobutton2.setSelected(false);
-        if (radiobutton1.selectedProperty().get()) {
-            combobox1.setDisable(false);
-            combobox2.setDisable(true);
-            finish.setDisable(false);
-            setUseFigur(te.getuseFields(throwDices));
-
-            combobox1.getItems().setAll(useFigur);
-        } else {
-            combobox1.setDisable(true);
-            finish.setDisable(true);
-        }
-    }
-
     private void setCloseFigur(ArrayList<String> al) {
         closeFigur = (ArrayList<String>) al.clone();
     }
 
-    @FXML
-    private void handlecloseFigur(ActionEvent event) {
-        radiobutton1.setSelected(false);
-        if (radiobutton2.selectedProperty().get()) {
-            combobox2.setDisable(false);
-            combobox1.setDisable(true);
-            finish.setDisable(false);
-            setCloseFigur(te.getFields());
-            combobox2.getItems().setAll(closeFigur);
-        } else {
-            combobox2.setDisable(true);
-            finish.setDisable(true);
-        }
-    }
-
-    @FXML
     private void handleclose(ActionEvent event) {
         closeProgram("Aufgeben?", "Sicher dass du Aufgeben willst?\nDu verlierst den gesetzten Betrag!", false);
     }
@@ -325,22 +290,7 @@ public class WuerfelnFXMLController implements Initializable {
         this.te = te;
     }
 
-    private ArrayList organizeDices(ArrayList<Dice> array) {
 
-        for (int i = 0; i < 20; i++) {
-            Dice di;
-            for (int d = 1; d < array.size(); d++) {
-                di = array.get(d - 1);
-                if (array.get(d - 1).getWert() < array.get(d).getWert()) {
-                    array.set(d - 1, array.get(d));
-
-                    array.set(d, di);
-                }
-
-            }
-        }
-        return array;
-    }
 
     private void setPane1(int c) {
         if (throwDices.get(c).getKeep()) {
@@ -539,7 +489,8 @@ public class WuerfelnFXMLController implements Initializable {
                 throw new AssertionError();
         }
     }
-    private void closeProgram(String title, String message, boolean nextWindow){
+
+    private void closeProgram(String title, String message, boolean nextWindow) {
         int n = JOptionPane.showConfirmDialog(
                 null,
                 message,
@@ -547,11 +498,33 @@ public class WuerfelnFXMLController implements Initializable {
                 JOptionPane.YES_NO_OPTION);
 
         if (n == JOptionPane.YES_OPTION) {
-            if(nextWindow){
+            if (nextWindow) {
                 te.showStage();
             }
+            te.cancelWue();
             Stage stage = (Stage) finish.getScene().getWindow();
             stage.close();
+
         }
     }
+
+    @FXML
+    private void handleSettingFIgur(MouseEvent event) {
+        if (thrown) {
+            setUseFigur(te.getuseFields(throwDices));
+            combobox1.getItems().setAll(useFigur);
+            combobox2.setValue(null);
+        }
+    }
+
+    @FXML
+    private void handleDeleteFigur(MouseEvent event) {
+        if (thrown) {
+            setCloseFigur(te.getFields());
+            combobox2.getItems().setAll(closeFigur);
+            combobox1.setValue(null);
+        }
+    }
+
 }
+

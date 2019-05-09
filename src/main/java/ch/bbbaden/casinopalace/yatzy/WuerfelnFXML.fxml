@@ -15,14 +15,11 @@
         <URL value="@style.css" />
     </stylesheets>
    <children>
-      <Button fx:id="wuerfelButton" layoutX="146.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleWuerfeln" text="Würfeln" />
+      <Button fx:id="wuerfelButton" layoutX="146.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleWuerfeln" text="Wuerfeln" />
       <Button fx:id="finish" layoutX="372.0" layoutY="403.0" mnemonicParsing="false" onAction="#handlefinish" text="Figur zuordnen und Zug beenden" />
-      <RadioButton fx:id="radiobutton1" layoutX="291.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleuseFgur" text="Wurf einer Figur zuordnen" />
-      <RadioButton fx:id="radiobutton2" layoutX="498.0" layoutY="318.0" mnemonicParsing="false" onAction="#handlecloseFigur" text="Eine Figur Streichen" />
-      <ComboBox fx:id="combobox1" layoutX="291.0" layoutY="354.0" prefWidth="150.0" />
-      <ComboBox fx:id="combobox2" layoutX="498.0" layoutY="354.0" prefWidth="150.0" />
-      <Label layoutX="132.0" layoutY="36.0" text="Um einen Würfel nach einem Wurf zu behalten auf den Würfel klicken" />
-      <Button fx:id="closeButton" layoutX="667.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleclose" text="X" />
+      <ComboBox fx:id="combobox1" layoutX="291.0" layoutY="354.0" onMouseClicked="#handleSettingFIgur" prefWidth="150.0" />
+      <ComboBox fx:id="combobox2" layoutX="498.0" layoutY="354.0" onMouseClicked="#handleDeleteFigur" prefWidth="150.0" />
+      <Label layoutX="132.0" layoutY="36.0" text="Um einen Wuerfel nach einem Wurf zu behalten auf den Wuerfel klicken" />
       <Pane fx:id="pane1" layoutX="24.0" layoutY="68.0" prefHeight="121.0" prefWidth="121.0">
          <children>
             <ImageView fx:id="imageview1" fitHeight="105.0" fitWidth="105.0" layoutX="8.0" layoutY="8.0" onMouseClicked="#handleimageview1" pickOnBounds="true" />
@@ -50,18 +47,20 @@
       </Pane>
       <ImageView fx:id="throw3" fitHeight="35.0" fitWidth="35.0" layoutX="119.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../bilder/Becher.jpg" />
+            <Image url="@../bilder/Becher.png" />
          </image>
       </ImageView>
       <ImageView fx:id="throw2" fitHeight="35.0" fitWidth="35.0" layoutX="158.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../bilder/Becher.jpg" />
+            <Image url="@../bilder/Becher.png" />
          </image>
       </ImageView>
       <ImageView fx:id="throw1" fitHeight="35.0" fitWidth="35.0" layoutX="201.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../bilder/Becher.jpg" />
+            <Image url="@../bilder/Becher.png" />
          </image>
       </ImageView>
+      <Label layoutX="286.0" layoutY="318.0" text="Wurf einer Figur zuordnen" />
+      <Label layoutX="495.0" layoutY="318.0" text="Eine Figur Streichen" />
    </children>
 </AnchorPane>

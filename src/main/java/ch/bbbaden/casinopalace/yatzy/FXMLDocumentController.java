@@ -38,7 +38,7 @@ import javax.swing.JOptionPane;
  * @author denni
  */
 public class FXMLDocumentController extends Controller implements Initializable {
-    
+
     private Label label;
     @FXML
     private GridPane gridpane;
@@ -92,23 +92,33 @@ public class FXMLDocumentController extends Controller implements Initializable 
     private Button buttonWuerfeln;
     @FXML
     private Button buttonSetzen;
-    
+
     @FXML
     private Label anzahlWuerfe;
-    
+
     private int ianzahlWuerfe = 15;
-    
-    private TryandError te = new TryandError();
-    private Calculation ca = new Calculation();
-    
+
+    private TryandError te;
+    private Calculation ca;
+
     private ArrayList<String> unusedFigures = new ArrayList<>();
-    
+
     private int gesetzterBetrag = 0;
-    
+
     private double xOffset = 0;
     private double yOffset = 0;
-    
-    @Override
+    @FXML
+    private Label labelgesetzterBetrag;
+
+    public void setCalculation(Calculation ca) {
+        this.ca = ca;
+    }
+
+    public void setTryandError(TryandError te) {
+        this.te = te;
+    }
+
+        @Override
     public void initialize(URL url, ResourceBundle rb) {
         getStateManager().getSceneCreator().getCurrentStage().setOnCloseRequest(event -> handleClose(null));
         // TODO
@@ -118,41 +128,37 @@ public class FXMLDocumentController extends Controller implements Initializable 
         getKontostand();
         spinnerBetrag.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(25, 100, 25, 25));
         anzahlWuerfe.setText("" + ianzahlWuerfe);
-        
     }
-    
+
     @FXML
     private void handleWuerfeln(ActionEvent event) throws IOException {
+
         setUnusedFigures();
         ianzahlWuerfe--;
+        if (ianzahlWuerfe == 0) {
+            te.setWin(true);
+        }
         te.setFields(unusedFigures);
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("WuerfelnFXML.fxml"));
-        Parent root = loader.load();
-        WuerfelnFXMLController view1 = loader.getController();
-        view1.setTryandError(te);
-        view1.initi();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        getStateManager().switchStage(getClass().getResource("FXMLDocument.fxml"));
+
         setHide(true);
+
     }
-    
-    @FXML
+
     private void handleClose(ActionEvent event) {
         closeProgram("Aufgeben?", "Sicher dass du Aufgeben willst?\nDu verlierst den gesetzten Betrag!", false);
-        
+
     }
-    
+
     public void actualize() {
-        
+
     }
-    
+
     @FXML
     private void handleCancel(ActionEvent event) {
         closeProgram("Aufgeben?", "Sicher dass du Aufgeben willst?\nDu verlierst den gesetzten Betrag!", false);
     }
-    
+
     @FXML
     private void handleSetzen(ActionEvent event) {
         int c = Integer.parseInt(labelKontostand.getText());
@@ -163,17 +169,17 @@ public class FXMLDocumentController extends Controller implements Initializable 
         spinnerBetrag.setVisible(false);
         buttonSetzen.setVisible(false);
     }
-    
+
     public void setHide(boolean baum) {
         if (baum) {
-            Stage b = (Stage)labeleinser.getScene().getWindow();
+            Stage b = (Stage) cancel.getScene().getWindow();
             b.hide();
         } else {
-            Stage b = (Stage) labeleinser.getScene().getWindow();
+            Stage b = (Stage) cancel.getScene().getWindow();
             b.show();
         }
     }
-    
+
     private void setUnusedFigures() {
         unusedFigures.clear();
         if (labeleinser.getText().equals("")) {
@@ -189,7 +195,7 @@ public class FXMLDocumentController extends Controller implements Initializable 
             unusedFigures.add("Vierer");
         }
         if (labelfuenfer.getText().equals("")) {
-            unusedFigures.add("Fünfer");
+            unusedFigures.add("Fuenfer");
         }
         if (labelsechser.getText().equals("")) {
             unusedFigures.add("Sechser");
@@ -221,9 +227,9 @@ public class FXMLDocumentController extends Controller implements Initializable 
         if (labelChance.getText().equals("")) {
             unusedFigures.add("Chance");
         }
-        
+
     }
-    
+
     public void setFigur(String figur, int value) {
         switch (figur) {
             case "Einser":
@@ -242,7 +248,7 @@ public class FXMLDocumentController extends Controller implements Initializable 
                 labelvierer.setText("" + value);
                 ca.setT1(value);
                 break;
-            case "Fünfer":
+            case "Fuenfer":
                 labelfuenfer.setText("" + value);
                 ca.setT1(value);
                 break;
@@ -290,16 +296,16 @@ public class FXMLDocumentController extends Controller implements Initializable 
                 throw new AssertionError();
         }
         anzahlWuerfe.setText("" + ianzahlWuerfe);
-        
+
         getKontostand();
     }
-    
+
     private void setSetzen(int wert) {
         int baum = Integer.parseInt(labelKontostand.getText());
         baum -= wert;
         labelKontostand.setText("" + baum);
     }
-    
+
     private void closeProgram(String title, String message, boolean nextWindow) {
         int n = JOptionPane.showConfirmDialog(
                 null,
@@ -322,12 +328,12 @@ public class FXMLDocumentController extends Controller implements Initializable 
 
             Stage stage = (Stage) labeleinser.getScene().getWindow();
             stage.close();
-        }
     }
-    
+    }
+
     public void setLabelzpt1(String i) {
         labelZschwischenpunkteTeil1.setText(i);
-        
+
     }
 
     public void setlabelSB(String i) {
@@ -345,7 +351,6 @@ public class FXMLDocumentController extends Controller implements Initializable 
     public void setLabelGPT1(String i) {
         labelGesamtpunkteTeil1.setText(i);
     }
-    
 
     private void getKontostand() {
         labelKontostand.setText(getStateManager().getCasino().getCurrentUser().getChips().stripTrailingZeros().toPlainString());
@@ -361,25 +366,41 @@ public class FXMLDocumentController extends Controller implements Initializable 
             e.printStackTrace();
         }
         labelKontostand.setText(decimal.stripTrailingZeros().toPlainString());
+        labelgesetzterBetrag.setText("" + getGesetzterBetrag());
     }
 
     public void gewinn() {
-        if (ianzahlWuerfe == 0) {
-
-            int i = Integer.parseInt(labelEndsumme.getText());
-            if (i > 350) {
-                gesetzterBetrag *= 2;
-            } else if (i < 350) {
-                gesetzterBetrag = 0;
-            }
+        String message;
+        message = "Ihr Endergebnis war: " + labelEndsumme.getText() + "\n";
+        int i = Integer.parseInt(labelEndsumme.getText());
+        if (i > 350) {
+            gesetzterBetrag *= 2;
+            message += "Sie haben gewonnen: " + gesetzterBetrag;
+        } else if (i < 350) {
+            gesetzterBetrag = 0;
+            message += "Sie haben verloren: " + gesetzterBetrag;
         } else {
-           gesetzterBetrag = 0;
+            message += "Sie haben ein Unentschieden.\nIhr gesetzter Betrag wird ihnen wieder gutgeschrieben.";
         }
-        setDatabase();
+
+        close(message, "Ergebnis");
+
     }
-    
-    private void setDatabase(){
-        if (gesetzterBetrag != 0){
+
+    public void close(String message, String title) {
+        int n = JOptionPane.showConfirmDialog(
+                null,
+                message,
+                title,
+                JOptionPane.OK_OPTION);
+
+        setDatabase();
+        Stage stage = (Stage) cancel.getScene().getWindow();
+        stage.close();
+    }
+
+    private void setDatabase() {
+        if (gesetzterBetrag != 0) {
             Casino casino = getStateManager().getCasino();
             User user = casino.getCurrentUser();
             user.setChips(user.getChips().add(BigDecimal.valueOf(gesetzterBetrag)));
@@ -389,5 +410,9 @@ public class FXMLDocumentController extends Controller implements Initializable 
                 e.printStackTrace();
             }
         }
+    }
+
+    public int getGesetzterBetrag() {
+        return gesetzterBetrag;
     }
 }

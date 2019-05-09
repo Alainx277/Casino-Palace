@@ -14,7 +14,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -23,7 +25,7 @@ public class DatabaseStorageTest {
     private Connection connection;
     private DatabaseStorage storage;
     private User[] users;
-    private ArrayList<Stats> playerStats;
+    private HashMap<Game, Stats> playerStats;
 
     @Before
     public void setUp() throws Exception {
@@ -42,10 +44,10 @@ public class DatabaseStorageTest {
             storage.addUser(user);
         }
 
-        playerStats = new ArrayList<>();
-        Stats e = new Stats(Game.Poker);
+        playerStats = new HashMap<>();
+        Stats e = new Stats();
         e.put("Gewonnen", BigDecimal.valueOf(50));
-        playerStats.add(e);
+        playerStats.put(Game.Poker, e);
         storage.updateStatsForUser(users[0], playerStats);
     }
 
@@ -65,21 +67,22 @@ public class DatabaseStorageTest {
 
     @Test
     public void getStatsForUser() throws IOException {
-        List<Stats> newStats = storage.getStatsForUser(users[0]);
-        for (Stats playerStat : playerStats) {
-            assertTrue(newStats.contains(playerStat));
+        HashMap<Game, Stats> newStats = storage.getStatsForUser(users[0]);
+        for (Map.Entry<Game, Stats> gameStatsEntry : playerStats.entrySet()) {
+            assertTrue(newStats.containsKey(gameStatsEntry.getKey()));
+            assertEquals(gameStatsEntry.getValue(), newStats.get(gameStatsEntry.getKey()));
         }
     }
 
     @Test
     public void updateStatsForUser() throws IOException {
-        Stats e = new Stats(Game.Blackjack);
-        e.put("Verloren", BigDecimal.valueOf(21));
-        playerStats.add(e);
+        Stats stats = playerStats.getOrDefault(Game.Poker, new Stats());
+        stats.put("Verloren", BigDecimal.valueOf(21));
+        playerStats.put(Game.Poker, stats);
         storage.updateStatsForUser(users[0], playerStats);
 
-        List<Stats> newStats = storage.getStatsForUser(users[0]);
-        assertTrue(newStats.contains(e));
+        HashMap<Game, Stats> newStats = storage.getStatsForUser(users[0]);
+        assertTrue(newStats.get(Game.Poker).get("Verloren").compareTo(BigDecimal.valueOf(21)) == 0);
     }
 
     @Test

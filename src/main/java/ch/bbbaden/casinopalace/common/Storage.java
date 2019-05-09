@@ -4,6 +4,7 @@ import ch.bbbaden.casinopalace.common.exception.UserDoesNotExistException;
 import ch.bbbaden.casinopalace.common.exception.UserExistsException;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -23,13 +24,13 @@ public interface Storage {
      * @param user The user to get the stats for
      * @return The users stats or null if the stats for the user don't exist
      */
-    List<Stats> getStatsForUser(User user) throws IOException;
+    HashMap<Game, Stats> getStatsForUser(User user) throws IOException;
 
     /**
      * @param user The user to update the stats for
      * @param stats The values to update
      */
-    void updateStatsForUser(User user, List<Stats> stats) throws IOException;
+    void updateStatsForUser(User user, HashMap<Game, Stats> stats) throws IOException;
 
     /**
      * @param username The user's username

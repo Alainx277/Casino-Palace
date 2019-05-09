@@ -27,7 +27,7 @@ public class AdminController extends Controller implements Initializable {
     @FXML
     private ListView<Object> liststats;
 
-    private List<Stats> statsForCurrentUser;
+    private HashMap<Game, Stats> statsForCurrentUser;
 
 
     @Override
@@ -69,7 +69,8 @@ public class AdminController extends Controller implements Initializable {
         if (statsForCurrentUser == null){
             return;
         }
-        liststats.getItems().addAll(statsForCurrentUser.stream().filter(x -> x.getGame() == game).map(Stats::getValues).map(HashMap::entrySet).flatMap(Collection::stream).map(x -> x.getKey() + ": " + x.getValue().stripTrailingZeros().toPlainString()).toArray());
+        liststats.getItems().addAll(statsForCurrentUser.getOrDefault(game, new Stats()).entrySet().stream()
+                .map(x -> x.getKey() + ": " + x.getValue().stripTrailingZeros().toPlainString()).toArray());
     }
 
     @FXML

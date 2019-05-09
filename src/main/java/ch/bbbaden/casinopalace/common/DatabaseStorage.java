@@ -2,7 +2,6 @@ package ch.bbbaden.casinopalace.common;
 
 import ch.bbbaden.casinopalace.common.exception.UserDoesNotExistException;
 import ch.bbbaden.casinopalace.common.exception.UserExistsException;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -41,23 +40,21 @@ public class DatabaseStorage implements Storage {
     }
 
     @Override
-    public List<Stats> getStatsForUser(User user) throws IOException {
+    public HashMap<Game, Stats> getStatsForUser(User user) throws IOException {
         try {
+            HashMap<Game, Stats> map = new HashMap<>();
+
             PreparedStatement statement = connection.prepareStatement("SELECT Statistic.game, Statistic.name, Statistic.value FROM Statistic INNER JOIN Player ON Statistic.Player_ID = Player.Player_ID WHERE Player.name = ? ORDER BY Statistic.game");
             statement.setString(1, user.getUsername());
             ResultSet resultSet = statement.executeQuery();
-            ArrayList<Stats> stats = new ArrayList<>();
             while (resultSet.next()) {
                 String enumString = resultSet.getString(1);
                 Game game = Game.valueOf(enumString.substring(0, 1).toUpperCase() + enumString.substring(1));
-                Stats stat = stats.stream().filter(x -> x.getGame() == game).findFirst().orElse(new Stats(game));
-                if (!stats.contains(stat)) {
-                    stats.add(stat);
-                }
-
-                stat.getValues().put(resultSet.getString(2), resultSet.getBigDecimal(3));
+                Stats stats = map.getOrDefault(game, new Stats());
+                stats.put(resultSet.getString(2), resultSet.getBigDecimal(3));
+                map.put(game, stats);
             }
-            return stats;
+            return map;
         } catch (SQLException e) {
             throw new IOException(e);
         }
@@ -65,13 +62,13 @@ public class DatabaseStorage implements Storage {
     }
 
     @Override
-    public void updateStatsForUser(User user, List<Stats> stats) throws IOException {
-        for (Stats stat : stats) {
-            for (Map.Entry<String, BigDecimal> entry : stat.getValues().entrySet()) {
+    public void updateStatsForUser(User user, HashMap<Game, Stats> stats) throws IOException {
+        for (Map.Entry<Game, Stats> stat : stats.entrySet()) {
+            for (Map.Entry<String, BigDecimal> entry : stat.getValue().entrySet()) {
                 try {
                     PreparedStatement check = connection.prepareStatement("SELECT 1 FROM Statistic INNER JOIN Player ON Statistic.Player_ID = Player.Player_ID WHERE Player.name = ? AND Statistic.game = ? AND Statistic.name = ?");
                     check.setString(1, user.getUsername());
-                    check.setString(2, stat.getGame().toString());
+                    check.setString(2, stat.getKey().toString());
                     check.setString(3, entry.getKey());
                     boolean exists = check.executeQuery().next();
 
@@ -79,13 +76,13 @@ public class DatabaseStorage implements Storage {
                         PreparedStatement statement = connection.prepareStatement("UPDATE Statistic INNER JOIN Player ON Statistic.Player_ID = Player.Player_ID SET value = ? WHERE Player.name = ? AND Statistic.game = ? AND Statistic.name = ?");
                         statement.setBigDecimal(1, entry.getValue());
                         statement.setString(2, user.getUsername());
-                        statement.setString(3, stat.getGame().toString());
+                        statement.setString(3, stat.getKey().toString());
                         statement.setString(4, entry.getKey());
                         statement.execute();
                     } else {
                         PreparedStatement statement = connection.prepareStatement("INSERT INTO Statistic (Player_ID, game, name, value) VALUES ((SELECT Player.Player_ID FROM Player WHERE Player.name = ? LIMIT 1), ?, ?, ?)");
                         statement.setString(1, user.getUsername());
-                        statement.setString(2, stat.getGame().toString());
+                        statement.setString(2, stat.getKey().toString());
                         statement.setString(3, entry.getKey());
                         statement.setBigDecimal(4, entry.getValue());
                         statement.execute();

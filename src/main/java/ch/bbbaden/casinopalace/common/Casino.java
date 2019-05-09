@@ -4,6 +4,7 @@ import ch.bbbaden.casinopalace.common.exception.UserDoesNotExistException;
 import ch.bbbaden.casinopalace.common.exception.UserExistsException;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,8 +30,12 @@ public class Casino {
         return storage.getUsers();
     }
 
-    public List<Stats> getStatsForUser(User user) throws IOException {
+    public HashMap<Game, Stats> getStatsForUser(User user) throws IOException {
         return storage.getStatsForUser(user);
+    }
+
+    public void updateStatsForUser(User user, HashMap<Game, Stats> stats) throws IOException {
+        storage.updateStatsForUser(user, stats);
     }
 
     public Optional<User> getUserFromAuthentication(String username, String password) throws IOException {

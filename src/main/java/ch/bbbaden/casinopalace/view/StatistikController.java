@@ -22,7 +22,7 @@ public class StatistikController extends Controller implements Initializable {
     private ListView<Game> listgames;
     @FXML
     private ListView liststats;
-    private List<Stats> statsForUser;
+    private HashMap<Game, Stats> statsForUser;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,10 +52,12 @@ public class StatistikController extends Controller implements Initializable {
 
     private void populateStatistic(Game game){
         liststats.getItems().clear();
-        liststats.getItems().addAll(statsForUser.stream().filter(x -> x.getGame() == game).map(Stats::getValues).map(HashMap::entrySet).flatMap(Collection::stream).map(x -> x.getKey() + ": " + x.getValue().stripTrailingZeros().toPlainString()).toArray());
+        liststats.getItems().addAll(statsForUser.getOrDefault(game, new Stats()).entrySet().stream()
+                .map(x -> x.getKey() + ": " + x.getValue().stripTrailingZeros().toPlainString()).toArray());
     }
 
-    public void handleBack(ActionEvent actionEvent) {
+    @FXML
+    private void handleBack(ActionEvent actionEvent) {
         try {
             getStateManager().getState().handleCasino(getStateManager());
         } catch (Exception e) {

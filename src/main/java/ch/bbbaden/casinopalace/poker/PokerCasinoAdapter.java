@@ -1,6 +1,8 @@
 package ch.bbbaden.casinopalace.poker;
 
 import ch.bbbaden.casinopalace.common.Casino;
+import ch.bbbaden.casinopalace.common.Game;
+import ch.bbbaden.casinopalace.common.Stats;
 import ch.bbbaden.casinopalace.common.User;
 import ch.bbbaden.casinopalace.common.exception.UserDoesNotExistException;
 import ch.bbbaden.casinopalace.poker.game.Poker;
@@ -11,6 +13,8 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -36,11 +40,25 @@ public class PokerCasinoAdapter {
     }
 
     private void onTransition(TransitionEvent<Poker, PokerState> event) {
-        if (poker.isEnd() && poker.getAmountWon().compareTo(BigDecimal.ZERO) != 0) {
+        if (poker.isEnd()) {
+            User user = casino.getCurrentUser();
+            try {
+                HashMap<Game, Stats> statsForUser = casino.getStatsForUser(user);
+                String key = poker.isWon() ? "Gewonnen" : "Verloren";
+                Stats stats = statsForUser.getOrDefault(Game.Poker, new Stats());
+                stats.put(key, stats.getOrDefault(key, BigDecimal.ZERO).add(BigDecimal.valueOf(1)));
+                statsForUser.put(Game.Poker, stats);
+                casino.updateStatsForUser(user, statsForUser);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             // Add bet amount to user account
-            int multiplier = poker.getAmountWon().intValue();
-            double value = betCallback.call(null).getValue() * multiplier;
-            changeBalance(new BigDecimal(value));
+            if (poker.getAmountWon().compareTo(BigDecimal.ZERO) != 0) {
+                int multiplier = poker.getAmountWon().intValue();
+                double value = betCallback.call(null).getValue() * multiplier;
+                changeBalance(new BigDecimal(value));
+            }
         } else if (event.getOldState().canBet(event.getMachine()) && !event.getNewState().canBet(event.getMachine())) {
             // Remove bet amount from user account
            changeBalance(new BigDecimal(betCallback.call(null).getValue()).negate());
@@ -58,6 +76,15 @@ public class PokerCasinoAdapter {
         // Update user
         try {
             casino.updateUser(currentUser);
+
+            HashMap<Game, Stats> statsForUser = casino.getStatsForUser(currentUser);
+            Stats stats = statsForUser.getOrDefault(Game.Poker, new Stats());
+            boolean positive = amount.compareTo(BigDecimal.ZERO) > 0;
+            String key = positive ? "Chips gewonnen" : "Chips verloren";
+            BigDecimal existingValue = stats.getOrDefault(key, BigDecimal.ZERO);
+            stats.put(key, existingValue.add(amount.abs()));
+            statsForUser.put(Game.Poker, stats);
+            casino.updateStatsForUser(currentUser, statsForUser);
         } catch (IOException | UserDoesNotExistException e) {
             e.printStackTrace();
         }

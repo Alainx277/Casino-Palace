@@ -182,4 +182,12 @@ public class CasinoController extends Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public void handleBuy(MouseEvent mouseEvent) {
+        try {
+            getStateManager().switchStage(getClass().getResource("Buy.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

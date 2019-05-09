@@ -1,33 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.view.BuyController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" styleClass="background-image" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.casinopalace.view.BuyController">
     <stylesheets>
-        <URL value="@Common.css"/>
+        <URL value="@Common.css" />
     </stylesheets>
-    <children>
-      <Button fx:id="umwandelButton" layoutX="220.0" layoutY="248.0" mnemonicParsing="false" text="Umwandeln" />
-      <Spinner fx:id="spinnerChips" layoutX="226.0" layoutY="187.0" />
-      <Label id="titel" fx:id="titel" layoutX="127.0" layoutY="67.0" text="Chips umwandeln">
-         <font>
-            <Font name="Arial Bold" size="44.0" />
-         </font></Label>
-      <Label layoutX="598.0" text="X" textFill="RED">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <Button fx:id="abbrechenButton" layoutX="329.0" layoutY="248.0" mnemonicParsing="false" text="Abbrechen" />
-   </children>
-</AnchorPane>
+    <top>
+        <Label styleClass="light-text" text="Chips umwandeln" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="Arial Bold" size="44.0" />
+            </font>
+        </Label>
+    </top>
+    <center>
+        <Spinner fx:id="spinnerChips" editable="true" prefWidth="200" BorderPane.alignment="CENTER">
+            <valueFactory>
+                <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="5" max="99999999" min="5" />
+            </valueFactory>
+        </Spinner>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="10">
+            <Button mnemonicParsing="false" onAction="#handleConvert" text="Umwandeln" />
+
+            <Button mnemonicParsing="false" onAction="#handleCancel" text="Abbrechen" />
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+        </HBox>
+    </bottom>
+</BorderPane>

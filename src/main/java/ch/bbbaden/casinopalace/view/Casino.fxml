@@ -17,13 +17,13 @@
         <URL value="@Casino.css" />
     </stylesheets>
 
-    <VBox spacing="10" layoutX="47.0" layoutY="45.0">
+    <VBox layoutX="47.0" layoutY="45.0" spacing="10">
         <HBox>
             <Label styleClass="light-text" text="Chips: " />
-            <Label styleClass="light-text" fx:id="chipsLabel" />
+            <Label fx:id="chipsLabel" styleClass="light-text" />
         </HBox>
-        <ImageView fx:id="imgAdd" fitHeight="35.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@/images/add.png"/>
+        <ImageView fx:id="imgAdd" fitHeight="35.0" fitWidth="32.0" onMouseClicked="#handleBuy" pickOnBounds="true" preserveRatio="true">
+            <Image url="@/images/add.png" />
         </ImageView>
     </VBox>
     <ImageView fx:id="imgGurl" fitHeight="446.0" fitWidth="453.0" layoutX="418.0" layoutY="155.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0">

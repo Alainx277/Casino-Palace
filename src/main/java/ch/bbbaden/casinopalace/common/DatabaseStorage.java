@@ -43,7 +43,7 @@ public class DatabaseStorage implements Storage {
     @Override
     public List<Stats> getStatsForUser(User user) throws IOException {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT Statistic.game, Statistic.name, Statistic.value FROM Statistic INNER JOIN player ON Statistic.Player_ID = player.Player_ID WHERE player.name = ? ORDER BY Statistic.game");
+            PreparedStatement statement = connection.prepareStatement("SELECT Statistic.game, Statistic.name, Statistic.value FROM Statistic INNER JOIN Player ON Statistic.Player_ID = Player.Player_ID WHERE Player.name = ? ORDER BY Statistic.game");
             statement.setString(1, user.getUsername());
             ResultSet resultSet = statement.executeQuery();
             ArrayList<Stats> stats = new ArrayList<>();
@@ -69,21 +69,21 @@ public class DatabaseStorage implements Storage {
         for (Stats stat : stats) {
             for (Map.Entry<String, BigDecimal> entry : stat.getValues().entrySet()) {
                 try {
-                    PreparedStatement check = connection.prepareStatement("SELECT 1 FROM Statistic INNER JOIN player ON Statistic.Player_ID = player.Player_ID WHERE player.name = ? AND Statistic.game = ? AND Statistic.name = ?");
+                    PreparedStatement check = connection.prepareStatement("SELECT 1 FROM Statistic INNER JOIN Player ON Statistic.Player_ID = Player.Player_ID WHERE Player.name = ? AND Statistic.game = ? AND Statistic.name = ?");
                     check.setString(1, user.getUsername());
                     check.setString(2, stat.getGame().toString());
                     check.setString(3, entry.getKey());
                     boolean exists = check.executeQuery().next();
 
                     if (exists) {
-                        PreparedStatement statement = connection.prepareStatement("UPDATE Statistic INNER JOIN player ON Statistic.Player_ID = player.Player_ID SET value = ? WHERE player.name = ? AND Statistic.game = ? AND Statistic.name = ?");
+                        PreparedStatement statement = connection.prepareStatement("UPDATE Statistic INNER JOIN Player ON Statistic.Player_ID = Player.Player_ID SET value = ? WHERE Player.name = ? AND Statistic.game = ? AND Statistic.name = ?");
                         statement.setBigDecimal(1, entry.getValue());
                         statement.setString(2, user.getUsername());
                         statement.setString(3, stat.getGame().toString());
                         statement.setString(4, entry.getKey());
                         statement.execute();
                     } else {
-                        PreparedStatement statement = connection.prepareStatement("INSERT INTO Statistic (Player_ID, game, name, value) VALUES ((SELECT player.Player_ID FROM player WHERE player.name = ? LIMIT 1), ?, ?, ?)");
+                        PreparedStatement statement = connection.prepareStatement("INSERT INTO Statistic (Player_ID, game, name, value) VALUES ((SELECT Player.Player_ID FROM Player WHERE Player.name = ? LIMIT 1), ?, ?, ?)");
                         statement.setString(1, user.getUsername());
                         statement.setString(2, stat.getGame().toString());
                         statement.setString(3, entry.getKey());

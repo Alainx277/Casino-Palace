@@ -45,7 +45,7 @@ public class RouletteGameController extends Controller implements Initializable 
 
     //Meine Attribute
     Roulette roulette = new Roulette();
-    Datenbank db;
+    CasinoStorageAdapter db;
     BetMoney bm = new BetMoney();
     Chip chip = new Chip();
     HashMap<Field, Integer> fieldinput = new HashMap<>();
@@ -385,7 +385,7 @@ public class RouletteGameController extends Controller implements Initializable 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        db = new Datenbank(getStateManager().getCasino());
+        db = new CasinoStorageAdapter(getStateManager().getCasino());
 
         //Images
         Image hand = new Image("/images/icons/hand.png");

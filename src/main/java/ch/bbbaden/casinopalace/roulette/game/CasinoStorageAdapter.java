@@ -17,10 +17,10 @@ import java.math.RoundingMode;
  *
  * @author gabri
  */
-public class Datenbank {
+public class CasinoStorageAdapter {
     private final Casino casino;
 
-    public Datenbank(Casino casino) {
+    public CasinoStorageAdapter(Casino casino) {
         this.casino = casino;
     }
 

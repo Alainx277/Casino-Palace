@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import ch.bbbaden.casinopalace.common.Controller;
-import ch.bbbaden.casinopalace.roulette.game.Datenbank;
+import ch.bbbaden.casinopalace.roulette.game.CasinoStorageAdapter;
 import ch.bbbaden.casinopalace.roulette.game.RouletteGameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,7 +38,7 @@ public class RouletteController extends Controller implements Initializable {
     private ImageView titleimage;
     @FXML
     private Label kontostand;
-    private Datenbank db;
+    private CasinoStorageAdapter db;
 
     /**
      * Initializes the controller class.
@@ -48,7 +48,7 @@ public class RouletteController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        db = new Datenbank(getStateManager().getCasino());
+        db = new CasinoStorageAdapter(getStateManager().getCasino());
 
         // Images
         Image roulette = new Image("/images/roulette_1.png");

@@ -12,6 +12,11 @@ public class CasinoState extends State {
     }
 
     @Override
+    public void handleLogin(StateManager stateManager) throws Exception {
+        stateManager.transition(new LoginState());
+    }
+
+    @Override
     public void handlePoker(StateManager stateManager) throws Exception {
         stateManager.transition(new PokerState());
     }

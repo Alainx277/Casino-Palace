@@ -39,6 +39,6 @@
          </children>
       </GridPane>
       <Label layoutX="14.0" layoutY="14.0" text="Kontostand:" />
-      <Label fx:id="kontostand" layoutX="82.0" layoutY="14.0" />
+      <Label fx:id="kontostand" layoutX="105.0" layoutY="14.0" />
    </children>
 </AnchorPane>

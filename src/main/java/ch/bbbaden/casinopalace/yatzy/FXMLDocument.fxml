@@ -141,16 +141,15 @@
       <Button fx:id="buttonWuerfeln" layoutX="587.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleWuerfeln" text="Wuerfeln" />
       <ImageView fitHeight="205.0" fitWidth="323.0" layoutX="339.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@yatzy.png" />
+            <Image url="/images/yatzy.png" />
          </image>
       </ImageView>
       <Button fx:id="cancel" layoutX="691.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleCancel" text="Aufgeben" />
-      <Button fx:id="buttonSetzen" layoutX="590.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleSetzen" text="Betrag setzen" />
-      <Spinner fx:id="spinnerBetrag" layoutX="588.0" layoutY="264.0" />
       <GridPane layoutX="578.0" layoutY="186.0" prefHeight="66.0" prefWidth="265.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="140.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="60.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="60.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -176,5 +175,35 @@
             <Label fx:id="anzahlWuerfe" GridPane.columnIndex="1" />
          </children>
       </GridPane>
+      <ImageView fx:id="button1" fitHeight="60.0" fitWidth="60.0" layoutX="578.0" layoutY="259.0" onMouseClicked="#handleSetzen1" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/images/chips/Chip1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button10" fitHeight="60.0" fitWidth="60.0" layoutX="649.0" layoutY="259.0" onMouseClicked="#handleSetzen10" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/images/chips/Chip10.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button50" fitHeight="60.0" fitWidth="60.0" layoutX="715.0" layoutY="259.0" onMouseClicked="#handleSetzen50" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/images/chips/Chip50.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button100" fitHeight="60.0" fitWidth="60.0" layoutX="785.0" layoutY="259.0" onMouseClicked="#handleSetzen100" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/images/chips/Chip100.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button250" fitHeight="60.0" fitWidth="60.0" layoutX="853.0" layoutY="259.0" onMouseClicked="#handleSetzen250" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/images/chips/Chip250.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button500" fitHeight="60.0" fitWidth="60.0" layoutX="921.0" layoutY="259.0" onMouseClicked="#handleSetzen500" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/images/chips/Chip500.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -47,17 +47,17 @@
       </Pane>
       <ImageView fx:id="throw3" fitHeight="35.0" fitWidth="35.0" layoutX="119.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../bilder/Becher.png" />
+            <Image url="/images/Becher.png" />
          </image>
       </ImageView>
       <ImageView fx:id="throw2" fitHeight="35.0" fitWidth="35.0" layoutX="158.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../bilder/Becher.png" />
+            <Image url="/images/Becher.png" />
          </image>
       </ImageView>
       <ImageView fx:id="throw1" fitHeight="35.0" fitWidth="35.0" layoutX="201.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../bilder/Becher.png" />
+            <Image url="/images/Becher.png" />
          </image>
       </ImageView>
       <Label layoutX="286.0" layoutY="318.0" text="Wurf einer Figur zuordnen" />

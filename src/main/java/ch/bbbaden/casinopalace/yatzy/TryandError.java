@@ -298,9 +298,9 @@ public class TryandError {
         this.label2change = label2change;
     }
 
-    public void showStage() {
+    public void showStage(boolean hide) {
         //stage.show();
-        fdc.setHide(false);
+        fdc.setHide(hide);
     }
 
     public void setWin(boolean win) {

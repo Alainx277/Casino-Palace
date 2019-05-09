@@ -24,8 +24,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -87,8 +85,6 @@ public class FXMLDocumentController extends Controller implements Initializable 
     @FXML
     private Label labelGesamtpunkteTeil1;
     @FXML
-    private Spinner<Integer> spinnerBetrag;
-    @FXML
     private Button buttonWuerfeln;
     @FXML
     private Button buttonSetzen;
@@ -118,15 +114,21 @@ public class FXMLDocumentController extends Controller implements Initializable 
         this.te = te;
     }
 
-        @Override
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-        getStateManager().getSceneCreator().getCurrentStage().setOnCloseRequest(event -> handleClose(null));
+        getStateManager().getSceneCreator().getCurrentStage().setOnCloseRequest(event -> {
+            handleClose(null);
+            event.consume();
+        });
         // TODO
+        TryandError te = TryandError.getInstance();
+        Calculation ca = new Calculation();
+        setCalculation(ca);
+        setTryandError(te);
         te.setFdc(this);
         ca.setFdc(this);
         buttonWuerfeln.setDisable(true);
         getKontostand();
-        spinnerBetrag.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(25, 100, 25, 25));
         anzahlWuerfe.setText("" + ianzahlWuerfe);
     }
 
@@ -139,9 +141,8 @@ public class FXMLDocumentController extends Controller implements Initializable 
             te.setWin(true);
         }
         te.setFields(unusedFigures);
-        getStateManager().switchStage(getClass().getResource("FXMLDocument.fxml"));
 
-        setHide(true);
+        getStateManager().switchStage(getClass().getResource("WuerfelnFXML.fxml"));
 
     }
 
@@ -160,14 +161,16 @@ public class FXMLDocumentController extends Controller implements Initializable 
     }
 
     @FXML
-    private void handleSetzen(ActionEvent event) {
-        int c = Integer.parseInt(labelKontostand.getText());
-        int i = spinnerBetrag.getValue();
-        gesetzterBetrag = i;
-        setKontostand();
-        buttonWuerfeln.setDisable(false);
-        spinnerBetrag.setVisible(false);
-        buttonSetzen.setVisible(false);
+    private void handleSetzen(int i) {
+        if (ianzahlWuerfe == 15) {
+            if (Integer.parseInt(labelKontostand.getText()) >= i) {
+                int c = Integer.parseInt(labelKontostand.getText());
+                gesetzterBetrag += i;
+                setKontostand(i);
+                buttonWuerfeln.setDisable(false);
+            }
+        }
+
     }
 
     public void setHide(boolean baum) {
@@ -312,11 +315,12 @@ public class FXMLDocumentController extends Controller implements Initializable 
                 message,
                 title,
                 JOptionPane.YES_NO_OPTION);
-        
+
         if (n == JOptionPane.YES_OPTION) {
-            
+            Stage stage = (Stage) cancel.getScene().getWindow();
+            stage.close();
             if (nextWindow) {
-                te.showStage();
+                te.showStage(false);
             } else {
                 try {
                     getStateManager().getState().handleCasino(getStateManager());
@@ -326,9 +330,7 @@ public class FXMLDocumentController extends Controller implements Initializable 
                 }
             }
 
-            Stage stage = (Stage) labeleinser.getScene().getWindow();
-            stage.close();
-    }
+        }
     }
 
     public void setLabelzpt1(String i) {
@@ -356,9 +358,9 @@ public class FXMLDocumentController extends Controller implements Initializable 
         labelKontostand.setText(getStateManager().getCasino().getCurrentUser().getChips().stripTrailingZeros().toPlainString());
     }
 
-    private void setKontostand() {
+    private void setKontostand(int betrag) {
         User user = getStateManager().getCasino().getCurrentUser();
-        BigDecimal decimal = user.getChips().subtract(new BigDecimal(gesetzterBetrag));
+        BigDecimal decimal = user.getChips().subtract(new BigDecimal(betrag));
         user.setChips(decimal);
         try {
             getStateManager().getCasino().updateUser(user);
@@ -414,5 +416,35 @@ public class FXMLDocumentController extends Controller implements Initializable 
 
     public int getGesetzterBetrag() {
         return gesetzterBetrag;
+    }
+
+    @FXML
+    private void handleSetzen1(MouseEvent event) {
+        handleSetzen(1);
+    }
+
+    @FXML
+    private void handleSetzen10(MouseEvent event) {
+        handleSetzen(10);
+    }
+
+    @FXML
+    private void handleSetzen50(MouseEvent event) {
+        handleSetzen(50);
+    }
+
+    @FXML
+    private void handleSetzen100(MouseEvent event) {
+        handleSetzen(100);
+    }
+
+    @FXML
+    private void handleSetzen250(MouseEvent event) {
+        handleSetzen(250);
+    }
+
+    @FXML
+    private void handleSetzen500(MouseEvent event) {
+        handleSetzen(500);
     }
 }

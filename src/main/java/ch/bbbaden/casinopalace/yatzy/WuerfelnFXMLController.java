@@ -5,6 +5,7 @@
  */
 package ch.bbbaden.casinopalace.yatzy;
 
+import ch.bbbaden.casinopalace.common.Controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -26,7 +27,7 @@ import javax.swing.JOptionPane;
  *
  * @author denni
  */
-public class WuerfelnFXMLController implements Initializable {
+public class WuerfelnFXMLController extends Controller implements Initializable {
     
     @FXML
     private Button finish;
@@ -84,12 +85,18 @@ public class WuerfelnFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        getStateManager().getSceneCreator().getCurrentStage().setOnCloseRequest(event -> {
+            handleclose(null);
+            event.consume();
+                });
+        te = TryandError.getInstance();
+        te.showStage(true);
         thrown = false;
 
     }
 
     public void initi() {
+        finish.getScene().getWindow().setOnCloseRequest(event -> handleclose(null));
         if (te.hasAl()) {
             throwDices = te.getAlDice();
             //Wuerfel von vorhin anzeigen
@@ -249,7 +256,7 @@ public class WuerfelnFXMLController implements Initializable {
 
                 Stage stage = (Stage) finish.getScene().getWindow();
                 stage.close();
-                te.showStage();
+                te.showStage(false);
                 te.setAlDice(throwDices);
                 te.setFigur(false, combobox2.getValue());
 
@@ -261,7 +268,7 @@ public class WuerfelnFXMLController implements Initializable {
 
                 Stage stage = (Stage) finish.getScene().getWindow();
                 stage.close();
-                te.showStage();
+                te.showStage(false);
                 te.setAlDice(throwDices);
                 te.setFigur(true, combobox1.getValue());
 
@@ -499,7 +506,7 @@ public class WuerfelnFXMLController implements Initializable {
 
         if (n == JOptionPane.YES_OPTION) {
             if (nextWindow) {
-                te.showStage();
+                te.showStage(false);
             }
             te.cancelWue();
             Stage stage = (Stage) finish.getScene().getWindow();

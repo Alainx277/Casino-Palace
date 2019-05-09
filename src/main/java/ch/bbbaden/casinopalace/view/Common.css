@@ -44,4 +44,5 @@ and open the template in the editor.
 
 .background-image{
     -fx-background-image: url("/images/Bg2.jpg");
+    -fx-background-size: cover;
 }

@@ -42,15 +42,15 @@ public class YatzyController extends Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
     }
-    
-    private void handleclose(){
-         try {
-                    getStateManager().getState().handleCasino(getStateManager());
-                    return;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+    private void handleclose() {
+        try {
+            getStateManager().getState().handleCasino(getStateManager());
+            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

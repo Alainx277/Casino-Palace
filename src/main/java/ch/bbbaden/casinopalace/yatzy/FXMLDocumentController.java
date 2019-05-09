@@ -130,6 +130,7 @@ public class FXMLDocumentController extends Controller implements Initializable 
         buttonWuerfeln.setDisable(true);
         getKontostand();
         anzahlWuerfe.setText("" + ianzahlWuerfe);
+        te.setWin(false);
     }
 
     @FXML
@@ -399,6 +400,12 @@ public class FXMLDocumentController extends Controller implements Initializable 
         setDatabase();
         Stage stage = (Stage) cancel.getScene().getWindow();
         stage.close();
+        try {
+            getStateManager().getState().handleCasino(getStateManager());
+            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setDatabase() {

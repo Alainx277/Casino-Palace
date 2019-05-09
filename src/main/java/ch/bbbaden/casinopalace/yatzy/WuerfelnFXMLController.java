@@ -92,11 +92,10 @@ public class WuerfelnFXMLController extends Controller implements Initializable 
         te = TryandError.getInstance();
         te.showStage(true);
         thrown = false;
-
+        initi();
     }
 
     public void initi() {
-        finish.getScene().getWindow().setOnCloseRequest(event -> handleclose(null));
         if (te.hasAl()) {
             throwDices = te.getAlDice();
             //Wuerfel von vorhin anzeigen
